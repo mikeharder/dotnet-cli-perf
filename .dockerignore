@@ -3,5 +3,4 @@
 README.md
 
 .dockerignore
-Dockerfile
-*-docker.ps1
+docker
