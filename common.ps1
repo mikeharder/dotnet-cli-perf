@@ -8,9 +8,9 @@ function Measure-Command-With-Output {
     Write-Host "$($s)s`n"
 }
 
-function Touch-File {
+function Add-Newline {
     Param(
         [string]$file
     )
-    Write-Output " " >> $file
+    Add-Content $file ""
 }
