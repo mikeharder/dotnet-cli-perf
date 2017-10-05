@@ -7,3 +7,10 @@ function Measure-Command-With-Output {
     $s = [math]::Round($m.TotalSeconds, 2)
     Write-Host "$($s)s`n"
 }
+
+function Touch-File {
+    Param(
+        [string]$file
+    )
+    Write-Output $null >> $file
+}

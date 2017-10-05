@@ -31,13 +31,13 @@ Measure-Command-With-Output { dotnet build }
 
 Measure-Command-With-Output { dotnet build }
 
-Measure-Command-With-Output { Write-Output $null >> ./Program.cs }
+Measure-Command-With-Output { Touch-File ./Program.cs }
 
 Measure-Command-With-Output { dotnet build }
 
 Measure-Command-With-Output { dotnet run }
 
-Measure-Command-With-Output { Write-Output $null >> ./Program.cs }
+Measure-Command-With-Output { Touch-File ./Program.cs }
 
 Measure-Command-With-Output { dotnet run }
 
