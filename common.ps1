@@ -12,5 +12,5 @@ function Touch-File {
     Param(
         [string]$file
     )
-    Write-Output $null >> $file
+    Write-Output " " >> $file
 }
