@@ -17,7 +17,7 @@ Set-Location mvc
 Measure-Command-With-Output { dotnet new mvc --no-restore }
 
 # Terminate app after web server is started
-(Get-Content ./Program.cs).Replace('Run()', 'RunAsync()') | Set-Content ./Program.cs
+Replace-Text ./Program.cs "Run()" "RunAsync()"
 
 Measure-Command-With-Output { dotnet restore }
 

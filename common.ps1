@@ -14,3 +14,12 @@ function Add-Newline {
     )
     Add-Content $file ""
 }
+
+function Replace-Text {
+    Param(
+        [string]$file,
+        [string]$from,
+        [string]$to
+    )
+    (Get-Content $file).Replace($from, $to) | Set-Content $file
+}
