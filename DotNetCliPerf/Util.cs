@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -80,7 +81,8 @@ namespace DotNetCliPerf
             }
         }
 
-        public static void RunProcess(string filename, string arguments, string workingDirectory, bool throwOnError = true)
+        public static void RunProcess(string filename, string arguments, string workingDirectory,
+            bool throwOnError = true, IDictionary<string, string> environment = null)
         {
             Util.WriteLine($"{filename} {arguments}");
 
@@ -96,6 +98,14 @@ namespace DotNetCliPerf
                     WorkingDirectory = workingDirectory,
                 },
             };
+
+            if (environment != null)
+            {
+                foreach (var kvp in environment)
+                {
+                    process.StartInfo.Environment.Add(kvp);
+                }
+            }
 
             var outputBuilder = new StringBuilder();
             process.OutputDataReceived += (_, e) =>

@@ -9,6 +9,7 @@ namespace DotNetCliPerf
     {
         private string _rootTempDir;
         private string _iterationTempDir;
+        private IDictionary<string, string> _environment = new Dictionary<string, string>();
 
         [Params("console", "mvc")]
         public string Template { get; set; }
@@ -28,8 +29,9 @@ namespace DotNetCliPerf
         [IterationSetup(Target = nameof(New))]
         public void IterationSetupNew()
         {
-            DotNet("nuget locals all --clear");
             _iterationTempDir = Util.GetTempDir(_rootTempDir);
+            _environment["NUGET_PACKAGES"] = Path.Combine(_iterationTempDir, "nuget-packages");
+            _environment["NUGET_HTTP_CACHE_PATH"] = Path.Combine(_iterationTempDir, "nuget-http-cache");
         }
 
         [Benchmark]
@@ -161,9 +163,9 @@ namespace DotNetCliPerf
             DotNet("run");
         }
 
-        private void DotNet(string arguments)
+        protected void DotNet(string arguments)
         {
-            Util.RunProcess("dotnet", arguments, _iterationTempDir);
+            Util.RunProcess("dotnet", arguments, _iterationTempDir, environment: _environment);
         }
 
         private void ModifySource()
