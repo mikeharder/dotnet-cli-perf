@@ -9,7 +9,7 @@ namespace DotNetCliPerf
     {
         static void Main(string[] args)
         {
-            var targetCount = args.Length >= 1 ? int.Parse(args[0]) : 3;
+            var targetCount = args.Length >= 1 ? int.Parse(args[0]) : 1;
 
             var job = new Job();
             job.Run.RunStrategy = RunStrategy.Monitoring;
