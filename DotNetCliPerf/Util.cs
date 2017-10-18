@@ -80,7 +80,7 @@ namespace DotNetCliPerf
             }
         }
 
-        public static void RunProcess(string filename, string arguments, string workingDirectory)
+        public static void RunProcess(string filename, string arguments, string workingDirectory, bool throwOnError = true)
         {
             Util.WriteLine($"{filename} {arguments}");
 
@@ -116,7 +116,7 @@ namespace DotNetCliPerf
             process.BeginErrorReadLine();
             process.WaitForExit();
 
-            if (process.ExitCode != 0)
+            if (throwOnError && process.ExitCode != 0)
             {
                 throw new InvalidOperationException($"Command {filename} {arguments} returned exit code {process.ExitCode}");
             }
