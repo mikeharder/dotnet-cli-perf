@@ -28,6 +28,7 @@ namespace DotNetCliPerf
         [IterationSetup(Target = nameof(New))]
         public void IterationSetupNew()
         {
+            DotNet("nuget locals all --clear");
             _iterationTempDir = Util.GetTempDir(_rootTempDir);
         }
 
