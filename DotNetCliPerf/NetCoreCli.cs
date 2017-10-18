@@ -1,9 +1,4 @@
 ﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Attributes.Jobs;
-using BenchmarkDotNet.Engines;
-using System;
-using System.IO;
-using System.Threading;
 
 namespace DotNetCliPerf
 {
