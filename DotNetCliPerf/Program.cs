@@ -9,7 +9,7 @@ namespace DotNetCliPerf
     {
         static void Main(string[] args)
         {
-            var warmupCount = args.Length >= 1 ? int.Parse(args[0]) : 1;
+            var warmupCount = args.Length >= 1 ? int.Parse(args[0]) : 0;
             var targetCount = args.Length >= 2 ? int.Parse(args[1]) : 1;
 
             var job = new Job();
