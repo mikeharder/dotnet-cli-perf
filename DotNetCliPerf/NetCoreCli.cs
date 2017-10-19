@@ -5,33 +5,19 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public class NetCoreCli
+    public class NetCoreCli : TempDir
     {
-        private string _rootTempDir;
-        private string _iterationTempDir;
         private IDictionary<string, string> _environment = new Dictionary<string, string>();
 
         [Params("console", "mvc")]
         public string Template { get; set; }
 
-        [GlobalSetup]
-        public void GlobalSetup()
-        {
-            _rootTempDir = Util.GetTempDir();
-        }
-
-        [GlobalCleanup]
-        public void GlobalCleanup()
-        {
-            Util.DeleteDir(_rootTempDir);
-        }
-
         [IterationSetup(Target = nameof(New))]
         public void IterationSetupNew()
         {
-            _iterationTempDir = Util.GetTempDir(_rootTempDir);
-            _environment["NUGET_PACKAGES"] = Path.Combine(_iterationTempDir, "nuget-packages");
-            _environment["NUGET_HTTP_CACHE_PATH"] = Path.Combine(_iterationTempDir, "nuget-http-cache");
+            IterationSetup();
+            _environment["NUGET_PACKAGES"] = Path.Combine(IterationTempDir, "nuget-packages");
+            _environment["NUGET_HTTP_CACHE_PATH"] = Path.Combine(IterationTempDir, "nuget-http-cache");
         }
 
         [Benchmark]
@@ -163,9 +149,9 @@ namespace DotNetCliPerf
             DotNet("run");
         }
 
-        protected void DotNet(string arguments)
+        private void DotNet(string arguments)
         {
-            Util.RunProcess("dotnet", arguments, _iterationTempDir, environment: _environment);
+            Util.RunProcess("dotnet", arguments, IterationTempDir, environment: _environment);
         }
 
         private void ModifySource()
@@ -176,7 +162,7 @@ namespace DotNetCliPerf
                 { "console", Tuple.Create("Program.cs", "Hello", "Hello2") },
             };
 
-            var path = Path.Combine(_iterationTempDir, replacements[Template].Item1);
+            var path = Path.Combine(IterationTempDir, replacements[Template].Item1);
             var oldValue = replacements[Template].Item2;
             var newValue = replacements[Template].Item3;
 
@@ -185,7 +171,7 @@ namespace DotNetCliPerf
 
         private void TerminateAfterWebAppStarted()
         {
-            var path = Path.Combine(_iterationTempDir, "Program.cs");
+            var path = Path.Combine(IterationTempDir, "Program.cs");
             File.WriteAllText(path, File.ReadAllText(path).Replace("Run()", "RunAsync()"));
         }
     }
