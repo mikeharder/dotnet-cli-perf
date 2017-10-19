@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Toolchains.InProcess;
 using CommandLine;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,7 @@ namespace DotNetCliPerf
             job.Run.LaunchCount = 1;
             job.Run.WarmupCount = options.WarmupCount;
             job.Run.TargetCount = options.TargetCount;
+            job = job.With(InProcessToolchain.Instance);
 
             var config = ManualConfig.Create(DefaultConfig.Instance).With(job);
 
