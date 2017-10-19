@@ -11,13 +11,13 @@ namespace DotNetCliPerf
 {
     class Options
     {
-        [Option('t', "types", HelpText = "Comma-separated list of types to benchmark.", Separator = ',')]
+        [Option('t', "types", HelpText = "Comma-separated list of types to benchmark. Default is all types.", Separator = ',')]
         public IEnumerable<string> Types { get; set; }
 
-        [Option('m', "methods", HelpText = "Comma-separated list of methods to benchmark.", Separator = ',')]
+        [Option('m', "methods", HelpText = "Comma-separated list of methods to benchmark. Default is all methods.", Separator = ',')]
         public IEnumerable<string> Methods { get; set; }
 
-        [Option('p', "parameters", HelpText = "Comma-separated list of parameters to benchmark.", Separator = ',')]
+        [Option('p', "parameters", HelpText = "Comma-separated list of parameters to benchmark. Default is all parameters.", Separator = ',')]
         public IEnumerable<string> Parameters { get; set; }
 
         [Option('c', "targetCount", Default = 1)]
