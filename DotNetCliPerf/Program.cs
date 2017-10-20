@@ -50,7 +50,10 @@ namespace DotNetCliPerf
             var config = ManualConfig.Create(DefaultConfig.Instance).With(job);
 
             var allBenchmarks = new List<Benchmark>();
-            allBenchmarks.AddRange(BenchmarkConverter.TypeToBenchmarks(typeof(NetCoreCli), config));
+            foreach (var type in typeof(Program).Assembly.GetTypes())
+            {
+                allBenchmarks.AddRange(BenchmarkConverter.TypeToBenchmarks(type, config));
+            }
 
             var selectedBenchmarks = allBenchmarks.
                 Where(b => !options.Types.Any() ||
