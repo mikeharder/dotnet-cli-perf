@@ -100,7 +100,7 @@ namespace DotNetCliPerf
 
         private void GradleW(string arguments)
         {
-            Util.RunProcess("gradlew.bat", arguments, IterationTempDir);
+            Util.RunProcess("cmd", $"/c \"gradlew.bat {arguments}\"", IterationTempDir);
         }
 
         private void ModifySource()
