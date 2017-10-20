@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCliPerf", "DotNetCliPerf\DotNetCliPerf.csproj", "{0689FE52-8992-48D0-B777-62371BE70A19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCliPerf", "DotNetCliPerf\DotNetCliPerf.csproj", "{0689FE52-8992-48D0-B777-62371BE70A19}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FD0F0E3A-4825-475E-B694-F663442FC957}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		build.ps1 = build.ps1
+		run.ps1 = run.ps1
 	EndProjectSection
 EndProject
 Global
