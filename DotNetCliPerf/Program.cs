@@ -54,11 +54,11 @@ namespace DotNetCliPerf
 
             var selectedBenchmarks = allBenchmarks.
                 Where(b => !options.Types.Any() ||
-                           options.Types.Contains(b.Target.Type.Name, StringComparer.OrdinalIgnoreCase)).
+                           b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
                 Where(b => !options.Methods.Any() ||
-                           options.Methods.Contains(b.Target.Method.Name, StringComparer.OrdinalIgnoreCase)).
+                           b.Target.Method.Name.ContainsAny(options.Methods, StringComparison.OrdinalIgnoreCase)).
                 Where(b => !options.Parameters.Any() ||
-                           options.Parameters.Contains((string)b.Parameters[0].Value, StringComparer.OrdinalIgnoreCase));
+                           ((string)b.Parameters[0].Value).ContainsAny(options.Parameters, StringComparison.OrdinalIgnoreCase));
 
             BenchmarkRunner.Run(selectedBenchmarks.ToArray(), config);
 
