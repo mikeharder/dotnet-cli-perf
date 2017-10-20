@@ -5,7 +5,7 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public class NetCoreCli : TempDir
+    public class NetCoreCli : Cli
     {
         private IDictionary<string, string> _environment = new Dictionary<string, string>();
 
@@ -13,15 +13,15 @@ namespace DotNetCliPerf
         public string Template { get; set; }
 
         [IterationSetup(Target = nameof(New))]
-        public void IterationSetupNew()
+        public override void IterationSetupNew()
         {
-            IterationSetup();
+            base.IterationSetupNew();
             _environment["NUGET_PACKAGES"] = Path.Combine(IterationTempDir, "nuget-packages");
             _environment["NUGET_HTTP_CACHE_PATH"] = Path.Combine(IterationTempDir, "nuget-http-cache");
         }
 
         [Benchmark]
-        public void New()
+        public override void New()
         {
             DotNet($"new {Template} --no-restore");
         }
@@ -31,6 +31,10 @@ namespace DotNetCliPerf
         {
             IterationSetupNew();
             New();
+            if (Template == "mvc")
+            {
+                TerminateAfterWebAppStarted();
+            }
         }
 
         [Benchmark]
@@ -79,72 +83,38 @@ namespace DotNetCliPerf
         }
 
         [IterationSetup(Target = nameof(BuildInitial))]
-        public void IterationSetupBuildInitial()
+        public override void IterationSetupBuildInitial()
         {
             IterationSetupRestoreInitial();
             RestoreInitial();
         }
 
         [Benchmark]
-        public void BuildInitial()
+        public override void BuildInitial()
         {
             DotNet("build");
         }
 
-        [IterationSetup(Target = nameof(BuildNoChanges))]
-        public void IterationSetupBuildNoChanges()
-        {
-            IterationSetupBuildInitial();
-            BuildInitial();
-        }
-
         [Benchmark]
-        public void BuildNoChanges()
+        public override void BuildNoChanges()
         {
             DotNet("build");
         }
 
-        [IterationSetup(Target = nameof(BuildAfterChange))]
-        public void IterationSetupBuildAfterChange()
-        {
-            IterationSetupBuildInitial();
-            BuildInitial();
-            ModifySource();
-        }
-
         [Benchmark]
-        public void BuildAfterChange()
+        public override void BuildAfterChange()
         {
             DotNet("build");
         }
 
-        [IterationSetup(Target = nameof(RunNoChanges))]
-        public void IterationSetupRunNoChanges()
-        {
-            IterationSetupBuildInitial();
-            if (Template == "mvc")
-            {
-                TerminateAfterWebAppStarted();
-            }
-            BuildInitial();
-        }
-
         [Benchmark]
-        public void RunNoChanges()
+        public override void RunNoChanges()
         {
             DotNet("run");
         }
 
-        [IterationSetup(Target = nameof(RunAfterChange))]
-        public void IterationSetupRunAfterChange()
-        {
-            IterationSetupRunNoChanges();
-            RunNoChanges();
-            ModifySource();
-        }
-
         [Benchmark]
-        public void RunAfterChange()
+        public override void RunAfterChange()
         {
             DotNet("run");
         }
@@ -154,7 +124,7 @@ namespace DotNetCliPerf
             Util.RunProcess("dotnet", arguments, IterationTempDir, environment: _environment);
         }
 
-        private void ModifySource()
+        protected override void ModifySource()
         {
             var replacements = new Dictionary<string, Tuple<string, string, string>>
             {

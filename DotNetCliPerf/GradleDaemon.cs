@@ -3,10 +3,10 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public class GradleDaemon : TempDir
+    public class GradleDaemon : Cli
     {
         [GlobalSetup]
-        public new void GlobalSetup()
+        public override void GlobalSetup()
         {
             base.GlobalSetup();
             
@@ -14,81 +14,38 @@ namespace DotNetCliPerf
             Gradle("--daemon");
         }
 
-        [IterationSetup(Target = nameof(New))]
-        public void IterationSetupNew()
-        {
-            IterationSetup();
-        }
-
         [Benchmark]
-        public void New()
+        public override void New()
         {
             Gradle($"init --type java-application");
         }
 
-        [IterationSetup(Target = nameof(BuildInitial))]
-        public void IterationSetupBuildInitial()
-        {
-            IterationSetupNew();
-            New();
-        }
-
         [Benchmark]
-        public void BuildInitial()
+        public override void BuildInitial()
         {
             GradleW("assemble");
         }
 
-        [IterationSetup(Target = nameof(BuildNoChanges))]
-        public void IterationSetupBuildNoChanges()
-        {
-            IterationSetupBuildInitial();
-            BuildInitial();
-        }
-
         [Benchmark]
-        public void BuildNoChanges()
+        public override void BuildNoChanges()
         {
             GradleW("assemble");
         }
 
-        [IterationSetup(Target = nameof(BuildAfterChange))]
-        public void IterationSetupBuildAfterChange()
-        {
-            IterationSetupBuildInitial();
-            BuildInitial();
-            ModifySource();
-        }
-
         [Benchmark]
-        public void BuildAfterChange()
+        public override void BuildAfterChange()
         {
             GradleW("assemble");
         }
 
-        [IterationSetup(Target = nameof(RunNoChanges))]
-        public void IterationSetupRunNoChanges()
-        {
-            IterationSetupBuildInitial();
-            BuildInitial();
-        }
-
         [Benchmark]
-        public void RunNoChanges()
+        public override void RunNoChanges()
         {
             GradleW("run");
         }
 
-        [IterationSetup(Target = nameof(RunAfterChange))]
-        public void IterationSetupRunAfterChange()
-        {
-            IterationSetupRunNoChanges();
-            RunNoChanges();
-            ModifySource();
-        }
-
         [Benchmark]
-        public void RunAfterChange()
+        public override void RunAfterChange()
         {
             GradleW("run");
         }
@@ -103,7 +60,7 @@ namespace DotNetCliPerf
             Util.RunProcess("cmd", $"/c \"gradlew.bat {arguments}\"", IterationTempDir);
         }
 
-        private void ModifySource()
+        protected override void ModifySource()
         {
             var path = Path.Combine(IterationTempDir, "src", "main", "java", "App.java");
             var oldValue = "Hello";
