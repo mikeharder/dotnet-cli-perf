@@ -5,13 +5,18 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public class WebApp : RootTemp
+    public class WebAppCore : RootTemp
     {
         private static readonly string sourceDir = Path.Combine(Util.RepoRoot, "scenarios", "web", "core");
 
         private string _oldTitle = "Home Page";
         private string _newTitle;
         private string _output;
+
+        private const string _globalJson = @"{ ""sdk"": { ""version"": ""0.0.0"" } }";
+
+        [Params("2.0.2", "2.1.1")]
+        public string SdkVersion { get; set; }
 
         [GlobalSetup]
         public override void GlobalSetup()
@@ -21,9 +26,16 @@ namespace DotNetCliPerf
             // Copy app from scenarios folder
             Util.DirectoryCopy(sourceDir, RootTempDir, copySubDirs: true);
 
-            Npm("install");
+            File.WriteAllText(Path.Combine(RootTempDir, "global.json"), _globalJson.Replace("0.0.0", SdkVersion));
 
-            var output = DotNet("run");
+            // Verify version
+            var output = DotNet("--info");
+            if (!output.Contains($"Version:            {SdkVersion}"))
+            {
+                throw new InvalidOperationException($"Incorrect SDK version");
+            }
+
+            output = DotNet("run");
 
             // Verify response
             var expected = "<title>Home Page";
