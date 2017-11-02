@@ -7,21 +7,7 @@ namespace DotNetCliPerf
 {
     public class WebApp : RootTemp
     {
-        private const string _oldMain = "BuildWebHost(args).Run();";
-
-        private const string _newMain =
-@"
-var sw = System.Diagnostics.Stopwatch.StartNew();
-BuildWebHost(args).RunAsync();
-var response = (new System.Net.Http.HttpClient()).GetStringAsync(""http://localhost:5000"").Result;
-sw.Stop();
-
-Console.WriteLine(response);
-Console.WriteLine(sw.Elapsed);
-";
-
-        private const string _viewData = @"ViewData[""Title""] = ""Home Page"";";
-        private const string _returnView = @"return View();";
+        private static readonly string sourceDir = Path.Combine(Util.RepoRoot, "scenarios", "web", "core");
 
         private string _oldTitle = "Home Page";
         private string _newTitle;
@@ -32,17 +18,10 @@ Console.WriteLine(sw.Elapsed);
         {
             base.GlobalSetup();
 
-            DotNet("new angular --no-restore");
+            // Copy app from scenarios folder
+            Util.DirectoryCopy(sourceDir, RootTempDir, copySubDirs: true);
+
             Npm("install");
-
-            // Update Main() to execute a request after starting the app
-            Util.ReplaceInFile(Path.Combine(RootTempDir, "Program.cs"), _oldMain, _newMain);
-
-            // Move ViewData["Title"] from View to Controller, so it can be updated to trigger a recompile
-            Util.ReplaceInFile(Path.Combine(RootTempDir, "Views", "Home", "Index.cshtml"),
-                _viewData, string.Empty);
-            Util.ReplaceInFile(Path.Combine(RootTempDir, "Controllers", "HomeController.cs"),
-                _returnView, _viewData + _returnView);
 
             var output = DotNet("run");
 
