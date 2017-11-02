@@ -54,15 +54,21 @@ Console.WriteLine(sw.Elapsed);
             }
         }
 
-        [IterationSetup]
-        public void IterationSetup()
+        [IterationSetup(Target = nameof(IncrementalControllerChanged))]
+        public void IterationSetupIncrementalControllerChanged()
         {
             _newTitle = Guid.NewGuid().ToString();
             Util.ReplaceInFile(Path.Combine(RootTempDir, "Controllers", "HomeController.cs"), _oldTitle, _newTitle);
         }
 
         [Benchmark]
-        public void Incremental()
+        public void IncrementalControllerChanged()
+        {
+            _output = DotNet("run");
+        }
+
+        [Benchmark]
+        public void IncrementalNoChange()
         {
             _output = DotNet("run");
         }
