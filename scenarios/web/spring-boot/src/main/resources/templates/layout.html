@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title layout:title-pattern="$CONTENT_TITLE"></title>
+<link rel="stylesheet"
+	th:href="@{/lib/bootstrap/dist/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/site.css}" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a th:href="@{/}" class="navbar-brand">temp</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/}">Home</a></li>
+					<li><a th:href="@{/Home/About}">About</a></li>
+					<li><a th:href="@{/Home/Contact}">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container body-content">
+		<div layout:fragment="content"></div>
+		<hr />
+		<footer>
+			<p>&copy; 2017 - temp</p>
+		</footer>
+	</div>
+
+	<script th:src="@{/lib/jquery/dist/jquery.min.js}"></script>
+	<script
+		src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"></script>
+	<script th:src="@{/js/site.min.js}"></script>
+</body>
+</html>
