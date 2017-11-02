@@ -2,27 +2,12 @@
 
 namespace DotNetCliPerf
 {
-    public abstract class Cli
+    public abstract class Cli : IterationTemp
     {
-        protected string RootTempDir { get; private set; }
-        protected string IterationTempDir { get; private set; }
-
-        [GlobalSetup]
-        public virtual void GlobalSetup()
-        {
-            RootTempDir = Util.GetTempDir();
-        }
-
-        [GlobalCleanup]
-        public void GlobalCleanup()
-        {
-            Util.DeleteDir(RootTempDir);
-        }
-
         [IterationSetup(Target = nameof(New))]
         public virtual void IterationSetupNew()
         {
-            IterationTempDir = Util.GetTempDir(RootTempDir);
+            IterationSetupTempDir();
         }
 
         public abstract void New();

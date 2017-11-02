@@ -81,7 +81,7 @@ namespace DotNetCliPerf
             }
         }
 
-        public static void RunProcess(string filename, string arguments, string workingDirectory,
+        public static string RunProcess(string filename, string arguments, string workingDirectory,
             bool throwOnError = true, IDictionary<string, string> environment = null)
         {
             Util.WriteLine($"{filename} {arguments}");
@@ -130,6 +130,13 @@ namespace DotNetCliPerf
             {
                 throw new InvalidOperationException($"Command {filename} {arguments} returned exit code {process.ExitCode}");
             }
+
+            return outputBuilder.ToString();
+        }
+
+        public static void ReplaceInFile(string path, string oldValue, string newValue)
+        {
+            File.WriteAllText(path, File.ReadAllText(path).Replace(oldValue, newValue));
         }
     }
 }
