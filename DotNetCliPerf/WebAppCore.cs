@@ -64,6 +64,12 @@ namespace DotNetCliPerf
         }
 
         [Benchmark]
+        public void BuildIncrementalNoChange()
+        {
+            _output = DotNet("build");
+        }
+
+        [Benchmark]
         public void RunIncrementalControllerChanged()
         {
             _output = DotNet("run");
