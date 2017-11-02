@@ -45,27 +45,55 @@ namespace DotNetCliPerf
             }
         }
 
-        [IterationSetup(Target = nameof(IncrementalControllerChanged))]
-        public void IterationSetupIncrementalControllerChanged()
+        [IterationSetup(Target = nameof(BuildIncrementalControllerChanged))]
+        public void IterationSetupBuildIncrementalControllerChanged()
+        {
+            ChangeController();
+        }
+
+        [Benchmark]
+        public void BuildIncrementalControllerChanged()
+        {
+            _output = DotNet("build");
+        }
+
+        [IterationSetup(Target = nameof(RunIncrementalControllerChanged))]
+        public void IterationSetupRunIncrementalControllerChanged()
+        {
+            ChangeController();
+        }
+
+        [Benchmark]
+        public void RunIncrementalControllerChanged()
+        {
+            _output = DotNet("run");
+        }
+
+        [IterationCleanup(Target = nameof(RunIncrementalControllerChanged))]
+        public void IterationCleanupRunIncrementalControllerChanged()
+        {
+            VerifyOutput();
+        }
+
+        [Benchmark]
+        public void RunIncrementalNoChange()
+        {
+            _output = DotNet("run");
+        }
+
+        [IterationCleanup(Target = nameof(RunIncrementalNoChange))]
+        public void IterationCleanupRunIncrementalNoChange()
+        {
+            VerifyOutput();
+        }
+
+        private void ChangeController()
         {
             _newTitle = Guid.NewGuid().ToString();
             Util.ReplaceInFile(Path.Combine(RootTempDir, "Controllers", "HomeController.cs"), _oldTitle, _newTitle);
         }
 
-        [Benchmark]
-        public void IncrementalControllerChanged()
-        {
-            _output = DotNet("run");
-        }
-
-        [Benchmark]
-        public void IncrementalNoChange()
-        {
-            _output = DotNet("run");
-        }
-
-        [IterationCleanup]
-        public void IterationCleanup()
+        private void VerifyOutput()
         {
             // Verify new title
             var expected = $"<title>{_newTitle}";
