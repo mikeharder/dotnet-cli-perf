@@ -61,7 +61,8 @@ namespace DotNetCliPerf
                 Where(b => !options.Methods.Any() ||
                            b.Target.Method.Name.ContainsAny(options.Methods, StringComparison.OrdinalIgnoreCase)).
                 Where(b => !options.Parameters.Any() ||
-                           ((string)b.Parameters[0].Value).ContainsAny(options.Parameters, StringComparison.OrdinalIgnoreCase));
+                           b.Parameters.Items.Select(p => p.Value.ToString()).ContainsAny(
+                               options.Parameters, StringComparison.OrdinalIgnoreCase));
 
             BenchmarkRunner.Run(selectedBenchmarks.ToArray(), config);
 
