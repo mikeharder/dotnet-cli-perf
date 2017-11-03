@@ -56,16 +56,16 @@ namespace DotNetCliPerf
             _output = DotNet("build");
         }
 
-        [IterationSetup(Target = nameof(RunIncrementalControllerChanged))]
-        public void IterationSetupRunIncrementalControllerChanged()
-        {
-            ChangeController();
-        }
-
         [Benchmark]
         public void BuildIncrementalNoChange()
         {
             _output = DotNet("build");
+        }
+
+        [IterationSetup(Target = nameof(RunIncrementalControllerChanged))]
+        public void IterationSetupRunIncrementalControllerChanged()
+        {
+            ChangeController();
         }
 
         [Benchmark]
