@@ -10,7 +10,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index(Model model) {
-    		model.addAttribute("title", "temp");
+    		model.addAttribute("title", "Home Page");
         return "index";
     }
 
