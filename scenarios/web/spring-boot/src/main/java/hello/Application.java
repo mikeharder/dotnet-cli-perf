@@ -12,19 +12,21 @@ public class Application {
 
     public static void main(String[] args) {
     	
-    		StopWatch stopwatch = new StopWatch("dotnet-cli-perf");
+    	StopWatch stopwatch = new StopWatch("dotnet-cli-perf");
     		
-    		stopwatch.start("App Startup");
+    	stopwatch.start("App Startup");
         ApplicationContext context = SpringApplication.run(Application.class, args);
         stopwatch.stop();
         
         stopwatch.start("First Request");
 		RestTemplate template = new RestTemplate();
 		ResponseEntity<String> response = template.getForEntity("http://localhost:8080", String.class);
+		stopwatch.stop();
+
+		System.out.println(response.getBody());
 		if (response.getStatusCodeValue() != 200) {
 			throw new RuntimeException("Response was: " + response.getStatusCodeValue());
 		}
-		stopwatch.stop();
 
 		System.out.println();
 		System.out.println("Total time to request: " + stopwatch.getTotalTimeMillis() + "ms");
