@@ -53,13 +53,13 @@ namespace DotNetCliPerf
         [Benchmark]
         public void BuildIncrementalControllerChanged()
         {
-            _output = DotNet("build");
+            DotNet("build");
         }
 
         [Benchmark]
         public void BuildIncrementalNoChange()
         {
-            _output = DotNet("build");
+            DotNet("build");
         }
 
         [IterationSetup(Target = nameof(RunIncrementalControllerChanged))]
