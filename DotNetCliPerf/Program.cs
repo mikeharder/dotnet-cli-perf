@@ -50,7 +50,7 @@ namespace DotNetCliPerf
             var config = ManualConfig.Create(DefaultConfig.Instance).With(job);
 
             var allBenchmarks = new List<Benchmark>();
-            foreach (var type in typeof(Program).Assembly.GetTypes())
+            foreach (var type in typeof(Program).Assembly.GetTypes().Where(t => !t.IsAbstract))
             {
                 allBenchmarks.AddRange(BenchmarkConverter.TypeToBenchmarks(type, config));
             }
@@ -60,9 +60,7 @@ namespace DotNetCliPerf
                            b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
                 Where(b => !options.Methods.Any() ||
                            b.Target.Method.Name.ContainsAny(options.Methods, StringComparison.OrdinalIgnoreCase)).
-                Where(b => !options.Parameters.Any() ||
-                           b.Parameters.Items.Select(p => p.Value.ToString()).ContainsAny(
-                               options.Parameters, StringComparison.OrdinalIgnoreCase));
+                Where(b => b.Parameters.Match(options.Parameters));
 
             BenchmarkRunner.Run(selectedBenchmarks.ToArray(), config);
 

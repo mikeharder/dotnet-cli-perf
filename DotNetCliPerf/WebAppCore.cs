@@ -5,13 +5,9 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public class WebAppCore : RootTemp
+    public class WebAppCore : WebApp
     {
         private static readonly string sourceDir = Path.Combine(Util.RepoRoot, "scenarios", "web", "core");
-
-        private string _oldTitle = "Home Page";
-        private string _newTitle;
-        private string _output;
 
         private const string _globalJson = @"{ ""sdk"": { ""version"": ""0.0.0"" } }";
 
@@ -45,80 +41,24 @@ namespace DotNetCliPerf
                 throw new InvalidOperationException($"Incorrect SDK version");
             }
 
-            output = DotNet("run");
-
-            // Verify response
-            var expected = "<title>Home Page";
-            if (!output.Contains(expected))
-            {
-                throw new InvalidOperationException($"Response missing '{expected}'");
-            }
+            Output = Run();
+            VerifyOutput();
         }
 
-        [IterationSetup(Target = nameof(BuildIncrementalControllerChanged))]
-        public void IterationSetupBuildIncrementalControllerChanged()
-        {
-            ChangeController();
-        }
-
-        [Benchmark]
-        public void BuildIncrementalControllerChanged()
+        protected override void Build()
         {
             DotNet("build");
         }
 
-        [Benchmark]
-        public void BuildIncrementalNoChange()
+        protected override string Run()
         {
-            DotNet("build");
+            return DotNet("run");
         }
 
-        [IterationSetup(Target = nameof(RunIncrementalControllerChanged))]
-        public void IterationSetupRunIncrementalControllerChanged()
+        protected override void ChangeController()
         {
-            ChangeController();
-        }
-
-        [Benchmark]
-        public void RunIncrementalControllerChanged()
-        {
-            _output = DotNet("run");
-        }
-
-        [IterationCleanup(Target = nameof(RunIncrementalControllerChanged))]
-        public void IterationCleanupRunIncrementalControllerChanged()
-        {
-            VerifyOutput();
-        }
-
-        [Benchmark]
-        public void RunIncrementalNoChange()
-        {
-            _output = DotNet("run");
-        }
-
-        [IterationCleanup(Target = nameof(RunIncrementalNoChange))]
-        public void IterationCleanupRunIncrementalNoChange()
-        {
-            VerifyOutput();
-        }
-
-        private void ChangeController()
-        {
-            _newTitle = Guid.NewGuid().ToString();
-            Util.ReplaceInFile(Path.Combine(RootTempDir, "Controllers", "HomeController.cs"), _oldTitle, _newTitle);
-        }
-
-        private void VerifyOutput()
-        {
-            // Verify new title
-            var expected = $"<title>{_newTitle}";
-            if (!_output.Contains(expected))
-            {
-                throw new InvalidOperationException($"Response missing '{expected}'");
-            }
-
-            _oldTitle = _newTitle;
+            NewTitle = Guid.NewGuid().ToString();
+            Util.ReplaceInFile(Path.Combine(RootTempDir, "Controllers", "HomeController.cs"), OldTitle, NewTitle);
         }
 
         private string DotNet(string arguments)

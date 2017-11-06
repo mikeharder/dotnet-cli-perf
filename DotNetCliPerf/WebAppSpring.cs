@@ -4,13 +4,9 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public class WebAppSpring : RootTemp
+    public class WebAppSpring : WebApp
     {
         private static readonly string sourceDir = Path.Combine(Util.RepoRoot, "scenarios", "web", "spring-boot");
-
-        private string _oldTitle = "Home Page";
-        private string _newTitle;
-        private string _output;
 
         [GlobalSetup]
         public override void GlobalSetup()
@@ -20,80 +16,24 @@ namespace DotNetCliPerf
             // Copy app from scenarios folder
             Util.DirectoryCopy(sourceDir, RootTempDir, copySubDirs: true);
 
-            var output = GradleW("bootRun");
-
-            // Verify response
-            var expected = "<title>Home Page";
-            if (!output.Contains(expected))
-            {
-                throw new InvalidOperationException($"Response missing '{expected}'");
-            }
+            Output = Run();
+            VerifyOutput();
         }
 
-        [IterationSetup(Target = nameof(BuildIncrementalControllerChanged))]
-        public void IterationSetupBuildIncrementalControllerChanged()
-        {
-            ChangeController();
-        }
-
-        [Benchmark]
-        public void BuildIncrementalControllerChanged()
+        protected override void Build()
         {
             GradleW("assemble");
         }
 
-        [Benchmark]
-        public void BuildIncrementalNoChange()
+        protected override string Run()
         {
-            GradleW("assemble");
+            return GradleW("bootRun");
         }
 
-        [IterationSetup(Target = nameof(RunIncrementalControllerChanged))]
-        public void IterationSetupRunIncrementalControllerChanged()
+        protected override void ChangeController()
         {
-            ChangeController();
-        }
-
-        [Benchmark]
-        public void RunIncrementalControllerChanged()
-        {
-            _output = GradleW("bootRun");
-        }
-
-        [IterationCleanup(Target = nameof(RunIncrementalControllerChanged))]
-        public void IterationCleanupRunIncrementalControllerChanged()
-        {
-            VerifyOutput();
-        }
-
-        [Benchmark]
-        public void RunIncrementalNoChange()
-        {
-            _output = GradleW("bootRun");
-        }
-
-        [IterationCleanup(Target = nameof(RunIncrementalNoChange))]
-        public void IterationCleanupRunIncrementalNoChange()
-        {
-            VerifyOutput();
-        }
-
-        private void ChangeController()
-        {
-            _newTitle = Guid.NewGuid().ToString();
-            Util.ReplaceInFile(Path.Combine(RootTempDir, "src", "main", "java", "hello", "HomeController.java"), _oldTitle, _newTitle);
-        }
-
-        private void VerifyOutput()
-        {
-            // Verify new title
-            var expected = $"<title>{_newTitle}";
-            if (!_output.Contains(expected))
-            {
-                throw new InvalidOperationException($"Response missing '{expected}'");
-            }
-
-            _oldTitle = _newTitle;
+            NewTitle = Guid.NewGuid().ToString();
+            Util.ReplaceInFile(Path.Combine(RootTempDir, "src", "main", "java", "hello", "HomeController.java"), OldTitle, NewTitle);
         }
 
         private string GradleW(string arguments)
