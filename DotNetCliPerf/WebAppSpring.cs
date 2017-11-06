@@ -48,10 +48,52 @@ namespace DotNetCliPerf
             GradleW("assemble");
         }
 
+        [IterationSetup(Target = nameof(RunIncrementalControllerChanged))]
+        public void IterationSetupRunIncrementalControllerChanged()
+        {
+            ChangeController();
+        }
+
+        [Benchmark]
+        public void RunIncrementalControllerChanged()
+        {
+            _output = GradleW("bootRun");
+        }
+
+        [IterationCleanup(Target = nameof(RunIncrementalControllerChanged))]
+        public void IterationCleanupRunIncrementalControllerChanged()
+        {
+            VerifyOutput();
+        }
+
+        [Benchmark]
+        public void RunIncrementalNoChange()
+        {
+            _output = GradleW("bootRun");
+        }
+
+        [IterationCleanup(Target = nameof(RunIncrementalNoChange))]
+        public void IterationCleanupRunIncrementalNoChange()
+        {
+            VerifyOutput();
+        }
+
         private void ChangeController()
         {
             _newTitle = Guid.NewGuid().ToString();
             Util.ReplaceInFile(Path.Combine(RootTempDir, "src", "main", "java", "hello", "HomeController.java"), _oldTitle, _newTitle);
+        }
+
+        private void VerifyOutput()
+        {
+            // Verify new title
+            var expected = $"<title>{_newTitle}";
+            if (!_output.Contains(expected))
+            {
+                throw new InvalidOperationException($"Response missing '{expected}'");
+            }
+
+            _oldTitle = _newTitle;
         }
 
         private string GradleW(string arguments)
