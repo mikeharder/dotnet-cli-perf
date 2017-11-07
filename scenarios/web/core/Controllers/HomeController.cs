@@ -12,7 +12,7 @@ namespace core.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Title"] = "Home Page";
+            ViewData["Title"] = "InitialValue";
             return View();
         }
 
