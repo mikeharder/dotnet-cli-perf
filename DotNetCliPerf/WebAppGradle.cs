@@ -6,7 +6,7 @@ namespace DotNetCliPerf
 {
     public class WebAppGradle : GradleApp
     {
-        protected override string SourceDir => Path.Combine(Util.RepoRoot, "scenarios", "web", "spring-boot");
+        protected override string SourceDir => Path.Combine(Util.RepoRoot, "scenarios", "web", "gradle");
 
         protected override string SourcePath => Path.Combine(RootTempDir, "src", "main", "java", "hello", "HomeController.java");
 
