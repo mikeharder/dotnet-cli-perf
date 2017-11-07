@@ -3,7 +3,7 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public class GradleDaemon : Cli
+    class GradleDaemon : Cli
     {
         [GlobalSetup]
         public override void GlobalSetup()

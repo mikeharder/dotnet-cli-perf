@@ -5,7 +5,7 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public class NetCoreCli : Cli
+    class NetCoreCli : Cli
     {
         private IDictionary<string, string> _environment = new Dictionary<string, string>();
 

@@ -2,7 +2,7 @@
 
 namespace DotNetCliPerf
 {
-    public abstract class Cli : IterationTemp
+    abstract class Cli : IterationTemp
     {
         [IterationSetup(Target = nameof(New))]
         public virtual void IterationSetupNew()

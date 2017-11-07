@@ -50,7 +50,7 @@ namespace DotNetCliPerf
             var config = ManualConfig.Create(DefaultConfig.Instance).With(job);
 
             var allBenchmarks = new List<Benchmark>();
-            foreach (var type in typeof(Program).Assembly.GetTypes().Where(t => !t.IsAbstract))
+            foreach (var type in typeof(Program).Assembly.GetTypes().Where(t => !t.IsAbstract).Where(t => t.IsPublic))
             {
                 allBenchmarks.AddRange(BenchmarkConverter.TypeToBenchmarks(type, config));
             }
