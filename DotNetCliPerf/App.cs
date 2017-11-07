@@ -78,14 +78,14 @@ namespace DotNetCliPerf
             Build();
         }
 
-        [IterationSetup(Target = nameof(BuildClean))]
-        public void IterationSetupBuildClean()
+        [IterationSetup(Target = nameof(BuildFull))]
+        public void IterationSetupBuildFull()
         {
             Clean();
         }
 
         [Benchmark]
-        public void BuildClean()
+        public void BuildFull()
         {
             Build();
         }
@@ -120,20 +120,20 @@ namespace DotNetCliPerf
             VerifyOutput();
         }
 
-        [IterationSetup(Target = nameof(RunClean))]
-        public void IterationSetupRunClean()
+        [IterationSetup(Target = nameof(RunFull))]
+        public void IterationSetupRunFull()
         {
             Clean();
         }
 
         [Benchmark]
-        public void RunClean()
+        public void RunFull()
         {
             Output = Run();
         }
 
-        [IterationCleanup(Target = nameof(RunClean))]
-        public void IterationCleanupRunClean()
+        [IterationCleanup(Target = nameof(RunFull))]
+        public void IterationCleanupRunFull()
         {
             VerifyOutput();
         }
