@@ -1,6 +1,4 @@
-﻿using BenchmarkDotNet.Attributes;
-using System;
-using System.IO;
+﻿using System.IO;
 
 namespace DotNetCliPerf
 {
@@ -12,19 +10,9 @@ namespace DotNetCliPerf
 
         protected override string ExpectedOutput => $"<title>{NewValue}";
 
-        protected override void Build()
-        {
-            GradleW("assemble");
-        }
-
         protected override string Run()
         {
             return GradleW("bootRun");
-        }
-
-        private string GradleW(string arguments)
-        {
-            return Util.RunProcess("cmd", $"/c \"gradlew.bat {arguments}\"", RootTempDir);
         }
     }
 }
