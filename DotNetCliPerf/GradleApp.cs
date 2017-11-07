@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace DotNetCliPerf
 {
@@ -17,7 +18,19 @@ namespace DotNetCliPerf
 
         protected string GradleW(string arguments, bool throwOnError = true)
         {
-            return Util.RunProcess("cmd", $"/c \"gradlew.bat {arguments}\"", RootTempDir, throwOnError: throwOnError);
+            string filename;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                filename = "cmd";
+                arguments = $"/c \"gradlew.bat {arguments}\"";
+            }
+            else
+            {
+                filename = "sh";
+                arguments = $"gradlew {arguments}";
+            }
+
+            return Util.RunProcess(filename, arguments, RootTempDir, throwOnError: throwOnError);
         }
     }
 }
