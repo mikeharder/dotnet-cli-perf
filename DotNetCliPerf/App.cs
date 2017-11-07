@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DotNetCliPerf
 {
@@ -15,6 +16,7 @@ namespace DotNetCliPerf
         protected abstract string SourceDir { get; }
         protected abstract string SourcePath { get; }
         protected abstract string ExpectedOutput { get; }
+        protected abstract IEnumerable<string> CleanPaths { get; }
 
         protected abstract void Build();
         protected abstract string Run();
@@ -31,13 +33,21 @@ namespace DotNetCliPerf
 
         protected virtual void CopyApp()
         {
-            Util.DirectoryCopy(SourceDir, RootTempDir, copySubDirs: true);
+            Util.DirectoryCopy(Path.Combine(Util.RepoRoot, "scenarios", SourceDir), RootTempDir, copySubDirs: true);
+        }
+
+        protected virtual void Clean()
+        {
+            foreach (var path in CleanPaths)
+            {
+                Util.DeleteDir(Path.Combine(RootTempDir, path));
+            }
         }
 
         protected void ChangeSource()
         {
             NewValue = Guid.NewGuid().ToString();
-            Util.ReplaceInFile(SourcePath, OldValue, NewValue);
+            Util.ReplaceInFile(Path.Combine(RootTempDir, SourcePath), OldValue, NewValue);
         }
 
         protected void VerifyOutput()
@@ -64,6 +74,18 @@ namespace DotNetCliPerf
 
         [Benchmark]
         public void BuildIncrementalNoChange()
+        {
+            Build();
+        }
+
+        [IterationSetup(Target = nameof(BuildClean))]
+        public void IterationSetupBuildClean()
+        {
+            Clean();
+        }
+
+        [Benchmark]
+        public void BuildClean()
         {
             Build();
         }
@@ -97,5 +119,24 @@ namespace DotNetCliPerf
         {
             VerifyOutput();
         }
+
+        [IterationSetup(Target = nameof(RunClean))]
+        public void IterationSetupRunClean()
+        {
+            Clean();
+        }
+
+        [Benchmark]
+        public void RunClean()
+        {
+            Output = Run();
+        }
+
+        [IterationCleanup(Target = nameof(RunClean))]
+        public void IterationCleanupRunClean()
+        {
+            VerifyOutput();
+        }
+
     }
 }

@@ -1,9 +1,15 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System.Collections.Generic;
 
 namespace DotNetCliPerf
 {
     public abstract class GradleApp : App
     {
+        protected override IEnumerable<string> CleanPaths => new string[]
+        {
+            ".gradle",
+            "build",
+        };
+
         protected override void Build()
         {
             GradleW("assemble");
