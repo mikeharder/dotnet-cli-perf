@@ -18,8 +18,8 @@ namespace DotNetCliPerf
         protected abstract string ExpectedOutput { get; }
         protected abstract IEnumerable<string> CleanPaths { get; }
 
-        protected abstract void Build();
-        protected abstract string Run();
+        protected abstract void Build(bool first = false);
+        protected abstract string Run(bool first = false);
 
         [GlobalSetup]
         public override void GlobalSetup()
@@ -27,7 +27,7 @@ namespace DotNetCliPerf
             base.GlobalSetup();
             CopyApp();
             ChangeSource();
-            Output = Run();
+            Output = Run(first: true);
             VerifyOutput();
         }
 

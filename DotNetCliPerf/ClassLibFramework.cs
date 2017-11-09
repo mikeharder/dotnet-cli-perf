@@ -21,9 +21,9 @@ namespace DotNetCliPerf
             "TestResults",
         };
 
-        protected override string Run()
+        protected override string Run(bool first = false)
         {
-            Build();
+            Build(first);
             return VsTestConsole(Path.Combine("mstest", "bin", "Debug", "mstest.dll"), throwOnError: false);
         }
     }

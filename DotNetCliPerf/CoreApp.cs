@@ -4,12 +4,15 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public abstract class CoreApp: App
+    public abstract class CoreApp : App
     {
         private const string _globalJson = @"{ ""sdk"": { ""version"": ""0.0.0"" } }";
 
         [Params("2.0.2", "2.1.1")]
         public string SdkVersion { get; set; }
+
+        [Params(true, false)]
+        public bool Restore { get; set; }
 
         // [Params(false, true)]
         public bool TieredJit { get; set; }
@@ -39,19 +42,25 @@ namespace DotNetCliPerf
             }
         }
 
-        protected override void Build()
+        protected override void Build(bool first = false)
         {
-            DotNet("build");
+            DotNet("build", restore: first || Restore);
         }
 
-        protected override string Run()
+        protected override string Run(bool first = false)
         {
-            return DotNet("run");
+            return DotNet("run", restore: first || Restore);
         }
 
-        protected string DotNet(string arguments, bool throwOnError = true)
+        protected string DotNet(string arguments, bool restore = true, bool throwOnError = true)
         {
-            return Util.RunProcess("dotnet", arguments, RootTempDir, throwOnError: throwOnError, environment: Environment);
+            return Util.RunProcess(
+                "dotnet",
+                arguments + (restore ? "" : " --no-restore"),
+                RootTempDir,
+                throwOnError: throwOnError,
+                environment: Environment
+            );
         }
     }
 }

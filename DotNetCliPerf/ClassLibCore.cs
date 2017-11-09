@@ -19,9 +19,9 @@ namespace DotNetCliPerf
             Path.Combine("mstest", "obj"),
         };
 
-        protected override string Run()
+        protected override string Run(bool first = false)
         {
-            return DotNet("test mstest", throwOnError: false);
+            return DotNet("test mstest", restore: first || Restore, throwOnError: false);
         }
     }
 }

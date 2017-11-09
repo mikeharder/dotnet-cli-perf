@@ -11,7 +11,7 @@ namespace DotNetCliPerf
             "build",
         };
 
-        protected override void Build()
+        protected override void Build(bool first=false)
         {
             GradleW("assemble");
         }

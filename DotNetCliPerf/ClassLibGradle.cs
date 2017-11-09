@@ -11,7 +11,7 @@ namespace DotNetCliPerf
 
         protected override string ExpectedOutput => $"was:<[{NewValue}]>";
 
-        protected override string Run()
+        protected override string Run(bool first = false)
         {
             return GradleW("build", throwOnError: false);
         }

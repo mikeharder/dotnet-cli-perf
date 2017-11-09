@@ -1,10 +1,21 @@
-﻿namespace DotNetCliPerf
+﻿using BenchmarkDotNet.Attributes;
+
+namespace DotNetCliPerf
 {
     public abstract class FrameworkApp : App
     {
-        protected override void Build()
+        [Params(true, false)]
+        public bool Restore { get; set; }
+
+        protected override void Build(bool first = false)
         {
-            NuGet("restore");
+            var restore = first || Restore;
+
+            if (restore)
+            {
+                NuGet("restore");
+            }
+
             MSBuild("/t:build");
         }
 
