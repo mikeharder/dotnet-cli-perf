@@ -87,7 +87,7 @@ namespace DotNetCliPerf
         [Benchmark]
         public void BuildFull()
         {
-            Build();
+            Build(first: true);
         }
 
         [IterationSetup(Target = nameof(RunIncrementalSourceChanged))]
@@ -129,7 +129,7 @@ namespace DotNetCliPerf
         [Benchmark]
         public void RunFull()
         {
-            Output = Run();
+            Output = Run(first: true);
         }
 
         [IterationCleanup(Target = nameof(RunFull))]
