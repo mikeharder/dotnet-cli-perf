@@ -47,17 +47,12 @@ namespace DotNetCliPerf
             DotNet("build", restore: first || Restore);
         }
 
-        protected override string Run(bool first = false)
-        {
-            return DotNet("run", restore: first || Restore);
-        }
-
-        protected string DotNet(string arguments, bool restore = true, bool throwOnError = true)
+        protected string DotNet(string arguments, string workingSubDirectory = "", bool restore = true, bool throwOnError = true)
         {
             return Util.RunProcess(
                 "dotnet",
                 arguments + (restore ? "" : " --no-restore"),
-                RootTempDir,
+                Path.Combine(RootTempDir, workingSubDirectory),
                 throwOnError: throwOnError,
                 environment: Environment
             );
