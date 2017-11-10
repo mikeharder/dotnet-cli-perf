@@ -13,8 +13,8 @@ namespace DotNetCliPerf
 
         protected override IEnumerable<string> CleanPaths => new string[]
         {
-            "bin",
-            "obj",
+            Path.Combine("mvc", "bin"),
+            Path.Combine("mvc", "obj"),
         };
 
         protected override string Run(bool first = false)
