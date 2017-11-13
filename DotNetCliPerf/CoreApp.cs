@@ -47,11 +47,12 @@ namespace DotNetCliPerf
             DotNet("build", restore: first || Restore);
         }
 
-        protected string DotNet(string arguments, string workingSubDirectory = "", bool restore = true, bool throwOnError = true)
+        protected string DotNet(string dotnetArguments, string appArguments = null, string workingSubDirectory = "", bool restore = true, bool throwOnError = true)
         {
+            var arguments = dotnetArguments + (restore ? "" : " --no-restore") + (appArguments == null ? "" : " -- " + appArguments);
             return Util.RunProcess(
                 "dotnet",
-                arguments + (restore ? "" : " --no-restore"),
+                arguments,
                 Path.Combine(RootTempDir, workingSubDirectory),
                 throwOnError: throwOnError,
                 environment: Environment

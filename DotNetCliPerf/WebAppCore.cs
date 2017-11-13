@@ -19,7 +19,7 @@ namespace DotNetCliPerf
 
         protected override string Run(bool first = false)
         {
-            return DotNet("run -- --mode=singleRequest", restore: first || Restore, workingSubDirectory: "mvc", throwOnError: false);
+            return DotNet("run", appArguments: "--mode=singleRequest", restore: first || Restore, workingSubDirectory: "mvc", throwOnError: false);
         }
     }
 }
