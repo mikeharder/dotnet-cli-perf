@@ -24,6 +24,8 @@ namespace DotNetCliPerf
         protected abstract void Build(bool first = false);
         protected abstract string Run(bool first = false);
 
+        protected virtual void RunCleanup() { }
+
         [GlobalSetup]
         public override void GlobalSetup()
         {
@@ -53,7 +55,7 @@ namespace DotNetCliPerf
             Util.ReplaceInFile(Path.Combine(RootTempDir, SourcePath), OldValue, NewValue);
         }
 
-        protected void VerifyOutput()
+        private void VerifyOutput()
         {
             if (!Output.Contains(ExpectedOutput))
             {
@@ -61,6 +63,8 @@ namespace DotNetCliPerf
             }
 
             OldValue = NewValue;
+
+            RunCleanup();
         }
 
         [IterationSetup(Target = nameof(BuildIncrementalSourceChanged))]
