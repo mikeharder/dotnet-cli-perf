@@ -151,7 +151,7 @@ namespace DotNetCliPerf
         public static string StopProcess(Process process, StringBuilder outputBuilder, StringBuilder errorBuilder,
             bool throwOnError = true)
         {
-            Process.Start("taskkill", $"/im {process.ProcessName}.exe");
+            Process.Start("taskkill", $"/pid {process.Id}");
 
             return WaitForExit(process, outputBuilder, errorBuilder, throwOnError: throwOnError);
         }
