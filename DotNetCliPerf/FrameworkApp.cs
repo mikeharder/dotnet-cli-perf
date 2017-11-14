@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System.Collections.Generic;
+using BenchmarkDotNet.Attributes;
 
 namespace DotNetCliPerf
 {
@@ -6,6 +7,11 @@ namespace DotNetCliPerf
     {
         [Params(true, false)]
         public bool Restore { get; set; }
+
+        protected override IEnumerable<string> CleanPaths => new string[]
+        {
+            "packages",
+        };
 
         protected override void Build(bool first = false)
         {

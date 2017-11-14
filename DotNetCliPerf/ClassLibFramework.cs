@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DotNetCliPerf
 {
@@ -11,15 +12,16 @@ namespace DotNetCliPerf
 
         protected override string ExpectedOutput => $"Actual:<{NewValue}>";
 
-        protected override IEnumerable<string> CleanPaths => new string[]
-        {
-            Path.Combine("classlib", "bin"),
-            Path.Combine("classlib", "obj"),
-            Path.Combine("mstest", "bin"),
-            Path.Combine("mstest", "obj"),
-            "packages",
-            "TestResults",
-        };
+        protected override IEnumerable<string> CleanPaths => Enumerable.Concat(
+            base.CleanPaths,
+            new string[]
+            {
+                Path.Combine("classlib", "bin"),
+                Path.Combine("classlib", "obj"),
+                Path.Combine("mstest", "bin"),
+                Path.Combine("mstest", "obj"),
+                "TestResults",
+            });
 
         protected override string Run(bool first = false)
         {
