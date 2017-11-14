@@ -83,6 +83,11 @@ namespace DotNetCliPerf
                     Util.WriteLine("Nothing to do");
                     break;
                 }
+                catch (FileNotFoundException)
+                {
+                    Util.WriteLine("Nothing to do");
+                    break;
+                }
                 catch (Exception e)
                 {
                     Console.WriteLine($"Error deleting directory: {e.ToString()}");
