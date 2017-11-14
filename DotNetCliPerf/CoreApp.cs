@@ -11,7 +11,8 @@ namespace DotNetCliPerf
         [Params("2.0.2", "2.1.1")]
         public string SdkVersion { get; set; }
 
-        [Params(true, false)]
+        // Include restore in core app measurements, since it's included by default in all core commands.
+        [Params(true/*, false*/)]
         public bool Restore { get; set; }
 
         // [Params(false, true)]
