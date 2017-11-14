@@ -10,6 +10,7 @@ namespace mvc.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "InitialValue";
             return View();
         }
 

@@ -100,8 +100,8 @@ namespace DotNetCliPerf
             }
         }
 
-        public static string RunProcess(string filename, string arguments, string workingDirectory,
-            bool throwOnError = true, IDictionary<string, string> environment = null)
+        public static (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) StartProcess(
+            string filename, string arguments, string workingDirectory, IDictionary<string, string> environment = null)
         {
             Util.WriteLine($"{filename} {arguments}");
 
@@ -111,6 +111,7 @@ namespace DotNetCliPerf
                 {
                     FileName = filename,
                     Arguments = arguments,
+                    RedirectStandardInput = true,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
@@ -143,14 +144,37 @@ namespace DotNetCliPerf
             process.Start();
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
+
+            return (process, outputBuilder, errorBuilder);
+        }
+
+        public static string StopProcess(Process process, StringBuilder outputBuilder, StringBuilder errorBuilder,
+            bool throwOnError = true)
+        {
+            Process.Start("taskkill", $"/im {process.ProcessName}.exe");
+
+            return WaitForExit(process, outputBuilder, errorBuilder, throwOnError: throwOnError);
+        }
+
+        private static string WaitForExit(Process process, StringBuilder outputBuilder, StringBuilder errorBuilder,
+            bool throwOnError = true)
+        {
             process.WaitForExit();
 
             if (throwOnError && process.ExitCode != 0)
             {
-                throw new InvalidOperationException($"Command {filename} {arguments} returned exit code {process.ExitCode}");
+                throw new InvalidOperationException(
+                    $"Command {process.StartInfo.FileName} {process.StartInfo.Arguments} returned exit code {process.ExitCode}");
             }
 
             return outputBuilder.ToString();
+        }
+
+        public static string RunProcess(string filename, string arguments, string workingDirectory,
+            bool throwOnError = true, IDictionary<string, string> environment = null)
+        {
+            var p = StartProcess(filename, arguments, workingDirectory, environment: environment);
+            return WaitForExit(p.Process, p.OutputBuilder, p.ErrorBuilder, throwOnError: throwOnError);
         }
 
         public static void ReplaceInFile(string path, string oldValue, string newValue)
