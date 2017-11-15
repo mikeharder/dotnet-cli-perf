@@ -8,7 +8,7 @@ namespace DotNetCliPerf
     {
         private const string _globalJson = @"{ ""sdk"": { ""version"": ""0.0.0"" } }";
 
-        [Params("2.0.2", "2.1.1")]
+        [Params("2.0.2", "2.1.1-preview-007145", "2.2.0-preview1-007525", "2.2.0-preview1-007556")]
         public string SdkVersion { get; set; }
 
         // Include restore in core app measurements, since it's included by default in all core commands.
