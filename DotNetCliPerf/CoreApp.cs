@@ -15,6 +15,9 @@ namespace DotNetCliPerf
         [Params(true/*, false*/)]
         public bool Restore { get; set; }
 
+        [Params(true, false)]
+        public bool Parallel { get; set; }
+
         // [Params(false, true)]
         public bool TieredJit { get; set; }
 
@@ -50,7 +53,11 @@ namespace DotNetCliPerf
 
         protected string DotNet(string dotnetArguments, string appArguments = null, string workingSubDirectory = "", bool restore = true, bool throwOnError = true)
         {
-            var arguments = dotnetArguments + (restore ? "" : " --no-restore") + (appArguments == null ? "" : " -- " + appArguments);
+            var arguments = dotnetArguments +
+                (Parallel ? "" : " /m:1") +
+                (restore ? "" : " --no-restore") +
+                (appArguments == null ? "" : " -- " + appArguments);
+
             return Util.RunProcess(
                 "dotnet",
                 arguments,
