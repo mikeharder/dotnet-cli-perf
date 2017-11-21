@@ -12,10 +12,11 @@ namespace DotNetCliPerf
         public string SdkVersion { get; set; }
 
         // Include restore in core app measurements, since it's included by default in all core commands.
-        [Params(true/*, false*/)]
+        [Params(true/*, false */)]
         public bool Restore { get; set; }
 
-        [Params(true, false)]
+        // Enable parallel since its enabled by default
+        [Params(true/*, false */)]
         public bool Parallel { get; set; }
 
         // [Params(false, true)]
