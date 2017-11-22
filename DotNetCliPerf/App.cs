@@ -144,6 +144,5 @@ namespace DotNetCliPerf
         {
             VerifyOutput();
         }
-
     }
 }
