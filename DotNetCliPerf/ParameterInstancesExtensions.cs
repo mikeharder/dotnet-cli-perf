@@ -14,6 +14,7 @@ namespace DotNetCliPerf
                 foreach (var parameter in parameters.Items)
                 {
                     if (parameter.Name.Equals(pattern.Key, StringComparison.OrdinalIgnoreCase) &&
+                        pattern.Value != "*" &&
                         parameter.Value.ToString().IndexOf(pattern.Value, StringComparison.OrdinalIgnoreCase) < 0)
                         return false;
                 }
