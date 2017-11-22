@@ -4,7 +4,7 @@ using System.IO;
 
 namespace DotNetCliPerf
 {
-    public abstract class CoreApp : App
+    public abstract class CoreApp : DotNetApp
     {
         private const string _globalJson = @"{ ""sdk"": { ""version"": ""0.0.0"" } }";
 
@@ -20,8 +20,8 @@ namespace DotNetCliPerf
         // [Params(false, true)]
         public bool TieredJit { get; set; }
 
-        [Params("Desktop", "Core")]
-        public bool MSBuildVersion { get; set; }
+        [Params(MSBuildVersion.Desktop, MSBuildVersion.Core)]
+        public MSBuildVersion MSBuildVersion { get; set; }
 
         [GlobalSetup]
         public override void GlobalSetup()
@@ -40,17 +40,36 @@ namespace DotNetCliPerf
 
             File.WriteAllText(Path.Combine(RootTempDir, "global.json"), _globalJson.Replace("0.0.0", SdkVersion));
 
-            // Verify version
-            var output = DotNet("--info");
-            if (!output.Contains($"Version:            {SdkVersion}"))
+            if (MSBuildVersion == MSBuildVersion.Desktop)
             {
-                throw new InvalidOperationException($"Incorrect SDK version");
+                // Verify version
+                var output = MSBuild("/version");
+                if (!output.Contains("15.5."))
+                {
+                    throw new InvalidOperationException($"Incorrect MSBuild version");
+                }
+            }
+            else
+            {
+                // Verify version
+                var output = DotNet("--info");
+                if (!output.Contains($"Version:            {SdkVersion}"))
+                {
+                    throw new InvalidOperationException($"Incorrect SDK version");
+                }
             }
         }
 
         protected override void Build(bool first = false)
         {
-            DotNet("build", restore: first || Restore);
+            if (MSBuildVersion == MSBuildVersion.Desktop)
+            {
+                MSBuild("/t:build", restore: first || Restore);
+            }
+            else
+            {
+                DotNet("build", restore: first || Restore);
+            }
         }
 
         protected string DotNet(string dotnetArguments, string appArguments = null, string workingSubDirectory = "", bool restore = true, bool throwOnError = true)

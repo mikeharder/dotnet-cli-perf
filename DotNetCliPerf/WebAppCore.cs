@@ -19,7 +19,25 @@ namespace DotNetCliPerf
 
         protected override string Run(bool first = false)
         {
-            return DotNet("run", appArguments: "--mode=singleRequest", restore: first || Restore, workingSubDirectory: "mvc", throwOnError: false);
+            if (MSBuildVersion == MSBuildVersion.Desktop)
+            {
+                Build(first);
+                return Run(restore: false, build: false);
+            }
+            else
+            {
+                return Run(restore: first || Restore);
+            }
+        }
+
+        private string Run(bool restore, bool build = true)
+        {
+            return DotNet(
+                "run" + (build ? "" : " --no-build"),
+                appArguments: "--mode=singleRequest",
+                restore: restore,
+                workingSubDirectory: "mvc",
+                throwOnError: false);
         }
     }
 }

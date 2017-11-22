@@ -21,7 +21,21 @@ namespace DotNetCliPerf
 
         protected override string Run(bool first = false)
         {
-            return DotNet("test mstest", restore: first || Restore, throwOnError: false);
+            if (MSBuildVersion == MSBuildVersion.Desktop)
+            {
+                Build(first);
+                return Run(restore: false, build: false);
+            }
+            else
+            {
+                return Run(restore: first || Restore);
+            }
         }
+
+        private string Run(bool restore, bool build = true)
+        {
+            return DotNet("test mstest" + (build ? "" : " --no-build"), restore: restore, throwOnError: false);
+        }
+
     }
 }

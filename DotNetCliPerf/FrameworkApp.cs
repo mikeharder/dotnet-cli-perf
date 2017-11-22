@@ -3,7 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace DotNetCliPerf
 {
-    public abstract class FrameworkApp : App
+    public abstract class FrameworkApp : DotNetApp
     {
         [Params(true, false)]
         public bool Restore { get; set; }
@@ -15,29 +15,12 @@ namespace DotNetCliPerf
 
         protected override void Build(bool first = false)
         {
-            var restore = first || Restore;
-
-            if (restore)
-            {
-                NuGet("restore");
-            }
-
-            MSBuild("/t:build");
+            MSBuild("/t:build", restore: first || Restore);
         }
 
         protected string VsTestConsole(string arguments, bool throwOnError = true)
         {
             return Util.RunProcess("vstest.console.exe", arguments, RootTempDir, throwOnError: throwOnError);
-        }
-
-        protected void NuGet(string arguments)
-        {
-            Util.RunProcess("nuget", arguments, RootTempDir);
-        }
-
-        protected void MSBuild(string arguments)
-        {
-            Util.RunProcess("msbuild", $"/m {arguments}", RootTempDir);
         }
     }
 }
