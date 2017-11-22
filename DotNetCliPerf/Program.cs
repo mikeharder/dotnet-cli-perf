@@ -55,16 +55,85 @@ namespace DotNetCliPerf
                 allBenchmarks.AddRange(BenchmarkConverter.TypeToBenchmarks(type, config));
             }
 
-            var selectedBenchmarks = allBenchmarks.
+            var selectedBenchmarks = (IEnumerable<Benchmark>)allBenchmarks;
+            var parameters = ParametersToDictionary(options.Parameters);
+
+            // If not specified, default "Restore" to "true" for Core and "false" for Framework,
+            // to match typical customer usage.
+            if (!parameters.ContainsKey("Restore"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b =>
+                {
+                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return (b.Parameters["Restore"].ToString()).IndexOf("true", StringComparison.OrdinalIgnoreCase) >= 0;
+                    }
+                    else if (b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return (b.Parameters["Restore"].ToString()).IndexOf("false", StringComparison.OrdinalIgnoreCase) >= 0;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+            }
+
+            // If not specified, default "Parallel" to "true" for Core, to match typical customer usage.
+            if (!parameters.ContainsKey("Parallel"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b =>
+                {
+                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return (b.Parameters["Parallel"].ToString()).IndexOf("true", StringComparison.OrdinalIgnoreCase) >= 0;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+            }
+
+            // If not specified, default "MSBuildVersion" to "Core" for Core, to match typical customer usage.
+            if (!parameters.ContainsKey("MSBuildVersion"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b =>
+                {
+                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return (b.Parameters["MSBuildVersion"].ToString()).IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+            }
+
+            selectedBenchmarks = selectedBenchmarks.
                 Where(b => !options.Types.Any() ||
-                           b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
-                Where(b => !options.Methods.Any() ||
-                           b.Target.Method.Name.ContainsAny(options.Methods, StringComparison.OrdinalIgnoreCase)).
-                Where(b => b.Parameters.Match(options.Parameters));
+                                       b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
+                            Where(b => !options.Methods.Any() ||
+                                       b.Target.Method.Name.ContainsAny(options.Methods, StringComparison.OrdinalIgnoreCase)).
+                            Where(b => b.Parameters.Match(parameters));
 
             BenchmarkRunner.Run(selectedBenchmarks.ToArray(), config);
 
             return 0;
+        }
+
+        private static Dictionary<string, string> ParametersToDictionary(IEnumerable<string> parameters)
+        {
+            var dict = new Dictionary<string, string>(parameters.Count(), StringComparer.OrdinalIgnoreCase);
+
+            foreach (var p in parameters)
+            {
+                var parts = p.Split('=');
+                dict.Add(parts[0], parts[1]);
+            }
+
+            return dict;
         }
     }
 }

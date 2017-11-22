@@ -11,16 +11,17 @@ namespace DotNetCliPerf
         [Params("2.0.2", "2.1.1-preview-007145", "2.2.0-preview1-007525", "2.2.0-preview1-007556")]
         public string SdkVersion { get; set; }
 
-        // Include restore in core app measurements, since it's included by default in all core commands.
-        [Params(true/*, false */)]
+        [Params(true, false)]
         public bool Restore { get; set; }
 
-        // Enable parallel since its enabled by default
-        [Params(true/*, false */)]
+        [Params(true, false)]
         public bool Parallel { get; set; }
 
         // [Params(false, true)]
         public bool TieredJit { get; set; }
+
+        [Params("Desktop", "Core")]
+        public bool MSBuildVersion { get; set; }
 
         [GlobalSetup]
         public override void GlobalSetup()

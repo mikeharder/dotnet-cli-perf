@@ -5,9 +5,7 @@ namespace DotNetCliPerf
 {
     public abstract class FrameworkApp : App
     {
-        // Don't include "nuget restore" in framework app measurements, since it's typically not executed
-        // as part of inner loop.
-        [Params(/*true, */false)]
+        [Params(true, false)]
         public bool Restore { get; set; }
 
         protected override IEnumerable<string> CleanPaths => new string[]
