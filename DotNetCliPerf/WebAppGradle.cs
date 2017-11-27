@@ -13,7 +13,7 @@ namespace DotNetCliPerf
 
         protected override string Run(bool first = false)
         {
-            return GradleW("bootRun");
+            return GradleW("bootRun -PappArgs=\"['--mode=singleRequest']\"");
         }
     }
 }
