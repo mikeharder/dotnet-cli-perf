@@ -33,9 +33,10 @@ namespace DotNetCliPerf
         private string Run(bool restore, bool build = true)
         {
             return DotNet(
-                "run" + (build ? "" : " --no-build"),
+                "run",
                 appArguments: "--mode=singleRequest",
                 restore: restore,
+                build: build,
                 workingSubDirectory: "mvc",
                 throwOnError: false);
         }

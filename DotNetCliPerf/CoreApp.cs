@@ -69,9 +69,9 @@ namespace DotNetCliPerf
             }
         }
 
-        protected string DotNet(string dotnetArguments, string appArguments = null, string workingSubDirectory = "", bool restore = true, bool throwOnError = true)
+        protected string DotNet(string dotnetArguments, string appArguments = null, string workingSubDirectory = "", bool restore = true, bool build = true, bool throwOnError = true)
         {
-            if (NodeReuse)
+            if (build && NodeReuse)
             {
                 throw new InvalidOperationException("Core MSBuild currently does not support NodeReuse");
             }
@@ -79,6 +79,7 @@ namespace DotNetCliPerf
             var arguments = dotnetArguments +
                 (Parallel ? "" : " /m:1") +
                 (restore ? "" : " --no-restore") +
+                (build ? "" : " --no-build") +
                 (appArguments == null ? "" : " -- " + appArguments);
 
             return Util.RunProcess(
