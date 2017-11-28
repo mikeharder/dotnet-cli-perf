@@ -34,7 +34,7 @@ namespace DotNetCliPerf
 
         private string Run(bool restore, bool build = true)
         {
-            return DotNet("test mstest" + (build ? "" : " --no-build"), restore: restore, throwOnError: false);
+            return DotNet("test mstest", restore: restore, build: build, throwOnError: false);
         }
 
     }
