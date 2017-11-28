@@ -66,11 +66,11 @@ namespace DotNetCliPerf
                 {
                     if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        return (b.Parameters["Restore"].ToString()).IndexOf("true", StringComparison.OrdinalIgnoreCase) >= 0;
+                        return (bool)b.Parameters["Restore"];
                     }
                     else if (b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        return (b.Parameters["Restore"].ToString()).IndexOf("false", StringComparison.OrdinalIgnoreCase) >= 0;
+                        return !(bool)b.Parameters["Restore"];
                     }
                     else
                     {
@@ -86,7 +86,7 @@ namespace DotNetCliPerf
                 {
                     if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        return (b.Parameters["Parallel"].ToString()).IndexOf("true", StringComparison.OrdinalIgnoreCase) >= 0;
+                        return (bool)b.Parameters["Parallel"];
                     }
                     else
                     {
@@ -102,7 +102,29 @@ namespace DotNetCliPerf
                 {
                     if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        return (b.Parameters["MSBuildVersion"].ToString()).IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0;
+                        return ((MSBuildVersion)b.Parameters["MSBuildVersion"]) == MSBuildVersion.Core;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+            }
+
+            // Skip benchmarks with MSBuildVersion=Core and NodeReuse=True, since Core MSBuild currently does
+            // not support NodeReuse.
+            selectedBenchmarks = selectedBenchmarks.Where(b =>
+                !(((MSBuildVersion?)b.Parameters["MSBuildVersion"]) == MSBuildVersion.Core &&
+                  ((bool)b.Parameters["NodeReuse"])));
+                
+            // If not specified, default "NodeReuse" to  "true" for Framework, to match typical customer usage.
+            if (!parameters.ContainsKey("NodeReuse"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b =>
+                {
+                    if (b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return (bool)b.Parameters["NodeReuse"];
                     }
                     else
                     {
