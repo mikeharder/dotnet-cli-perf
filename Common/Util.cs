@@ -9,24 +9,23 @@ namespace Common
 {
     public static class Util
     {
-        public static string RepoRoot
+        public static readonly Lazy<string> _repoRoot = new Lazy<string>(() =>
         {
-            get
+            var currentDir = string.Empty;
+            while (true)
             {
-                var currentDir = string.Empty;
-                while (true)
+                if (File.Exists(Path.Combine(currentDir, "DotNetCliPerf.sln")))
                 {
-                    if (File.Exists(Path.Combine(currentDir, "DotNetCliPerf.sln")))
-                    {
-                        return currentDir;
-                    }
-                    else
-                    {
-                        currentDir = Path.Combine(currentDir, "..");
-                    }
+                    return currentDir;
+                }
+                else
+                {
+                    currentDir = Path.Combine(currentDir, "..");
                 }
             }
-        }
+        });
+
+        public static string RepoRoot => _repoRoot.Value;
 
         // BenchmarkDotNet requires output log lines to start with "//"
         public static void WriteLine(string value) => Console.WriteLine("// " + value);
