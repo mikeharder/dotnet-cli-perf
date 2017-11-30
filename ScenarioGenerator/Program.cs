@@ -73,14 +73,14 @@ namespace ScenarioGenerator
                         AddProjectReferences(Path.Combine(destDir, $"{name}.csproj"), projectReferences);
 
                         // Update Class001.Property with dependencies
-
+                        AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), projectReferences);
                     }
                 }
             }
 
             return 0;
         }
-
+        
         private static void AddProjectReferences(string path, IEnumerable<string> projectReferences)
         {
             var root = XElement.Load(path);
@@ -94,5 +94,12 @@ namespace ScenarioGenerator
             root.Save(path);
         }
 
+        private static void AddPropertyReferences(string path, IEnumerable<string> projectReferences)
+        {
+            foreach (var p in projectReferences)
+            {
+                Util.ReplaceInFile(path, ";", $" + \" \" + {p}.Class001.Property;");
+            }
+        }
     }
 }
