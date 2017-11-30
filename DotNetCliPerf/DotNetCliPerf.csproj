@@ -10,4 +10,8 @@
     <PackageReference Include="CommandLineParser" Version="2.1.1-beta" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
 </Project>

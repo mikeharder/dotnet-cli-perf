@@ -5,9 +5,9 @@ using System.IO;
 using System.Text;
 using System.Threading;
 
-namespace DotNetCliPerf
+namespace Common
 {
-    static class Util
+    public static class Util
     {
         public static string RepoRoot
         {

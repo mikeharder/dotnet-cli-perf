@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using Common;
 
 namespace DotNetCliPerf
 {
