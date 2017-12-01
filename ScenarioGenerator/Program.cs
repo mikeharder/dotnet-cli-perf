@@ -99,9 +99,6 @@ namespace ScenarioGenerator
                         // Rename csproj
                         File.Move(Path.Combine(destDir, "classlib.csproj"), destProj);
 
-                        // Add to sln
-                        Util.RunProcess("dotnet", $"sln {template.MainProject}.sln add {destProj}", solutionDir);
-
                         // Change namespace and string in Class001.cs
                         Util.ReplaceInFile(Path.Combine(destDir, "Class001.cs"), "classlib", name);
 
