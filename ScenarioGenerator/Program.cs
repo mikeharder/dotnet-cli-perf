@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 
 namespace ScenarioGenerator
@@ -49,7 +50,36 @@ namespace ScenarioGenerator
 
                     if (name == template.MainProject)
                     {
+                        if (template.Scenario == Scenario.WebApp)
+                        {
+                            var sourceDir = Path.Combine(Util.RepoRoot, "templates", "mvc", framework);
+                            var destDir = Path.Combine(solutionDir, name);
+                            var controllersDir = Path.Combine(destDir, "Controllers");
+                            var viewsDir = Path.Combine(destDir, "Views");
 
+                            Util.DirectoryCopy(sourceDir, destDir, copySubDirs: true);
+
+                            // Rename csproj
+                            File.Move(Path.Combine(destDir, "mvc.csproj"), Path.Combine(destDir, $"{name}.csproj"));
+
+                            // Create copies of HomeController.cs and "Views\Home" folder
+                            for (var i=2; i <= _sourceFilesPerProject; i++)
+                            {
+                                File.Copy(Path.Combine(controllersDir, "HomeController.cs"),
+                                    Path.Combine(controllersDir, "Home" + i.ToString("D3") + "Controller.cs"));
+
+                                Util.DirectoryCopy(Path.Combine(viewsDir, "Home"),
+                                    Path.Combine(viewsDir, "Home" + i.ToString("D3")),
+                                    copySubDirs: true);
+                            }
+
+                            // Add ProjectReference lines to csproj
+                            AddProjectReferences(Path.Combine(destDir, $"{name}.csproj"), projectReferences);
+
+                            // Update HomeController with dependencies
+                            AddPropertyReferences(Path.Combine(controllersDir, "HomeController.cs"), "\"InitialValue\"", projectReferences);
+
+                        }
                     }
                     else
                     {
@@ -73,10 +103,12 @@ namespace ScenarioGenerator
                         AddProjectReferences(Path.Combine(destDir, $"{name}.csproj"), projectReferences);
 
                         // Update Class001.Property with dependencies
-                        AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), projectReferences);
+                        AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), $"\"{name}\"", projectReferences);
                     }
                 }
             }
+
+            // Generate sln
 
             return 0;
         }
@@ -94,12 +126,14 @@ namespace ScenarioGenerator
             root.Save(path);
         }
 
-        private static void AddPropertyReferences(string path, IEnumerable<string> projectReferences)
+        private static void AddPropertyReferences(string path, string initialValue, IEnumerable<string> projectReferences)
         {
+            var sb = new StringBuilder();
             foreach (var p in projectReferences)
             {
-                Util.ReplaceInFile(path, ";", $" + \" \" + {p}.Class001.Property;");
+                sb.Append($" + \" \" + {p}.Class001.Property");
             }
+            Util.ReplaceInFile(path, initialValue, initialValue + sb.ToString());
         }
     }
 }
