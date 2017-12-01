@@ -6,7 +6,7 @@ namespace ScenarioGenerator
     // https://github.com/gradle/performance-comparisons/tree/master/large-multiproject
     public class GradleLargeMultiProject : ISolution
     {
-        public IList<(string Name, IEnumerable<string> ProjectReferences)> Projects => new List<(string Name, IEnumerable<string> ProjectReferences)>
+        public IList<(string Name, IEnumerable<string> ProjectReferences)> Projects { get; } = new List<(string Name, IEnumerable<string> ProjectReferences)>
         {
             ( "1", Enumerable.Empty<string>() ),
 

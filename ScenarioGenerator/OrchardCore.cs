@@ -11,7 +11,7 @@ namespace ScenarioGenerator
 
     public class OrchardCore : ISolution
     {
-        public IList<(string Name, IEnumerable<string> ProjectReferences)> Projects => new List<(string Name, IEnumerable<string> ProjectReferences)>
+        public IList<(string Name, IEnumerable<string> ProjectReferences)> Projects { get; } = new List<(string Name, IEnumerable<string> ProjectReferences)>
         {
             // Rank 0
             ( "OrchardCore.Application.Targets", Enumerable.Empty<string>() ),
