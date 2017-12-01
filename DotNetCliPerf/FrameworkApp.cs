@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using Common;
 
 namespace DotNetCliPerf
 {

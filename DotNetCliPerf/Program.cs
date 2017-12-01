@@ -52,7 +52,7 @@ namespace DotNetCliPerf
             var allBenchmarks = new List<Benchmark>();
             foreach (var type in typeof(Program).Assembly.GetTypes().Where(t => !t.IsAbstract).Where(t => t.IsPublic))
             {
-                allBenchmarks.AddRange(BenchmarkConverter.TypeToBenchmarks(type, config));
+                allBenchmarks.AddRange(BenchmarkConverter.TypeToBenchmarks(type, config).Benchmarks);
             }
 
             var selectedBenchmarks = (IEnumerable<Benchmark>)allBenchmarks;

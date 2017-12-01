@@ -6,8 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.10.9" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.10.10" />
     <PackageReference Include="CommandLineParser" Version="2.1.1-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
 </Project>
