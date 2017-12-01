@@ -44,23 +44,29 @@ namespace ScenarioGenerator
                 var solutionDir = Path.Combine(tempDir, framework);
                 Directory.CreateDirectory(solutionDir);
 
+                // Generate sln
+                Util.RunProcess("dotnet", $"new sln -n {template.MainProject}", solutionDir);
+
                 foreach (var (name, projectReferences) in template.Projects)
                 {
                     Console.WriteLine($"Generating {name}");
+
+                    var destDir = Path.Combine(solutionDir, name);
+                    var destProj = Path.Combine(destDir, $"{name}.csproj");
 
                     if (name == template.MainProject)
                     {
                         if (template.Scenario == Scenario.WebApp)
                         {
                             var sourceDir = Path.Combine(Util.RepoRoot, "templates", "mvc", framework);
-                            var destDir = Path.Combine(solutionDir, name);
-                            var controllersDir = Path.Combine(destDir, "Controllers");
                             var viewsDir = Path.Combine(destDir, "Views");
+                            var controllersDir = Path.Combine(destDir, "Controllers");
 
+                            // Copy template
                             Util.DirectoryCopy(sourceDir, destDir, copySubDirs: true);
 
                             // Rename csproj
-                            File.Move(Path.Combine(destDir, "mvc.csproj"), Path.Combine(destDir, $"{name}.csproj"));
+                            File.Move(Path.Combine(destDir, "mvc.csproj"), destProj);
 
                             // Create copies of HomeController.cs and "Views\Home" folder
                             for (var i=2; i <= _sourceFilesPerProject; i++)
@@ -78,17 +84,20 @@ namespace ScenarioGenerator
 
                             // Update HomeController with dependencies
                             AddPropertyReferences(Path.Combine(controllersDir, "HomeController.cs"), "\"InitialValue\"", projectReferences);
-
                         }
                     }
                     else
                     {
                         var sourceDir = Path.Combine(Util.RepoRoot, "templates", "classlib", framework);
-                        var destDir = Path.Combine(solutionDir, name);
+
+                        // Copy template
                         Util.DirectoryCopy(sourceDir, destDir, copySubDirs: true);
 
                         // Rename csproj
-                        File.Move(Path.Combine(destDir, "classlib.csproj"), Path.Combine(destDir, $"{name}.csproj"));
+                        File.Move(Path.Combine(destDir, "classlib.csproj"), destProj);
+
+                        // Add to sln
+                        Util.RunProcess("dotnet", $"sln {template.MainProject}.sln add {destProj}", solutionDir);
 
                         // Change namespace and string in Class001.cs
                         Util.ReplaceInFile(Path.Combine(destDir, "Class001.cs"), "classlib", name);
@@ -105,10 +114,11 @@ namespace ScenarioGenerator
                         // Update Class001.Property with dependencies
                         AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), $"\"{name}\"", projectReferences);
                     }
+
+                    // Add proj to sln
+                    Util.RunProcess("dotnet", $"sln {template.MainProject}.sln add {destProj}", solutionDir);
                 }
             }
-
-            // Generate sln
 
             return 0;
         }
