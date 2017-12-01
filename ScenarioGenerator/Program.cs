@@ -71,8 +71,11 @@ namespace ScenarioGenerator
                             // Create copies of HomeController.cs and "Views\Home" folder
                             for (var i=2; i <= _sourceFilesPerProject; i++)
                             {
-                                File.Copy(Path.Combine(controllersDir, "HomeController.cs"),
-                                    Path.Combine(controllersDir, "Home" + i.ToString("D3") + "Controller.cs"));
+                                var destName = "Home" + i.ToString("D3") + "Controller";
+                                var destFile = Path.Combine(controllersDir, destName + ".cs");
+
+                                File.Copy(Path.Combine(controllersDir, "HomeController.cs"), destFile);
+                                Util.ReplaceInFile(destFile, "HomeController", destName);
 
                                 Util.DirectoryCopy(Path.Combine(viewsDir, "Home"),
                                     Path.Combine(viewsDir, "Home" + i.ToString("D3")),
@@ -105,7 +108,10 @@ namespace ScenarioGenerator
                         // Create copies of Class001.cs
                         for (var i=2; i <= _sourceFilesPerProject; i++)
                         {
-                            File.Copy(Path.Combine(destDir, "Class001.cs"), Path.Combine(destDir, "Class" + i.ToString("D3") + ".cs"));
+                            var destName = "Class" + i.ToString("D3");
+                            var destFile = Path.Combine(destDir, destName + ".cs");
+                            File.Copy(Path.Combine(destDir, "Class001.cs"), destFile);
+                            Util.ReplaceInFile(destFile, "Class001", destName);
                         }
 
                         // Add ProjectReference lines to csproj
