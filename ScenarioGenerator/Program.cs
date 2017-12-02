@@ -14,6 +14,9 @@ namespace ScenarioGenerator
 {
     class Options
     {
+        [Option("simplifyNames")]
+        public bool SimplifyNames { get; set; } = true;
+
         [Option('s', "solution")]
         public string Solution { get; set; }
 
@@ -61,26 +64,73 @@ namespace ScenarioGenerator
             var solutionDir = Path.Combine(tempDir, framework);
             Directory.CreateDirectory(solutionDir);
 
-            // Generate sln
-            Util.RunProcess("dotnet", $"new sln -n {template.MainProject}", solutionDir);
+            var (projects, mainProject) = _options.SimplifyNames ?
+                SimplifyProjectNames(template.Projects, template.MainProject, template.Scenario) :
+                (template.Projects, template.MainProject);
 
-            var projects = new ConcurrentBag<string>();
-            Parallel.ForEach(template.Projects, p => projects.Add(GenerateProject(p.Name, p.ProjectReferences, framework, template, solutionDir)));
+            // Generate sln
+            Util.RunProcess("dotnet", $"new sln -n {mainProject}", solutionDir);
+
+            var projectFiles = new ConcurrentBag<string>();
+            Parallel.ForEach(projects, p => projectFiles.Add(GenerateProject(
+                p.Name, p.Name == mainProject, template.Scenario, p.ProjectReferences, framework, solutionDir)));
 
             Console.WriteLine("Adding projects to solution");
-            AddProjectsToSolution($"{template.MainProject}.sln", projects, solutionDir);
+            AddProjectsToSolution($"{mainProject}.sln", projectFiles, solutionDir);
         }
 
-        private static string GenerateProject(string name, IEnumerable<string> projectReferences, string framework, ISolution template, string solutionDir)
+        private static (IList<(string Name, IEnumerable<string> ProjectReferences)> projects, string mainProject) SimplifyProjectNames(
+            IList<(string Name, IEnumerable<string> ProjectReferences)> projects, string mainProject, Scenario scenario)
+        {
+            var newProjects = new List<(string Name, IEnumerable<string> ProjectReferences)>(projects.Count);
+            var newNames = new Dictionary<string, string>(projects.Count);
+
+            var index = 1;
+            foreach (var p in projects)
+            {
+                string newName;
+                if (p.Name == mainProject)
+                {
+                    if (scenario == Scenario.WebApp)
+                    {
+                        newName = "mvc";
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException();
+                    }
+                }
+                else
+                {
+                    newName = $"ClassLib{index}";
+                    index++;
+                }
+
+                newNames.Add(p.Name, newName);
+
+                var newProjectReferences = new List<string>(p.ProjectReferences.Count());
+                foreach (var pr in p.ProjectReferences)
+                {
+                    newProjectReferences.Add(newNames[pr]);
+                }
+
+                newProjects.Add((newName, newProjectReferences));
+            }
+
+            return (newProjects, newNames[mainProject]);
+        }
+
+        private static string GenerateProject(string name, bool mainProject, Scenario scenario,
+            IEnumerable<string> projectReferences, string framework, string solutionDir)
         {
             Console.WriteLine($"Generating {name}");
 
             var destDir = Path.Combine(solutionDir, name);
             var destProj = Path.Combine(destDir, $"{name}.csproj");
 
-            if (name == template.MainProject)
+            if (mainProject)
             {
-                if (template.Scenario == Scenario.WebApp)
+                if (scenario == Scenario.WebApp)
                 {
                     var sourceDir = Path.Combine(Util.RepoRoot, "templates", "mvc", framework);
                     var viewsDir = Path.Combine(destDir, "Views");
