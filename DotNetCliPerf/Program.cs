@@ -79,12 +79,13 @@ namespace DotNetCliPerf
                 });
             }
 
-            // If not specified, default "Parallel" to "true" for Core, to match typical customer usage.
+            // If not specified, default "Parallel" to "true" for both Core and Framework, to match typical customer usage.
             if (!parameters.ContainsKey("Parallel"))
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b =>
                 {
-                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                        b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         return (bool)b.Parameters["Parallel"];
                     }
