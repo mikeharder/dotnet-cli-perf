@@ -27,7 +27,6 @@ namespace DotNetCliPerf
 
         protected virtual void RunCleanup() { }
 
-        [GlobalSetup]
         public override void GlobalSetup()
         {
             base.GlobalSetup();

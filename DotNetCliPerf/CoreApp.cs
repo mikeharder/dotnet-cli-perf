@@ -21,7 +21,6 @@ namespace DotNetCliPerf
         [Params(MSBuildVersion.Desktop, MSBuildVersion.Core)]
         public MSBuildVersion MSBuildVersion { get; set; }
 
-        [GlobalSetup]
         public override void GlobalSetup()
         {
             if (TieredJit)

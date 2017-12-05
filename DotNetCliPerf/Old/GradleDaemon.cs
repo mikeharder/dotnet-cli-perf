@@ -6,7 +6,6 @@ namespace DotNetCliPerf
 {
     class GradleDaemon : Cli
     {
-        [GlobalSetup]
         public override void GlobalSetup()
         {
             base.GlobalSetup();
