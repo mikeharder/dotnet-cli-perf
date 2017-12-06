@@ -15,7 +15,9 @@ namespace DotNetCliPerf
 
         protected string OldValue { get; set; } = "InitialValue";
         protected string NewValue { get; set; }
-        protected string Output { get; set; }
+
+        private static readonly string _defaultOutput = Guid.NewGuid().ToString();
+        private string Output { get; set; } = _defaultOutput;
 
         protected abstract string SourceDir { get; }
         protected abstract string SourcePath { get; }
@@ -57,11 +59,12 @@ namespace DotNetCliPerf
 
         private void VerifyOutput()
         {
-            if (!Output.Contains(ExpectedOutput))
+            if (Output != _defaultOutput && !Output.Contains(ExpectedOutput))
             {
                 throw new InvalidOperationException($"Response missing '{ExpectedOutput}'");
             }
 
+            Output = _defaultOutput;
             OldValue = NewValue;
 
             RunCleanup();
