@@ -3,6 +3,7 @@ using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.InProcess;
+using BenchmarkDotNet.Validators;
 using CommandLine;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,9 @@ namespace DotNetCliPerf
 
         [Option('w', "warmupCount", Default = 0)]
         public int WarmupCount { get; set; }
+
+        [Option('d', "debug")]
+        public bool Debug { get; set; }
     }
 
     class Program
@@ -48,6 +52,12 @@ namespace DotNetCliPerf
             job = job.With(InProcessToolchain.Instance);
 
             var config = ManualConfig.Create(DefaultConfig.Instance).With(job);
+
+            if (options.Debug)
+            {
+                ((List<IValidator>)config.GetValidators()).Remove(JitOptimizationsValidator.FailOnError);
+                config = config.With(JitOptimizationsValidator.DontFailOnError);
+            }
 
             var allBenchmarks = new List<Benchmark>();
             foreach (var type in typeof(Program).Assembly.GetTypes().Where(t => !t.IsAbstract).Where(t => t.IsPublic))
@@ -117,7 +127,7 @@ namespace DotNetCliPerf
             selectedBenchmarks = selectedBenchmarks.Where(b =>
                 !(((MSBuildVersion?)b.Parameters["MSBuildVersion"]) == MSBuildVersion.Core &&
                   ((bool)b.Parameters["NodeReuse"])));
-                
+
             // If not specified, default "NodeReuse" to  "true" for Framework, to match typical customer usage.
             if (!parameters.ContainsKey("NodeReuse"))
             {
