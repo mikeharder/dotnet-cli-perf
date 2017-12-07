@@ -102,7 +102,7 @@ namespace ScenarioGenerator
                 }
                 else
                 {
-                    newName = $"ClassLib{index}";
+                    newName = $"ClassLib{index.ToString("D3")}";
                     index++;
                 }
 
