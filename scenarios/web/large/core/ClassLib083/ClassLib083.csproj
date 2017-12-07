@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLib048\ClassLib048.csproj" />
+    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
+    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
+    <ProjectReference Include="..\ClassLib044\ClassLib044.csproj" />
+    <ProjectReference Include="..\ClassLib074\ClassLib074.csproj" />
+  </ItemGroup>
+</Project>
