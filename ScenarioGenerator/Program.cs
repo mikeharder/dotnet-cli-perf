@@ -14,10 +14,13 @@ namespace ScenarioGenerator
 {
     class Options
     {
+        [Option('f', "framework", Required = true)]
+        public Framework Framework { get; set; }
+
         [Option("simplifyNames")]
         public bool SimplifyNames { get; set; } = true;
 
-        [Option('s', "solution")]
+        [Option('s', "solution", Required = true)]
         public string Solution { get; set; }
 
         [Option('o', "outputDir")]
@@ -54,14 +57,16 @@ namespace ScenarioGenerator
             ThreadPool.SetMaxThreads(threads, threads);
             ThreadPool.SetMinThreads(threads, threads);
 
-            Parallel.ForEach(_frameworks, f => GenerateSolution(tempDir, template, f));
+            GenerateSolution(tempDir, template, _options.Framework);
 
             return 0;
         }
 
-        private static void GenerateSolution(string tempDir, ISolution template, string framework)
+        private static void GenerateSolution(string tempDir, ISolution template, Framework framework)
         {
-            var solutionDir = Path.Combine(tempDir, framework);
+            var frameworkPath = framework.ToString().ToLowerInvariant();
+
+            var solutionDir = Path.Combine(tempDir, frameworkPath);
             Directory.CreateDirectory(solutionDir);
 
             var (projects, mainProject) = _options.SimplifyNames ?
@@ -69,7 +74,17 @@ namespace ScenarioGenerator
                 (template.Projects, template.MainProject);
 
             // Generate sln
-            Util.RunProcess("dotnet", $"new sln -n {mainProject}", solutionDir);
+            if (framework == Framework.Core)
+            {
+                Util.RunProcess("dotnet", $"new sln -n {mainProject}", solutionDir);
+            }
+            else if (framework == Framework.Framework)
+            {
+                if (template.Scenario == Scenario.Web)
+                {
+                    File.Copy(Path.Combine(Util.RepoRoot, "templates", "framework", "mvc.sln"), Path.Combine(solutionDir, $"{mainProject}.sln"));
+                }
+            }
 
             var projectFiles = new ConcurrentBag<string>();
             Parallel.ForEach(projects, p => projectFiles.Add(GenerateProject(
@@ -91,7 +106,7 @@ namespace ScenarioGenerator
                 string newName;
                 if (p.Name == mainProject)
                 {
-                    if (scenario == Scenario.WebApp)
+                    if (scenario == Scenario.Web)
                     {
                         newName = "mvc";
                     }
@@ -121,18 +136,38 @@ namespace ScenarioGenerator
         }
 
         private static string GenerateProject(string name, bool mainProject, Scenario scenario,
-            IEnumerable<string> projectReferences, string framework, string solutionDir)
+            IEnumerable<string> projectReferences, Framework framework, string solutionDir)
         {
             Console.WriteLine($"Generating {name}");
 
+            switch (framework)
+            {
+                case Framework.Core:
+                    return GenerateProjectCore(name, mainProject, scenario, projectReferences, solutionDir);
+                case Framework.Framework:
+                    return GenerateProjectFramework(name, mainProject, scenario, projectReferences, solutionDir);
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
+
+        private static string GenerateProjectGradle(string name, bool mainProject, Scenario scenario,
+            IEnumerable<string> projectReferences, string frameworkPath, string solutionDir)
+        {
+            return null;
+        }
+
+        private static string GenerateProjectFramework(string name, bool mainProject, Scenario scenario,
+            IEnumerable<string> projectReferences, string solutionDir)
+        {
             var destDir = Path.Combine(solutionDir, name);
             var destProj = Path.Combine(destDir, $"{name}.csproj");
 
             if (mainProject)
             {
-                if (scenario == Scenario.WebApp)
+                if (scenario == Scenario.Web)
                 {
-                    var sourceDir = Path.Combine(Util.RepoRoot, "templates", "mvc", framework);
+                    var sourceDir = Path.Combine(Util.RepoRoot, "templates", "framework", "mvc");
                     var viewsDir = Path.Combine(destDir, "Views");
                     var controllersDir = Path.Combine(destDir, "Controllers");
 
@@ -165,7 +200,80 @@ namespace ScenarioGenerator
             }
             else
             {
-                var sourceDir = Path.Combine(Util.RepoRoot, "templates", "classlib", framework);
+                var sourceDir = Path.Combine(Util.RepoRoot, "templates", "framework", "classlib");
+
+                // Copy template
+                Util.DirectoryCopy(sourceDir, destDir, copySubDirs: true);
+
+                // Rename csproj
+                File.Move(Path.Combine(destDir, "classlib.csproj"), destProj);
+
+                // Change namespace and string in Class001.cs
+                Util.ReplaceInFile(Path.Combine(destDir, "Class001.cs"), "classlib", name);
+
+                // Create copies of Class001.cs
+                for (var i = 2; i <= _sourceFilesPerProject; i++)
+                {
+                    var destName = "Class" + i.ToString("D3");
+                    var destFile = Path.Combine(destDir, destName + ".cs");
+                    File.Copy(Path.Combine(destDir, "Class001.cs"), destFile);
+                    Util.ReplaceInFile(destFile, "Class001", destName);
+                }
+
+                // Add ProjectReference lines to csproj
+                AddProjectReferences(Path.Combine(destDir, $"{name}.csproj"), projectReferences);
+
+                // Update Class001.Property with dependencies
+                AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), $"\"{name}\"", projectReferences);
+            }
+
+            return destProj;
+        }
+
+        private static string GenerateProjectCore(string name, bool mainProject, Scenario scenario,
+            IEnumerable<string> projectReferences, string solutionDir)
+        {
+            var destDir = Path.Combine(solutionDir, name);
+            var destProj = Path.Combine(destDir, $"{name}.csproj");
+
+            if (mainProject)
+            {
+                if (scenario == Scenario.Web)
+                {
+                    var sourceDir = Path.Combine(Util.RepoRoot, "templates", "core", "mvc");
+                    var viewsDir = Path.Combine(destDir, "Views");
+                    var controllersDir = Path.Combine(destDir, "Controllers");
+
+                    // Copy template
+                    Util.DirectoryCopy(sourceDir, destDir, copySubDirs: true);
+
+                    // Rename csproj
+                    File.Move(Path.Combine(destDir, "mvc.csproj"), destProj);
+
+                    // Create copies of HomeController.cs and "Views\Home" folder
+                    for (var i = 2; i <= _sourceFilesPerProject; i++)
+                    {
+                        var destName = "Home" + i.ToString("D3") + "Controller";
+                        var destFile = Path.Combine(controllersDir, destName + ".cs");
+
+                        File.Copy(Path.Combine(controllersDir, "HomeController.cs"), destFile);
+                        Util.ReplaceInFile(destFile, "HomeController", destName);
+
+                        Util.DirectoryCopy(Path.Combine(viewsDir, "Home"),
+                            Path.Combine(viewsDir, "Home" + i.ToString("D3")),
+                            copySubDirs: true);
+                    }
+
+                    // Add ProjectReference lines to csproj
+                    AddProjectReferences(Path.Combine(destDir, $"{name}.csproj"), projectReferences);
+
+                    // Update HomeController with dependencies
+                    AddPropertyReferences(Path.Combine(controllersDir, "HomeController.cs"), "\"InitialValue\"", projectReferences);
+                }
+            }
+            else
+            {
+                var sourceDir = Path.Combine(Util.RepoRoot, "templates", "core", "classlib");
 
                 // Copy template
                 Util.DirectoryCopy(sourceDir, destDir, copySubDirs: true);
@@ -204,7 +312,7 @@ namespace ScenarioGenerator
         private static void AddProjectReferences(string path, IEnumerable<string> projectReferences)
         {
             var root = XElement.Load(path);
-            var itemGroup = root.Descendants("ItemGroup").Single();
+            var itemGroup = root.Descendants(XName.Get("ItemGroup", root.Name.NamespaceName)).First();
 
             foreach (var p in projectReferences)
             {

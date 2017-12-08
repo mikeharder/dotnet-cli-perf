@@ -163,6 +163,6 @@ namespace ScenarioGenerator
 
         public string MainProject => "OrchardCore.Cms.Web";
 
-        public Scenario Scenario => Scenario.WebApp;
+        public Scenario Scenario => Scenario.Web;
     }
 }

@@ -3,6 +3,6 @@
     public enum Scenario
     {
         ClassLib,
-        WebApp
+        Web
     }
 }
