@@ -29,6 +29,9 @@ namespace DotNetCliPerf
 
         protected virtual void RunCleanup() { }
 
+        [Params(SourceChanged.Leaf, SourceChanged.Root)]
+        public SourceChanged SourceChanged { get; set; }
+
         public override void GlobalSetup()
         {
             base.GlobalSetup();
@@ -54,7 +57,7 @@ namespace DotNetCliPerf
         protected void ChangeSource()
         {
             NewValue = Guid.NewGuid().ToString();
-            Util.ReplaceInFile(Path.Combine(RootTempDir, SourcePath), OldValue, NewValue);
+            Util.ReplaceInFile(Path.Combine(RootTempDir, SourcePath), $"\"{OldValue}\"", $"\"{NewValue}\"");
         }
 
         private void VerifyOutput()

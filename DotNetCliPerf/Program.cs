@@ -144,6 +144,12 @@ namespace DotNetCliPerf
                 });
             }
 
+            // Only test SourceChanged.Root for Large apps and "SourceChanged" methods
+            selectedBenchmarks = selectedBenchmarks.Where(b =>
+                (b.Target.Type.Name.IndexOf("Large", StringComparison.OrdinalIgnoreCase) >= 0 &&
+                 b.Target.Method.Name.IndexOf("SourceChanged", StringComparison.OrdinalIgnoreCase) >= 0) ||
+                ((SourceChanged)b.Parameters["SourceChanged"]) == SourceChanged.Leaf);
+
             selectedBenchmarks = selectedBenchmarks.
                 Where(b => !options.Types.Any() ||
                                        b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
