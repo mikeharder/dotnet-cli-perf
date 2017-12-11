@@ -64,9 +64,7 @@ namespace ScenarioGenerator
 
         private static void GenerateSolution(string tempDir, ISolution template, Framework framework)
         {
-            var frameworkPath = framework.ToString().ToLowerInvariant();
-
-            var solutionDir = Path.Combine(tempDir, frameworkPath);
+            var solutionDir = tempDir;
             Directory.CreateDirectory(solutionDir);
 
             var (projects, mainProject) = _options.SimplifyNames ?
@@ -91,7 +89,7 @@ namespace ScenarioGenerator
                 p.Name, p.Name == mainProject, template.Scenario, p.ProjectReferences, framework, solutionDir)));
 
             Console.WriteLine("Adding projects to solution");
-            AddProjectsToSolution($"{mainProject}.sln", projectFiles, solutionDir);
+            AddProjectsToSolution($"{mainProject}.sln", framework, projectFiles, mainProject, solutionDir);
         }
 
         private static (IList<(string Name, IEnumerable<string> ProjectReferences)> projects, string mainProject) SimplifyProjectNames(
@@ -177,6 +175,7 @@ namespace ScenarioGenerator
                     // Rename csproj
                     File.Move(Path.Combine(destDir, "mvc.csproj"), destProj);
 
+                    var newFiles = new List<string>();
                     // Create copies of HomeController.cs and "Views\Home" folder
                     for (var i = 2; i <= _sourceFilesPerProject; i++)
                     {
@@ -185,14 +184,19 @@ namespace ScenarioGenerator
 
                         File.Copy(Path.Combine(controllersDir, "HomeController.cs"), destFile);
                         Util.ReplaceInFile(destFile, "HomeController", destName);
+                        newFiles.Add(Path.Combine("Controllers", destName + ".cs"));
 
                         Util.DirectoryCopy(Path.Combine(viewsDir, "Home"),
                             Path.Combine(viewsDir, "Home" + i.ToString("D3")),
                             copySubDirs: true);
+                        newFiles.Add(Path.Combine("Views", "Home" + i.ToString("D3"), "About.cshtml"));
+                        newFiles.Add(Path.Combine("Views", "Home" + i.ToString("D3"), "Contact.cshtml"));
+                        newFiles.Add(Path.Combine("Views", "Home" + i.ToString("D3"), "Index.cshtml"));
                     }
+                    AddFilesToProject(destProj, newFiles);
 
                     // Add ProjectReference lines to csproj
-                    AddProjectReferences(Path.Combine(destDir, $"{name}.csproj"), projectReferences);
+                    AddProjectReferences(destProj, projectReferences);
 
                     // Update HomeController with dependencies
                     AddPropertyReferences(Path.Combine(controllersDir, "HomeController.cs"), "\"InitialValue\"", projectReferences);
@@ -211,6 +215,7 @@ namespace ScenarioGenerator
                 // Change namespace and string in Class001.cs
                 Util.ReplaceInFile(Path.Combine(destDir, "Class001.cs"), "classlib", name);
 
+                var newFiles = new List<string>();
                 // Create copies of Class001.cs
                 for (var i = 2; i <= _sourceFilesPerProject; i++)
                 {
@@ -218,13 +223,22 @@ namespace ScenarioGenerator
                     var destFile = Path.Combine(destDir, destName + ".cs");
                     File.Copy(Path.Combine(destDir, "Class001.cs"), destFile);
                     Util.ReplaceInFile(destFile, "Class001", destName);
+                    newFiles.Add(destName + ".cs");
                 }
+                AddFilesToProject(destProj, newFiles);
 
                 // Add ProjectReference lines to csproj
-                AddProjectReferences(Path.Combine(destDir, $"{name}.csproj"), projectReferences);
+                AddProjectReferences(destProj, projectReferences);
 
                 // Update Class001.Property with dependencies
                 AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), $"\"{name}\"", projectReferences);
+
+                // Change GUID in csproj
+                Util.ReplaceInFile(destProj, "a2806542-3ef7-40c1-9b10-ca07b164b420",
+                    Guid.NewGuid().ToString().ToUpperInvariant());
+
+                // Update RootNamespace and AssemblyName
+                Util.ReplaceInFile(destProj, ">classlib<", $">{name}<");
             }
 
             return destProj;
@@ -303,10 +317,72 @@ namespace ScenarioGenerator
             return destProj;
         }
 
-        private static void AddProjectsToSolution(string solution, IEnumerable<string> projects, string workingDirectory)
+        private static void AddProjectsToSolution(string solution, Framework framework, IEnumerable<string> projects,
+            string mainProject, string workingDirectory)
         {
-            // Add proj to sln
-            Util.RunProcess("dotnet", $"sln {solution} add {String.Join(' ', projects)}", workingDirectory);
+            if (framework == Framework.Core)
+            {
+                // Add proj to sln
+                Util.RunProcess("dotnet", $"sln {solution} add {String.Join(' ', projects)}", workingDirectory);
+            }
+            else if (framework == Framework.Framework)
+            {
+                var projectRefs = new StringBuilder();
+                var configs = new StringBuilder();
+
+                foreach (var project in projects)
+                {
+                    var name = Path.GetFileNameWithoutExtension(project);
+
+                    if (name.Equals(mainProject, StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    var root = XElement.Load(Path.Combine(workingDirectory, project));
+                    var guid = root.Descendants(XName.Get("ProjectGuid", root.Name.NamespaceName)).Single().Value;
+
+                    // Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "classlib", "classlib\classlib.csproj", "{6F6148E3-3C37-4B65-B3F0-8D58571761A8}"
+                    // EndProject
+                    projectRefs.Append("Project(\"{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}\") = ");
+                    projectRefs.AppendLine($"\"{name}\", \"{name}\\{name}.csproj\", \"{{{guid}}}\"");
+                    projectRefs.AppendLine("EndProject");
+
+                    // {6F6148E3-3C37-4B65-B3F0-8D58571761A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+                    // {6F6148E3-3C37-4B65-B3F0-8D58571761A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                    // {6F6148E3-3C37-4B65-B3F0-8D58571761A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+                    // {6F6148E3-3C37-4B65-B3F0-8D58571761A8}.Release|Any CPU.Build.0 = Release|Any CPU
+                    configs.AppendLine($"\t\t{{{guid.ToUpperInvariant()}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+                    configs.AppendLine($"\t\t{{{guid.ToUpperInvariant()}}}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+                    configs.AppendLine($"\t\t{{{guid.ToUpperInvariant()}}}.Release|Any CPU.ActiveCfg = Debug|Any CPU");
+                    configs.AppendLine($"\t\t{{{guid.ToUpperInvariant()}}}.Release|Any CPU.Build.0 = Debug|Any CPU");
+                }
+
+                Util.InsertInFileAfter(
+                    Path.Combine(workingDirectory, solution),
+                    "EndProject" + Environment.NewLine,
+                    projectRefs.ToString());
+
+                Util.InsertInFileAfter(
+                    Path.Combine(workingDirectory, solution),
+                    "{F9625F4A-BB92-465C-A8A4-2D13A8A99086}.Release|Any CPU.Build.0 = Release|Any CPU" + Environment.NewLine,
+                    configs.ToString());
+            }
+        }
+
+        private static void AddFilesToProject(string path, IEnumerable<string> files)
+        {
+            var root = XElement.Load(path);
+            var itemGroup = root.Descendants(XName.Get("ItemGroup", root.Name.NamespaceName)).First();
+
+            foreach (var file in files)
+            {
+                itemGroup.Add(new XElement(
+                    XName.Get((Path.GetExtension(file) == ".cs") ? "Compile" : "Content", root.Name.NamespaceName),
+                    new XAttribute("Include", file)));
+            }
+
+            root.Save(path);
         }
 
         private static void AddProjectReferences(string path, IEnumerable<string> projectReferences)
@@ -316,7 +392,9 @@ namespace ScenarioGenerator
 
             foreach (var p in projectReferences)
             {
-                itemGroup.Add(new XElement("ProjectReference", new XAttribute("Include", Path.Combine("..", p, $"{p}.csproj"))));
+                itemGroup.Add(new XElement(
+                    XName.Get("ProjectReference", root.Name.NamespaceName),
+                    new XAttribute("Include", Path.Combine("..", p, $"{p}.csproj"))));
             }
 
             root.Save(path);

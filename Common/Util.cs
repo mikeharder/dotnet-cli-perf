@@ -187,6 +187,16 @@ namespace Common
             File.WriteAllText(path, File.ReadAllText(path).Replace(oldValue, newValue));
         }
 
+        public static void InsertInFileBefore(string path, string insertBefore, string value)
+        {
+            ReplaceInFile(path, insertBefore, value + insertBefore);
+        }
+
+        public static void InsertInFileAfter(string path, string insertAfter, string value)
+        {
+            ReplaceInFile(path, insertAfter, insertAfter + value);
+        }
+
         // https://docs.microsoft.com/en-us/dotnet/standard/io/how-to-copy-directories
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
