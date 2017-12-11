@@ -9,11 +9,9 @@ using System.Text;
 
 namespace DotNetCliPerf
 {
-    public class WebFramework : FrameworkApp
+    public abstract class WebFramework : FrameworkApp
     {
         private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) _process;
-
-        protected override string SourceDir => Path.Combine("web", "framework");
 
         protected override string SourcePath => Path.Combine(RootTempDir, "mvc", "Controllers", "HomeController.cs");
 
