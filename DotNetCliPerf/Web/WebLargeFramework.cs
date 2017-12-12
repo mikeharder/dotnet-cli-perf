@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace DotNetCliPerf.Web
+namespace DotNetCliPerf
 {
     public class WebLargeFramework : WebFramework
     {

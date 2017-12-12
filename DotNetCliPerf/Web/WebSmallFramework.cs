@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace DotNetCliPerf.Web
+namespace DotNetCliPerf
 {
     public class WebSmallFramework : WebFramework
     {
