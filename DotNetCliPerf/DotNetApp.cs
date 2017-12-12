@@ -17,7 +17,7 @@ namespace DotNetCliPerf
                 (Parallel ? " /m" : "") +
                 $" /nr:{NodeReuse}" +
                 (restore ? " /restore" : "");
-            return Util.RunProcess("msbuild", arguments, RootTempDir);
+            return Util.RunProcess("msbuild /v:minimal", arguments, RootTempDir);
         }
     }
 }
