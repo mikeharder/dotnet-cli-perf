@@ -1,6 +1,6 @@
 ﻿namespace ScenarioGenerator
 {
-    public enum Framework
+    enum Framework
     {
         Core,
         Framework,

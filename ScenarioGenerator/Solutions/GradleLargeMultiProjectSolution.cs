@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ScenarioGenerator
+namespace ScenarioGenerator.Solutions
 {
     // https://github.com/gradle/performance-comparisons/tree/master/large-multiproject
-    public class GradleLargeMultiProject : ISolution
+    class GradleLargeMultiProjectSolution : ISolution
     {
         public IList<(string Name, IEnumerable<string> ProjectReferences)> Projects { get; } = new List<(string Name, IEnumerable<string> ProjectReferences)>
         {

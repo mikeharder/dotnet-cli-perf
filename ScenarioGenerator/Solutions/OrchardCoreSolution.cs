@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ScenarioGenerator
+namespace ScenarioGenerator.Solutions
 {
     // https://github.com/OrchardCMS/OrchardCore
     // Total Projects: 127
@@ -9,7 +9,7 @@ namespace ScenarioGenerator
     // Total PackageRefs: 237
     // Unique PackageRefs: 84
 
-    public class OrchardCore : ISolution
+    class OrchardCoreSolution : ISolution
     {
         public IList<(string Name, IEnumerable<string> ProjectReferences)> Projects { get; } = new List<(string Name, IEnumerable<string> ProjectReferences)>
         {

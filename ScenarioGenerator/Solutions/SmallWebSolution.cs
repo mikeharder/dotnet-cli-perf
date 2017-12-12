@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ScenarioGenerator
+namespace ScenarioGenerator.Solutions
 {
-    public class SmallWeb : ISolution
+    class SmallWebSolution : ISolution
     {
         public IList<(string Name, IEnumerable<string> ProjectReferences)> Projects { get; } = new List<(string Name, IEnumerable<string> ProjectReferences)>
         {

@@ -1,6 +1,6 @@
 ﻿namespace ScenarioGenerator
 {
-    public enum Scenario
+    enum Scenario
     {
         ClassLib,
         Web
