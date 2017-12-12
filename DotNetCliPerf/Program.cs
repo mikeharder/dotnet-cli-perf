@@ -106,6 +106,22 @@ namespace DotNetCliPerf
                 });
             }
 
+            // If not specified, default "SdkVersion" to "2.0.2" and "2.2.0" for Core
+            if (!parameters.ContainsKey("SdkVersion"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b =>
+                {
+                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return ((string)b.Parameters["SdkVersion"]) == "2.0.2" || ((string)b.Parameters["SdkVersion"]).StartsWith("2.2.0");
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+            }
+
             // If not specified, default "MSBuildVersion" to "Core" for Core, to match typical customer usage.
             if (!parameters.ContainsKey("MSBuildVersion"))
             {
