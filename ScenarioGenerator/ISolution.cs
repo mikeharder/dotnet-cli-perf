@@ -6,6 +6,5 @@ namespace ScenarioGenerator
     {
         IList<(string Name, IEnumerable<string> ProjectReferences)> Projects { get; }
         string MainProject { get; }
-        Scenario Scenario { get; }
     }
 }

@@ -25,6 +25,9 @@ namespace ScenarioGenerator
 
         [Option('o', "outputDir")]
         public string OutputDir { get; set; }
+
+        [Option('c', "scenario", Required = true)]
+        public Scenario Scenario { get; set; }
     }
 
     class Program
@@ -68,7 +71,7 @@ namespace ScenarioGenerator
             Directory.CreateDirectory(solutionDir);
 
             var (projects, mainProject) = _options.SimplifyNames ?
-                SimplifyProjectNames(template.Projects, template.MainProject, template.Scenario) :
+                SimplifyProjectNames(template.Projects, template.MainProject, _options.Scenario) :
                 (template.Projects, template.MainProject);
 
             // Generate sln
@@ -78,7 +81,7 @@ namespace ScenarioGenerator
             }
             else if (framework == Framework.Framework)
             {
-                if (template.Scenario == Scenario.Web)
+                if (_options.Scenario == Scenario.Web)
                 {
                     File.Copy(Path.Combine(Util.RepoRoot, "templates", "framework", "mvc.sln"), Path.Combine(solutionDir, $"{mainProject}.sln"));
                 }
@@ -86,7 +89,7 @@ namespace ScenarioGenerator
 
             var projectFiles = new ConcurrentBag<string>();
             Parallel.ForEach(projects, p => projectFiles.Add(GenerateProject(
-                p.Name, p.Name == mainProject, template.Scenario, p.ProjectReferences, framework, solutionDir)));
+                p.Name, p.Name == mainProject, _options.Scenario, p.ProjectReferences, framework, solutionDir)));
 
             Console.WriteLine("Adding projects to solution");
             AddProjectsToSolution($"{mainProject}.sln", framework, projectFiles, mainProject, solutionDir);

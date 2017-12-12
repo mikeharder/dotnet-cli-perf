@@ -19,7 +19,5 @@ namespace ScenarioGenerator
         };
 
         public string MainProject => "WebApp1";
-
-        public Scenario Scenario => Scenario.Web;
     }
 }
