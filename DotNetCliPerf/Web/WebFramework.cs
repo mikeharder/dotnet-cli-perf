@@ -1,11 +1,11 @@
 ﻿using Common;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 
 namespace DotNetCliPerf
 {
@@ -29,7 +29,17 @@ namespace DotNetCliPerf
         {
             Build(first);
             _process = StartIISExpress("mvc");
-            return HttpClient.GetStringAsync("http://localhost:5000").Result;
+            while (true)
+            {
+                try
+                {
+                    return HttpClient.GetStringAsync("http://localhost:5000").Result;
+                }
+                catch
+                {
+                    Thread.Sleep(500);
+                }
+            }
         }
 
         protected override void RunCleanup()
