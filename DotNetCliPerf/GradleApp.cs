@@ -14,7 +14,7 @@ namespace DotNetCliPerf
 
         protected override void Build(bool first=false)
         {
-            GradleW("assemble");
+            GradleW("assemble --parallel");
         }
 
         protected string GradleW(string arguments, bool throwOnError = true)
