@@ -9,7 +9,7 @@ namespace DotNetCliPerf
     {
         private const string _globalJson = @"{ ""sdk"": { ""version"": ""0.0.0"" } }";
 
-        [Params("2.0.2", "2.1.2", "2.2.0-preview1-007799", "2.2.0-preview1-007813")]
+        [Params("2.0.2", "2.1.3", "2.2.0-preview1-007837")]
         public string SdkVersion { get; set; }
 
         [Params(true, false)]
