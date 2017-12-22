@@ -11,6 +11,8 @@ namespace DotNetCliPerf
     {
         private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) _process;
 
+        protected virtual string WebAppDir => "mvc";
+
         protected override string SourcePath => Path.Combine(RootTempDir, "mvc", "Controllers", "HomeController.cs");
 
         protected override string ExpectedOutput => $"<title>{NewValue}";
@@ -52,7 +54,7 @@ namespace DotNetCliPerf
                 "run",
                 restore: restore,
                 build: build,
-                workingSubDirectory: "mvc");
+                workingSubDirectory: WebAppDir);
         }
 
         protected override void RunCleanup()
