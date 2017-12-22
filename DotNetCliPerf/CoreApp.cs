@@ -1,7 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Common;
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Text;
 
 namespace DotNetCliPerf
 {
@@ -69,7 +71,24 @@ namespace DotNetCliPerf
             }
         }
 
-        protected string DotNet(string dotnetArguments, string appArguments = null, string workingSubDirectory = "", bool restore = true, bool build = true, bool throwOnError = true)
+        protected string DotNet(
+            string dotnetArguments,
+            string appArguments = null,
+            string workingSubDirectory = "",
+            bool restore = true,
+            bool build = true,
+            bool throwOnError = true)
+        {
+            var p = StartDotNet(dotnetArguments, appArguments, workingSubDirectory, restore, build);
+            return Util.WaitForExit(p.Process, p.OutputBuilder, p.ErrorBuilder, throwOnError: throwOnError);
+        }
+
+        protected (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) StartDotNet(
+            string dotnetArguments,
+            string appArguments = null,
+            string workingSubDirectory = "",
+            bool restore = true,
+            bool build = true)
         {
             if (build && NodeReuse)
             {
@@ -82,13 +101,13 @@ namespace DotNetCliPerf
                 (build ? "" : " --no-build") +
                 (appArguments == null ? "" : " -- " + appArguments);
 
-            return Util.RunProcess(
+            return Util.StartProcess(
                 "dotnet",
                 arguments,
                 Path.Combine(RootTempDir, workingSubDirectory),
-                throwOnError: throwOnError,
                 environment: Environment
             );
         }
+
     }
 }

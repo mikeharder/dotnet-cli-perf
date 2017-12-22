@@ -1,3 +1,6 @@
 [submodule "scenarios/OrchardCore"]
 	path = scenarios/OrchardCore
 	url = https://github.com/OrchardCMS/OrchardCore
+[submodule "AspNetCommon"]
+	path = AspNetCommon
+	url = https://github.com/aspnet/Common

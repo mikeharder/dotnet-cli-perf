@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Common;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Text;
+using System.Threading;
 
 namespace DotNetCliPerf
 {
     public abstract class WebCore : CoreApp
-    {       
+    {
+        private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) _process;
+
         protected override string SourcePath => Path.Combine(RootTempDir, "mvc", "Controllers", "HomeController.cs");
 
         protected override string ExpectedOutput => $"<title>{NewValue}";
@@ -20,23 +26,39 @@ namespace DotNetCliPerf
             if (MSBuildVersion == MSBuildVersion.Desktop)
             {
                 Build(first);
-                return Run(restore: false, build: false);
+                _process = Run(restore: false, build: false);
             }
             else
             {
-                return Run(restore: first || Restore);
+                _process = Run(restore: first || Restore);
+            }
+
+            while (true)
+            {
+                try
+                {
+                    return HttpClient.GetStringAsync("http://localhost:5000").Result;
+                }
+                catch
+                {
+                    Thread.Sleep(SleepBetweenHttpRequests);
+                }
             }
         }
 
-        private string Run(bool restore, bool build = true)
+        private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) Run(bool restore, bool build = true)
         {
-            return DotNet(
+            return StartDotNet(
                 "run",
-                appArguments: "--mode=singleRequest",
                 restore: restore,
                 build: build,
-                workingSubDirectory: "mvc",
-                throwOnError: false);
+                workingSubDirectory: "mvc");
+        }
+
+        protected override void RunCleanup()
+        {
+            base.RunCleanup();
+            Util.StopProcess(_process.Process, _process.OutputBuilder, _process.ErrorBuilder, throwOnError: false);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Internal;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -156,12 +157,15 @@ namespace Common
         public static string StopProcess(Process process, StringBuilder outputBuilder, StringBuilder errorBuilder,
             bool throwOnError = true)
         {
-            Process.Start("taskkill", $"/pid {process.Id}");
+            if (!process.HasExited)
+            {
+                process.KillTree();
+            }
 
             return WaitForExit(process, outputBuilder, errorBuilder, throwOnError: throwOnError);
         }
 
-        private static string WaitForExit(Process process, StringBuilder outputBuilder, StringBuilder errorBuilder,
+        public static string WaitForExit(Process process, StringBuilder outputBuilder, StringBuilder errorBuilder,
             bool throwOnError = true)
         {
             process.WaitForExit();

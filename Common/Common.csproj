@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\AspNetCommon\shared\Microsoft.Extensions.Process.Sources\ProcessHelper.cs" Link="ProcessHelper.cs" />
+  </ItemGroup>
+
 </Project>

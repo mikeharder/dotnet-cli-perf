@@ -9,6 +9,8 @@ namespace DotNetCliPerf
 {
     public abstract class App: RootTemp
     {
+        protected static readonly TimeSpan SleepBetweenHttpRequests = TimeSpan.FromMilliseconds(100);
+
         protected static readonly HttpClient HttpClient = new HttpClient();
 
         protected readonly Dictionary<string, string> Environment = new Dictionary<string, string>();
