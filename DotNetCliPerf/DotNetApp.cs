@@ -14,10 +14,11 @@ namespace DotNetCliPerf
         protected string MSBuild(string arguments, bool restore = false)
         {
             arguments = arguments +
+                " /v:minimal" +
                 (Parallel ? " /m" : "") +
                 $" /nr:{NodeReuse}" +
                 (restore ? " /restore" : "");
-            return Util.RunProcess("msbuild /v:minimal", arguments, RootTempDir);
+            return Util.RunProcess("msbuild", arguments, RootTempDir);
         }
     }
 }
