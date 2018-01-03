@@ -26,7 +26,7 @@ namespace Microsoft.Extensions.Internal
             {
                 RunProcessAndWaitForExit(
                     "taskkill",
-                    $"/T /F /PID {process.Id}",
+                    $"/T /PID {process.Id}",
                     timeout,
                     out stdout);
             }
