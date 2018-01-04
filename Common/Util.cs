@@ -65,8 +65,8 @@ namespace Common
             //
             // System.UnauthorizedAccessException: Access to the path 'Benchmarks.dll' is denied.
             //
-            // If delete fails, retry once every second up to 10 times.
-            for (var i = 0; i < 10; i++)
+            // If delete fails, retry once every second up to 20 times.
+            for (var i = 0; i < 20; i++)
             {
                 try
                 {
