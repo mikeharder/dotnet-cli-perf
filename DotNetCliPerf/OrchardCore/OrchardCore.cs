@@ -15,8 +15,5 @@ namespace DotNetCliPerf
 
         // Do not verify output
         protected override string ExpectedOutput => String.Empty;
-
-        // Cleaning after build is currently unsupported
-        protected override IEnumerable<string> CleanPaths => throw new NotImplementedException();
     }
 }

@@ -26,22 +26,5 @@ namespace DotNetCliPerf
 
             base.GlobalSetup();
         }
-
-        protected override IEnumerable<string> CleanPaths
-        {
-            get
-            {
-                foreach (var path in base.CleanPaths)
-                {
-                    yield return path;
-                }
-
-                for (var i = 1; i <= 126; i++)
-                {
-                    yield return Path.Combine($"ClassLib{i.ToString("D3")}", "bin");
-                    yield return Path.Combine($"ClassLib{i.ToString("D3")}", "obj");
-                }
-            }
-        }
     }
 }

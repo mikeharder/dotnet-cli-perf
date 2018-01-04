@@ -12,17 +12,6 @@ namespace DotNetCliPerf
 
         protected override string ExpectedOutput => $"Actual:<{NewValue}>";
 
-        protected override IEnumerable<string> CleanPaths => Enumerable.Concat(
-            base.CleanPaths,
-            new string[]
-            {
-                Path.Combine("classlib", "bin"),
-                Path.Combine("classlib", "obj"),
-                Path.Combine("mstest", "bin"),
-                Path.Combine("mstest", "obj"),
-                "TestResults",
-            });
-
         protected override string Run(bool first = false)
         {
             Build(first);
