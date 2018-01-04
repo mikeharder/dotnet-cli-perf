@@ -6,12 +6,6 @@ namespace DotNetCliPerf
 {
     public abstract class GradleApp : App
     {
-        protected override IEnumerable<string> CleanPaths => new string[]
-        {
-            ".gradle",
-            "build",
-        };
-
         protected override void Build(bool first=false)
         {
             GradleW("assemble --parallel");

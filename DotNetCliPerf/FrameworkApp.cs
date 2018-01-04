@@ -9,11 +9,6 @@ namespace DotNetCliPerf
         [Params(true, false)]
         public bool Restore { get; set; }
 
-        protected override IEnumerable<string> CleanPaths => new string[]
-        {
-            "packages",
-        };
-
         protected override void Build(bool first = false)
         {
             if (first || Restore)

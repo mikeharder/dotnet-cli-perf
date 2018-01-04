@@ -24,7 +24,6 @@ namespace DotNetCliPerf
         protected abstract string SourceDir { get; }
         protected abstract string SourcePath { get; }
         protected abstract string ExpectedOutput { get; }
-        protected abstract IEnumerable<string> CleanPaths { get; }
 
         protected abstract void Build(bool first = false);
         protected abstract string Run(bool first = false);
@@ -48,12 +47,11 @@ namespace DotNetCliPerf
             Util.DirectoryCopy(Path.Combine(Util.RepoRoot, "scenarios", SourceDir), RootTempDir, copySubDirs: true);
         }
 
-        protected virtual void Clean()
+        private void Clean()
         {
-            foreach (var path in CleanPaths)
-            {
-                Util.DeleteDir(Path.Combine(RootTempDir, path));
-            }
+            base.GlobalCleanup();
+            CopyApp();
+            ChangeSource();
         }
 
         protected void ChangeSource()

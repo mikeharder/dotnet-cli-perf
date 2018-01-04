@@ -17,12 +17,6 @@ namespace DotNetCliPerf
 
         protected override string ExpectedOutput => $"<title>{NewValue}";
 
-        protected override IEnumerable<string> CleanPaths => new string[]
-        {
-            Path.Combine("mvc", "bin"),
-            Path.Combine("mvc", "obj"),
-        };
-
         protected override string Run(bool first = false)
         {
             if (MSBuildVersion == MSBuildVersion.Desktop)
