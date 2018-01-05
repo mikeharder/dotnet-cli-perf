@@ -7,7 +7,6 @@ namespace DotNetCliPerf
     {
         protected string RootTempDir { get; private set; }
 
-        [GlobalSetup]
         public virtual void GlobalSetup()
         {
             RootTempDir = Util.GetTempDir();

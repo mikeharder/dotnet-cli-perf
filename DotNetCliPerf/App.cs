@@ -7,7 +7,7 @@ using System.Net.Http;
 
 namespace DotNetCliPerf
 {
-    public abstract class App: RootTemp
+    public abstract class App : RootTemp
     {
         protected static readonly TimeSpan SleepBetweenHttpRequests = TimeSpan.FromMilliseconds(100);
 
@@ -33,13 +33,32 @@ namespace DotNetCliPerf
         [Params(SourceChanged.Leaf, SourceChanged.Root)]
         public SourceChanged SourceChanged { get; set; }
 
-        public override void GlobalSetup()
+
+        [GlobalSetup(Target = nameof(BuildIncrementalNoChange) + "," + nameof(BuildIncrementalSourceChanged))]
+        public void GlobalSetupBuildIncremental()
         {
-            base.GlobalSetup();
+            GlobalSetup();
+
             CopyApp();
-            ChangeSource();
+
+            Build(first: true);
+        }
+
+        [GlobalSetup(Target = nameof(RunIncrementalNoChange) + "," + nameof(RunIncrementalSourceChanged))]
+        public void GlobalSetupRunIncremental()
+        {
+            GlobalSetup();
+
+            CopyApp();
+
             Output = Run(first: true);
             VerifyOutput();
+        }
+
+        [GlobalSetup(Target = nameof(BuildFull) + "," + nameof(RunFull))]
+        public void GlobalSetupFull()
+        {
+            GlobalSetup();
         }
 
         protected virtual void CopyApp()
@@ -47,17 +66,11 @@ namespace DotNetCliPerf
             Util.DirectoryCopy(Path.Combine(Util.RepoRoot, "scenarios", SourceDir), RootTempDir, copySubDirs: true);
         }
 
-        private void Clean()
-        {
-            base.GlobalCleanup();
-            CopyApp();
-            ChangeSource();
-        }
-
         protected void ChangeSource()
         {
             NewValue = Guid.NewGuid().ToString();
             Util.ReplaceInFile(Path.Combine(RootTempDir, SourcePath), $"\"{OldValue}\"", $"\"{NewValue}\"");
+            OldValue = NewValue;
         }
 
         private void VerifyOutput()
@@ -68,7 +81,6 @@ namespace DotNetCliPerf
             }
 
             Output = _defaultOutput;
-            OldValue = NewValue;
 
             RunCleanup();
         }
@@ -94,13 +106,19 @@ namespace DotNetCliPerf
         [IterationSetup(Target = nameof(BuildFull))]
         public void IterationSetupBuildFull()
         {
-            Clean();
+            CopyApp();
         }
 
         [Benchmark]
         public void BuildFull()
         {
             Build(first: true);
+        }
+
+        [IterationCleanup(Target = nameof(BuildFull))]
+        public void IterationCleanupBuildFull()
+        {
+            GlobalCleanup();
         }
 
         [IterationSetup(Target = nameof(RunIncrementalSourceChanged))]
@@ -136,7 +154,7 @@ namespace DotNetCliPerf
         [IterationSetup(Target = nameof(RunFull))]
         public void IterationSetupRunFull()
         {
-            Clean();
+            CopyApp();
         }
 
         [Benchmark]
@@ -149,6 +167,7 @@ namespace DotNetCliPerf
         public void IterationCleanupRunFull()
         {
             VerifyOutput();
+            GlobalCleanup();
         }
     }
 }

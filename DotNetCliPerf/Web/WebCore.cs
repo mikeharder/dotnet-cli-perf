@@ -54,7 +54,12 @@ namespace DotNetCliPerf
         protected override void RunCleanup()
         {
             base.RunCleanup();
-            Util.StopProcess(_process.Process, _process.OutputBuilder, _process.ErrorBuilder, throwOnError: false);
+
+            if (_process.Process != null)
+            {
+                Util.StopProcess(_process.Process, _process.OutputBuilder, _process.ErrorBuilder, throwOnError: false);
+                _process.Process = null;
+            }
         }
     }
 }

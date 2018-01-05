@@ -37,7 +37,12 @@ namespace DotNetCliPerf
         protected override void RunCleanup()
         {
             base.RunCleanup();
-            Util.StopProcess(_process.Process, _process.OutputBuilder, _process.ErrorBuilder, throwOnError: false);
+
+            if (_process.Process != null)
+            {
+                Util.StopProcess(_process.Process, _process.OutputBuilder, _process.ErrorBuilder, throwOnError: false);
+                _process.Process = null;
+            }
         }
 
         protected (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) StartIISExpress(string relativePath, int port = 5000, bool systray = false)
