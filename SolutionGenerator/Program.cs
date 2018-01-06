@@ -54,7 +54,7 @@ namespace ScenarioGenerator
 
             var tempDir = _options.OutputDir == null ? Util.GetTempDir() : Util.GetTempDir(_options.OutputDir);
 
-            var type = Type.GetType($"ScenarioGenerator.{_options.Solution}", throwOnError: true, ignoreCase: true);
+            var type = Type.GetType($"ScenarioGenerator.Solutions.{_options.Solution}Solution", throwOnError: true, ignoreCase: true);
             ISolution template = (ISolution)Activator.CreateInstance(type);
 
             var threads = _frameworks.Count() * template.Projects.Count();
