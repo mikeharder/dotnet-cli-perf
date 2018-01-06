@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ScenarioGenerator.Solutions
 {
-    class SmallWebSolution : ISolution
+    class WebSmallSolution : ISolution
     {
         public IList<(string Name, IEnumerable<string> ProjectReferences)> Projects { get; } = new List<(string Name, IEnumerable<string> ProjectReferences)>
         {
