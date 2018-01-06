@@ -19,7 +19,8 @@ namespace DotNetCliPerf
         [Option('m', "methods", HelpText = "Comma-separated list of methods to benchmark. Default is all methods.", Separator = ',')]
         public IEnumerable<string> Methods { get; set; }
 
-        [Option('p', "parameters", HelpText = "Comma-separated list of parameters to benchmark. Default is all parameters.", Separator = ',')]
+        [Option('p', "parameters", HelpText = "Comma-separated list of parameters to benchmark. Default is all parameters. Example: 'SdkVersion=1234|5678,SourceChanged=Leaf'",
+            Separator = ',')]
         public IEnumerable<string> Parameters { get; set; }
 
         [Option('c', "targetCount", Default = 1)]
@@ -180,14 +181,15 @@ namespace DotNetCliPerf
             return 0;
         }
 
-        private static Dictionary<string, string> ParametersToDictionary(IEnumerable<string> parameters)
+        private static IDictionary<string, IEnumerable<string>> ParametersToDictionary(IEnumerable<string> parameters)
         {
-            var dict = new Dictionary<string, string>(parameters.Count(), StringComparer.OrdinalIgnoreCase);
+            var dict = new Dictionary<string, IEnumerable<string>>(parameters.Count(), StringComparer.OrdinalIgnoreCase);
 
             foreach (var p in parameters)
             {
                 var parts = p.Split('=');
-                dict.Add(parts[0], parts[1]);
+                var patterns = parts[1].Split('|');
+                dict.Add(parts[0], patterns);
             }
 
             return dict;

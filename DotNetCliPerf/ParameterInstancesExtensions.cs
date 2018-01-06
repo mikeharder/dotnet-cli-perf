@@ -7,20 +7,34 @@ namespace DotNetCliPerf
 {
     static class ParameterInstancesExtensions
     {
-        public static bool Match(this ParameterInstances parameters, IDictionary<string, string> patterns)
+        public static bool Match(this ParameterInstances parameters, IDictionary<string, IEnumerable<string>> patterns)
         {
             foreach (var pattern in patterns)
             {
                 foreach (var parameter in parameters.Items)
                 {
                     if (parameter.Name.Equals(pattern.Key, StringComparison.OrdinalIgnoreCase) &&
-                        pattern.Value != "*" &&
-                        parameter.Value.ToString().IndexOf(pattern.Value, StringComparison.OrdinalIgnoreCase) < 0)
+                        !Match(parameter.Value.ToString(), pattern.Value))
+                    {
                         return false;
+                    }
                 }
             }
 
             return true;
+        }
+
+        private static bool Match(string parameter, IEnumerable<string> patterns)
+        {
+            foreach (var pattern in patterns)
+            {
+                if (pattern == "*" || parameter.IndexOf(pattern, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
