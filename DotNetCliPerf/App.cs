@@ -41,6 +41,9 @@ namespace DotNetCliPerf
 
             CopyApp();
 
+            // Required to verify output of first run when SourceChanged=Root
+            ChangeSource();
+
             Build(first: true);
         }
 
@@ -50,6 +53,9 @@ namespace DotNetCliPerf
             GlobalSetup();
 
             CopyApp();
+
+            // Required to verify output of first run when SourceChanged=Root
+            ChangeSource();
 
             Output = Run(first: true);
             VerifyOutput();
