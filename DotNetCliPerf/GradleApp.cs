@@ -8,7 +8,7 @@ namespace DotNetCliPerf
     {
         protected override void Build(bool first=false)
         {
-            GradleW("assemble --parallel");
+            GradleW("assemble");
         }
 
         protected string GradleW(string arguments, bool throwOnError = true)
@@ -17,12 +17,12 @@ namespace DotNetCliPerf
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 filename = "cmd";
-                arguments = $"/c \"gradlew.bat {arguments}\"";
+                arguments = $"/c \"gradlew.bat --parallel {arguments}\"";
             }
             else
             {
                 filename = "sh";
-                arguments = $"gradlew {arguments}";
+                arguments = $"gradlew --parallel {arguments}";
             }
 
             return Util.RunProcess(filename, arguments, RootTempDir, throwOnError: throwOnError);
