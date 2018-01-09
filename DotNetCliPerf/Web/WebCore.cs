@@ -13,7 +13,7 @@ namespace DotNetCliPerf
 
         protected virtual string WebAppDir => "mvc";
 
-        protected override string SourcePath => Path.Combine(RootTempDir, "mvc", "Controllers", "HomeController.cs");
+        protected override string SourcePath => Path.Combine("mvc", "Controllers", "HomeController.cs");
 
         protected override string ExpectedOutput => $"<title>{NewValue}";
 

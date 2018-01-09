@@ -13,7 +13,7 @@ namespace DotNetCliPerf
     {
         private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) _process;
 
-        protected override string SourcePath => Path.Combine(RootTempDir, "mvc", "Controllers", "HomeController.cs");
+        protected override string SourcePath => Path.Combine("mvc", "Controllers", "HomeController.cs");
 
         protected override string ExpectedOutput => $"<title>{NewValue}";
 
