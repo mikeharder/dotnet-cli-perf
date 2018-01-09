@@ -4,5 +4,3 @@ apply plugin: 'eclipse'
 repositories {
     mavenCentral()
 }
-
-
