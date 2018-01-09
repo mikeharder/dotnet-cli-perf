@@ -1,0 +1,13 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':ClassLib025')
+    compile project(':ClassLib041')
+    compile project(':ClassLib028')
+    compile project(':ClassLib029')
+}

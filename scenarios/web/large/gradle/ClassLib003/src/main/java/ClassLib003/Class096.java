@@ -1,0 +1,7 @@
+package ClassLib003;
+
+public class Class096 {
+    public static String property() {
+        return "ClassLib003";
+    }
+}
