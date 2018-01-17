@@ -43,7 +43,7 @@ namespace DotNetCliPerf
             {
                 // Verify version
                 var output = MSBuild("/version");
-                if (!output.Contains("15.5."))
+                if (!output.Contains("15.6.54"))
                 {
                     throw new InvalidOperationException($"Incorrect MSBuild version");
                 }
