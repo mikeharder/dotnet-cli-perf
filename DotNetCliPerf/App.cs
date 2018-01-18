@@ -30,9 +30,8 @@ namespace DotNetCliPerf
 
         protected virtual void RunCleanup() { }
 
-        [Params(SourceChanged.Leaf, SourceChanged.Root)]
+        [Params(SourceChanged.NotApplicable, SourceChanged.Leaf, SourceChanged.Root)]
         public SourceChanged SourceChanged { get; set; }
-
 
         [GlobalSetup(Target = nameof(BuildIncrementalNoChange) + "," + nameof(BuildIncrementalSourceChanged))]
         public void GlobalSetupBuildIncremental()

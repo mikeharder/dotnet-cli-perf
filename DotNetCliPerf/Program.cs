@@ -158,7 +158,7 @@ namespace DotNetCliPerf
                    b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0) &&
                   b.Parameters["MSBuildVersion"].ToString().Equals("NotApplicable", StringComparison.OrdinalIgnoreCase)));
 
-            // If not specified, default "NodeReuse" to  "true" for Framework, to match typical customer usage.
+            // If not specified, default "NodeReuse" to "true" for Framework, to match typical customer usage.
             if (!parameters.ContainsKey("NodeReuse"))
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b =>
@@ -175,11 +175,28 @@ namespace DotNetCliPerf
                 });
             }
 
-            // Only test SourceChanged.Root for Large apps and "SourceChanged" methods
+            // Large apps and "SourceChanged" methods can choose from SourceChanged.Leaf and SourceChanged.Root
+            // All other apps and methods must use SourceChanged.NotApplicable
             selectedBenchmarks = selectedBenchmarks.Where(b =>
-                (b.Target.Type.Name.IndexOf("Large", StringComparison.OrdinalIgnoreCase) >= 0 &&
-                 b.Target.Method.Name.IndexOf("SourceChanged", StringComparison.OrdinalIgnoreCase) >= 0) ||
-                ((SourceChanged)b.Parameters["SourceChanged"]) == SourceChanged.Leaf);
+            {
+                var sourceChanged = ((SourceChanged)b.Parameters["SourceChanged"]);
+
+                if (b.Target.Type.Name.IndexOf("Large", StringComparison.OrdinalIgnoreCase) >= 0 &&
+                    b.Target.Method.Name.IndexOf("SourceChanged", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return (sourceChanged == SourceChanged.Leaf) || (sourceChanged == SourceChanged.Root);
+                }
+                else
+                {
+                    return sourceChanged == SourceChanged.NotApplicable;
+                }
+            });
+
+            // If not specified, remove SourceChanged=Root, since SourceChanged=Leaf is tested more often
+            if (!parameters.ContainsKey("SourceChanged"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => ((SourceChanged)b.Parameters["SourceChanged"]) != SourceChanged.Root);
+            }
 
             selectedBenchmarks = selectedBenchmarks.
                 Where(b => !options.Types.Any() ||
