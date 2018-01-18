@@ -152,9 +152,10 @@ namespace DotNetCliPerf
                 !(((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Core &&
                   !b.Parameters["MSBuildVersion"].ToString().Equals("N/A", StringComparison.OrdinalIgnoreCase)));
 
-            // If type is Framework, MSBuildVersion is required, so skip "N/A"
+            // If MSBuildFlavor=Framework or type is Framework, MSBuildVersion is required, so skip "N/A"
             selectedBenchmarks = selectedBenchmarks.Where(b =>
-                !(b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0 &&
+                !((((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Framework ||
+                   b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0) &&
                   b.Parameters["MSBuildVersion"].ToString().Equals("N/A", StringComparison.OrdinalIgnoreCase)));
 
             // If not specified, default "NodeReuse" to  "true" for Framework, to match typical customer usage.
@@ -162,7 +163,8 @@ namespace DotNetCliPerf
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b =>
                 {
-                    if (b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Framework ||
+                        b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         return (bool)b.Parameters["NodeReuse"];
                     }
