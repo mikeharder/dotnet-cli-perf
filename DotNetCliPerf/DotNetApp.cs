@@ -47,7 +47,7 @@ namespace DotNetCliPerf
 
             // Verify version
             var output = Util.RunProcess(msBuildPath, "/nologo /version", RootTempDir);
-            if (!output.Equals(MSBuildVersion, StringComparison.OrdinalIgnoreCase))
+            if (!output.Trim().Equals(MSBuildVersion, StringComparison.OrdinalIgnoreCase))
             {
                 throw new InvalidOperationException($"Incorrect MSBuild version: {output}");
             }
