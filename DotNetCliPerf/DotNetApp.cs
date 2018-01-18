@@ -13,14 +13,14 @@ namespace DotNetCliPerf
         [Params(true, false)]
         public bool NodeReuse { get; set; }
 
-        [Params("N/A", "15.5.180.51428", "15.6.54.9755")]
+        [Params("NotApplicable", "15.5.180.51428", "15.6.54.9755")]
         public string MSBuildVersion { get; set; }
 
         private string GetMSBuildPath()
         {
-            if (MSBuildVersion == "N/A")
+            if (MSBuildVersion == "NotApplicable")
             {
-                throw new InvalidOperationException($"Parameter 'MSBuildVersion' is set to 'N/A'");
+                throw new InvalidOperationException($"Parameter 'MSBuildVersion' is set to 'NotApplicable'");
             }
 
             var vsPath = Path.Combine(

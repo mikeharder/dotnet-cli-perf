@@ -147,16 +147,16 @@ namespace DotNetCliPerf
                 !(((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Core &&
                   (bool)b.Parameters["NodeReuse"]));
 
-            // If MSBuildFlavor=Core, MSBuildVersion is irrelevant, so limit it to "N/A"
+            // If MSBuildFlavor=Core, MSBuildVersion is irrelevant, so limit it to "NotApplicable"
             selectedBenchmarks = selectedBenchmarks.Where(b =>
                 !(((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Core &&
-                  !b.Parameters["MSBuildVersion"].ToString().Equals("N/A", StringComparison.OrdinalIgnoreCase)));
+                  !b.Parameters["MSBuildVersion"].ToString().Equals("NotApplicable", StringComparison.OrdinalIgnoreCase)));
 
-            // If MSBuildFlavor=Framework or type is Framework, MSBuildVersion is required, so skip "N/A"
+            // If MSBuildFlavor=Framework or type is Framework, MSBuildVersion is required, so skip "NotApplicable"
             selectedBenchmarks = selectedBenchmarks.Where(b =>
                 !((((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Framework ||
                    b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0) &&
-                  b.Parameters["MSBuildVersion"].ToString().Equals("N/A", StringComparison.OrdinalIgnoreCase)));
+                  b.Parameters["MSBuildVersion"].ToString().Equals("NotApplicable", StringComparison.OrdinalIgnoreCase)));
 
             // If not specified, default "NodeReuse" to  "true" for Framework, to match typical customer usage.
             if (!parameters.ContainsKey("NodeReuse"))
