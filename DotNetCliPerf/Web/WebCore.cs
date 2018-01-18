@@ -19,7 +19,7 @@ namespace DotNetCliPerf
 
         protected override string Run(bool first = false)
         {
-            if (MSBuildVersion == MSBuildVersion.Desktop)
+            if (MSBuildFlavor == MSBuildFlavor.Framework)
             {
                 Build(first);
                 _process = Run(restore: false, build: false);

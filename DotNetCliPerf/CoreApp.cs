@@ -20,8 +20,8 @@ namespace DotNetCliPerf
         // [Params(false, true)]
         public bool TieredJit { get; set; }
 
-        [Params(MSBuildVersion.Desktop, MSBuildVersion.Core)]
-        public MSBuildVersion MSBuildVersion { get; set; }
+        [Params(MSBuildFlavor.Framework, MSBuildFlavor.Core)]
+        public MSBuildFlavor MSBuildFlavor { get; set; }
 
         public override void GlobalSetup()
         {
@@ -39,16 +39,7 @@ namespace DotNetCliPerf
 
             File.WriteAllText(Path.Combine(RootTempDir, "global.json"), _globalJson.Replace("0.0.0", SdkVersion));
 
-            if (MSBuildVersion == MSBuildVersion.Desktop)
-            {
-                // Verify version
-                var output = MSBuild("/version");
-                if (!output.Contains("15.6.54"))
-                {
-                    throw new InvalidOperationException($"Incorrect MSBuild version");
-                }
-            }
-            else
+            if (MSBuildFlavor == MSBuildFlavor.Core)
             {
                 // Verify version
                 var output = DotNet("--info");
@@ -61,7 +52,7 @@ namespace DotNetCliPerf
 
         protected override void Build(bool first = false)
         {
-            if (MSBuildVersion == MSBuildVersion.Desktop)
+            if (MSBuildFlavor == MSBuildFlavor.Framework)
             {
                 MSBuild("/t:build", restore: first || Restore);
             }

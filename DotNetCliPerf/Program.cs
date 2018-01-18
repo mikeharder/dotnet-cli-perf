@@ -125,14 +125,14 @@ namespace DotNetCliPerf
                 });
             }
 
-            // If not specified, default "MSBuildVersion" to "Core" for Core, to match typical customer usage.
-            if (!parameters.ContainsKey("MSBuildVersion"))
+            // If not specified, default "MSBuildFlavor" to "Core" for Core, to match typical customer usage.
+            if (!parameters.ContainsKey("MSBuildFlavor"))
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b =>
                 {
                     if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        return ((MSBuildVersion)b.Parameters["MSBuildVersion"]) == MSBuildVersion.Core;
+                        return ((MSBuildFlavor)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Core;
                     }
                     else
                     {
@@ -141,11 +141,21 @@ namespace DotNetCliPerf
                 });
             }
 
-            // Skip benchmarks with MSBuildVersion=Core and NodeReuse=True, since Core MSBuild currently does
+            // Skip benchmarks with MSBuildFlavor=Core and NodeReuse=True, since Core MSBuild currently does
             // not support NodeReuse.
             selectedBenchmarks = selectedBenchmarks.Where(b =>
-                !(((MSBuildVersion?)b.Parameters["MSBuildVersion"]) == MSBuildVersion.Core &&
-                  ((bool)b.Parameters["NodeReuse"])));
+                !(((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Core &&
+                  (bool)b.Parameters["NodeReuse"]));
+
+            // If MSBuildFlavor=Core, MSBuildVersion is irrelevant, so limit it to "N/A"
+            selectedBenchmarks = selectedBenchmarks.Where(b =>
+                !(((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Core &&
+                  !b.Parameters["MSBuildVersion"].ToString().Equals("N/A", StringComparison.OrdinalIgnoreCase)));
+
+            // If type is Framework, MSBuildVersion is required, so skip "N/A"
+            selectedBenchmarks = selectedBenchmarks.Where(b =>
+                !(b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0 &&
+                  b.Parameters["MSBuildVersion"].ToString().Equals("N/A", StringComparison.OrdinalIgnoreCase)));
 
             // If not specified, default "NodeReuse" to  "true" for Framework, to match typical customer usage.
             if (!parameters.ContainsKey("NodeReuse"))
