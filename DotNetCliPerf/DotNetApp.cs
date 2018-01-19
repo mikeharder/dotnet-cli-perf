@@ -1,19 +1,28 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Common;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace DotNetCliPerf
 {
     public abstract class DotNetApp : App
     {
+        private static readonly Dictionary<string, string> _vsVersions = new Dictionary<string, string>
+        {
+            { "15.5.180.51428", "2017" },
+            { "15.6.13.61168", "PubPreview" },
+            { "15.6.54.9755", "Preview" },
+        };
+
+
         [Params(true, false)]
         public bool Parallel { get; set; }
 
         [Params(true, false)]
         public bool NodeReuse { get; set; }
 
-        [Params("NotApplicable", "15.5.180.51428", "15.6.54.9755")]
+        [Params("NotApplicable", "15.5.180.51428", "15.6.13.61168", "15.6.54.9755")]
         public string MSBuildVersion { get; set; }
 
         private string GetMSBuildPath()
@@ -26,7 +35,7 @@ namespace DotNetCliPerf
             var vsPath = Path.Combine(
                 System.Environment.GetEnvironmentVariable("ProgramFiles(x86)"),
                 "Microsoft Visual Studio",
-                MSBuildVersion.StartsWith("15.5", StringComparison.OrdinalIgnoreCase) ? "2017" : "preview");
+                _vsVersions[MSBuildVersion]);
 
             var buildToolsPath = Path.Combine(vsPath, "BuildTools");
             if (!Directory.Exists(buildToolsPath))
