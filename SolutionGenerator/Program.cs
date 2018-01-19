@@ -74,7 +74,7 @@ namespace ScenarioGenerator
 
         private static ISolution SimplifyProjectNames(ISolution solution, Scenario scenario)
         {
-            var newProjects = new List<(string Name, IEnumerable<string> ProjectReferences)>(solution.Projects.Count);
+            var newProjects = new List<(string Name, IEnumerable<string> ProjectReferences, IEnumerable<string> PackageReferences)>(solution.Projects.Count);
             var newNames = new Dictionary<string, string>(solution.Projects.Count);
 
             var index = 1;
@@ -106,7 +106,7 @@ namespace ScenarioGenerator
                     newProjectReferences.Add(newNames[pr]);
                 }
 
-                newProjects.Add((newName, newProjectReferences));
+                newProjects.Add((newName, newProjectReferences, p.PackageReferences));
             }
 
             return new ManualSolution(newProjects, newNames[solution.MainProject]);
