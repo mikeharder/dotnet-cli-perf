@@ -1,5 +1,4 @@
 ﻿using Common;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace DotNetCliPerf
