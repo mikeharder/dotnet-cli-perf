@@ -14,6 +14,6 @@
     <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
     <ProjectReference Include="..\ClassLib016\ClassLib016.csproj" />
     <ProjectReference Include="..\ClassLib032\ClassLib032.csproj" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="$(MicrosoftExtensionsConfigurationJsonPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
   </ItemGroup>
 </Project>

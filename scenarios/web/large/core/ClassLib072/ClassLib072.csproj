@@ -5,8 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLib056\ClassLib056.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="$(MicrosoftAspNetCoreOwinPackageVersion)" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsDependencyInjectionAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
   </ItemGroup>
 </Project>

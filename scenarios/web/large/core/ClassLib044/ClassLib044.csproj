@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="$(MicrosoftAspNetCoreResponseCachingPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="2.0.1" />
   </ItemGroup>
 </Project>

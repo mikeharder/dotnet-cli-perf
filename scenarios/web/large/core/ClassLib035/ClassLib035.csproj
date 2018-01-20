@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Elm" Version="$(MicrosoftAspNetCoreDiagnosticsElmPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Elm" Version="0.2.2" />
   </ItemGroup>
 </Project>

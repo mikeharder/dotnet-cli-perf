@@ -12,6 +12,6 @@
     <ProjectReference Include="..\ClassLib067\ClassLib067.csproj" />
     <ProjectReference Include="..\ClassLib009\ClassLib009.csproj" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsDependencyInjectionAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
   </ItemGroup>
 </Project>

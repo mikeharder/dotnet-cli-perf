@@ -8,6 +8,6 @@
     <ProjectReference Include="..\ClassLib088\ClassLib088.csproj" />
     <ProjectReference Include="..\ClassLib010\ClassLib010.csproj" />
     <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="$(MicrosoftAspNetCoreMvcLocalizationPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.0.1" />
   </ItemGroup>
 </Project>

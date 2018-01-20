@@ -9,9 +9,9 @@
     <ProjectReference Include="..\ClassLib006\ClassLib006.csproj" />
     <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
     <ProjectReference Include="..\ClassLib015\ClassLib015.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="$(MicrosoftAspNetCoreHtmlAbstractionsPackageVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="$(MicrosoftAspNetCoreMvcDataAnnotationsPackageVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="$(MicrosoftAspNetCoreMvcViewFeaturesPackageVersion)" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="$(MicrosoftExtensionsCachingAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
     <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="$(MicrosoftAspNetCoreAuthorizationPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="2.0.1" />
   </ItemGroup>
 </Project>

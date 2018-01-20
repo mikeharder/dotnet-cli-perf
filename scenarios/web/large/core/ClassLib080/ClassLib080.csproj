@@ -6,7 +6,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
     <ProjectReference Include="..\ClassLib046\ClassLib046.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="$(MicrosoftAspNetCoreMvcPackageVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="$(MicrosoftAspNetCoreMvcTagHelpersPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.1" />
   </ItemGroup>
 </Project>

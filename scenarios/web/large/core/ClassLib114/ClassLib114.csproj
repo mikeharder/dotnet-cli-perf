@@ -21,6 +21,6 @@
     <ProjectReference Include="..\ClassLib045\ClassLib045.csproj" />
     <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00004" />
     <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00004" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsDependencyInjectionPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
 </Project>

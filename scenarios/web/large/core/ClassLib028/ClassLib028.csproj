@@ -6,8 +6,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ClassLib005\ClassLib005.csproj" />
     <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="$(MicrosoftAspNetCoreMvcCorePackageVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="$(MicrosoftAspNetCoreMvcRazorPackageVersion)" />
-    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="$(MicrosoftExtensionsLocalizationAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />
   </ItemGroup>
 </Project>

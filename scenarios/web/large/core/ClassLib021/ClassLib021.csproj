@@ -6,7 +6,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
     <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="$(MicrosoftAspNetCoreMvcAbstractionsPackageVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="$(MicrosoftAspNetCoreMvcCorePackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
   </ItemGroup>
 </Project>
