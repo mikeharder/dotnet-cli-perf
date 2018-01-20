@@ -4,6 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib016\ClassLib016.csproj" />
+    <ProjectReference Include="..\ClassLib005\ClassLib005.csproj" />
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="$(MicrosoftAspNetCoreMvcCorePackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="$(MicrosoftAspNetCoreMvcRazorPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="$(MicrosoftExtensionsLocalizationAbstractionsPackageVersion)" />
   </ItemGroup>
 </Project>

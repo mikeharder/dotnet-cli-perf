@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib019\ClassLib019.csproj" />
+    <ProjectReference Include="..\ClassLib017\ClassLib017.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsDependencyInjectionPackageVersion)" />
   </ItemGroup>
 </Project>

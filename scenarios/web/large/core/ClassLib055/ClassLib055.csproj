@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLib036\ClassLib036.csproj" />
-    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj" />
-    <ProjectReference Include="..\ClassLib011\ClassLib011.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="$(MicrosoftAspNetCoreHostingPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsDependencyInjectionAbstractionsPackageVersion)" />
   </ItemGroup>
 </Project>

@@ -6,8 +6,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-    <ProjectReference Include="..\ClassLib125\ClassLib125.csproj" />
-    <ProjectReference Include="..\ClassLib054\ClassLib054.csproj" />
-    <ProjectReference Include="..\ClassLib040\ClassLib040.csproj" />
+    <ProjectReference Include="..\ClassLib127\ClassLib127.csproj" />
+    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj" />
+    <ProjectReference Include="..\ClassLib041\ClassLib041.csproj" />
   </ItemGroup>
 </Project>

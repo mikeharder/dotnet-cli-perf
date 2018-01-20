@@ -5,6 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib017\ClassLib017.csproj" />
+    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="$(MicrosoftAspNetCoreMvcAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="$(MicrosoftAspNetCoreMvcCorePackageVersion)" />
   </ItemGroup>
 </Project>

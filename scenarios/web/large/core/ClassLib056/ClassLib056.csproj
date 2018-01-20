@@ -4,7 +4,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib041\ClassLib041.csproj" />
+    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj" />
+    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="$(MicrosoftExtensionsHostingAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="$(MicrosoftAspNetCoreHttpPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="$(MicrosoftAspNetCoreStaticFilesPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsDependencyInjectionAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Composite" Version="$(MicrosoftExtensionsFileProvidersCompositePackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="$(MicrosoftExtensionsLocalizationPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MicrosoftExtensionsLoggingPackageVersion)" />
   </ItemGroup>
 </Project>

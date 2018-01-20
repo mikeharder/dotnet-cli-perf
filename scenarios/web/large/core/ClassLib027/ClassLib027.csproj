@@ -4,6 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib015\ClassLib015.csproj" />
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
   </ItemGroup>
 </Project>

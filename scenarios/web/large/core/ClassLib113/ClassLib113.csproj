@@ -4,20 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib021\ClassLib021.csproj" />
-    <ProjectReference Include="..\ClassLib002\ClassLib002.csproj" />
-    <ProjectReference Include="..\ClassLib058\ClassLib058.csproj" />
-    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
-    <ProjectReference Include="..\ClassLib084\ClassLib084.csproj" />
-    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib063\ClassLib063.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj" />
-    <ProjectReference Include="..\ClassLib066\ClassLib066.csproj" />
-    <ProjectReference Include="..\ClassLib008\ClassLib008.csproj" />
-    <ProjectReference Include="..\ClassLib024\ClassLib024.csproj" />
+    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
+    <ProjectReference Include="..\ClassLib088\ClassLib088.csproj" />
+    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj" />
     <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib044\ClassLib044.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="$(MicrosoftAspNetCoreMvcLocalizationPackageVersion)" />
   </ItemGroup>
 </Project>

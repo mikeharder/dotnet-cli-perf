@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
-    <ProjectReference Include="..\ClassLib011\ClassLib011.csproj" />
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Elm" Version="$(MicrosoftAspNetCoreDiagnosticsElmPackageVersion)" />
   </ItemGroup>
 </Project>

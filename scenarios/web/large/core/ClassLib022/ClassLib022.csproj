@@ -5,5 +5,9 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="$(MicrosoftExtensionsConfigurationPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsDependencyInjectionPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsLoggingAbstractionsPackageVersion)" />
+    <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
   </ItemGroup>
 </Project>

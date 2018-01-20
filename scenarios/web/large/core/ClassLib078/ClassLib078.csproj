@@ -4,7 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib045\ClassLib045.csproj" />
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
+    <ProjectReference Include="..\ClassLib046\ClassLib046.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="$(MicrosoftAspNetCoreMvcPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="$(MicrosoftAspNetCoreMvcTagHelpersPackageVersion)" />
   </ItemGroup>
 </Project>

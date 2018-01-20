@@ -4,13 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib048\ClassLib048.csproj" />
-    <ProjectReference Include="..\ClassLib084\ClassLib084.csproj" />
-    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
-    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib066\ClassLib066.csproj" />
-    <ProjectReference Include="..\ClassLib008\ClassLib008.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
+    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
+    <ProjectReference Include="..\ClassLib029\ClassLib029.csproj" />
+    <ProjectReference Include="..\ClassLib046\ClassLib046.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="$(MicrosoftAspNetCoreMvcPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="$(MicrosoftExtensionsConfigurationJsonPackageVersion)" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib026\ClassLib026.csproj" />
-    <ProjectReference Include="..\ClassLib017\ClassLib017.csproj" />
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="$(MicrosoftAspNetCoreResponseCachingPackageVersion)" />
   </ItemGroup>
 </Project>

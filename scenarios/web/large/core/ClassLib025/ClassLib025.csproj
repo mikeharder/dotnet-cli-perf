@@ -4,6 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib011\ClassLib011.csproj" />
+    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="$(MicrosoftExtensionsHostingAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="$(MicrosoftExtensionsCachingAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="$(MicrosoftExtensionsLocalizationPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="$(MicrosoftExtensionsLocalizationAbstractionsPackageVersion)" />
   </ItemGroup>
 </Project>

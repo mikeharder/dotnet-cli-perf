@@ -4,15 +4,20 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib048\ClassLib048.csproj" />
-    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib063\ClassLib063.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib014\ClassLib014.csproj" />
-    <ProjectReference Include="..\ClassLib073\ClassLib073.csproj" />
-    <ProjectReference Include="..\ClassLib074\ClassLib074.csproj" />
-    <ProjectReference Include="..\ClassLib096\ClassLib096.csproj" />
+    <ProjectReference Include="..\ClassLib082\ClassLib082.csproj" />
+    <ProjectReference Include="..\ClassLib035\ClassLib035.csproj" />
+    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj" />
+    <ProjectReference Include="..\ClassLib057\ClassLib057.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="$(MicrosoftAspNetCorePackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="$(MicrosoftAspNetCoreDiagnosticsPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="$(MicrosoftAspNetCoreMvcViewFeaturesPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="$(MicrosoftAspNetCoreServerIISIntegrationPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="$(MicrosoftAspNetCoreServerKestrelCorePackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="$(MicrosoftAspNetCoreStaticFilesPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="$(MicrosoftExtensionsLocalizationAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="$(MicrosoftExtensionsLoggingConsolePackageVersion)" />
+    <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 </Project>

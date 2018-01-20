@@ -4,7 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib048\ClassLib048.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
+    <ProjectReference Include="..\ClassLib049\ClassLib049.csproj" />
+    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
+    <ProjectReference Include="..\ClassLib006\ClassLib006.csproj" />
+    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
+    <ProjectReference Include="..\ClassLib015\ClassLib015.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="$(MicrosoftAspNetCoreHtmlAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="$(MicrosoftAspNetCoreMvcDataAnnotationsPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="$(MicrosoftAspNetCoreMvcViewFeaturesPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="$(MicrosoftExtensionsCachingAbstractionsPackageVersion)" />
   </ItemGroup>
 </Project>

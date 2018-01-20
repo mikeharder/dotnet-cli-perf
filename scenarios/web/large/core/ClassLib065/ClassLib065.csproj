@@ -4,8 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib053\ClassLib053.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib026\ClassLib026.csproj" />
+    <ProjectReference Include="..\ClassLib006\ClassLib006.csproj" />
+    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
+    <ProjectReference Include="..\ClassLib056\ClassLib056.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="$(MicrosoftAspNetCoreHttpAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="$(MicrosoftExtensionsCachingAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="$(MicrosoftExtensionsCachingMemoryPackageVersion)" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
+    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
+    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="$(MicrosoftAspNetCoreAuthorizationPackageVersion)" />
   </ItemGroup>
 </Project>

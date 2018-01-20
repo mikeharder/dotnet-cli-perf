@@ -4,9 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib026\ClassLib026.csproj" />
-    <ProjectReference Include="..\ClassLib020\ClassLib020.csproj" />
+    <ProjectReference Include="..\ClassLib005\ClassLib005.csproj" />
+    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
+    <ProjectReference Include="..\ClassLib032\ClassLib032.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="$(MicrosoftAspNetCoreIdentityPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsDependencyInjectionPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="$(MicrosoftExtensionsLocalizationAbstractionsPackageVersion)" />
+    <PackageReference Include="YesSql.Core" Version="$(YesSqlVersion)" />
   </ItemGroup>
 </Project>

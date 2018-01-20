@@ -5,15 +5,16 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLib021\ClassLib021.csproj" />
-    <ProjectReference Include="..\ClassLib058\ClassLib058.csproj" />
-    <ProjectReference Include="..\ClassLib048\ClassLib048.csproj" />
-    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
-    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
-    <ProjectReference Include="..\ClassLib063\ClassLib063.csproj" />
+    <ProjectReference Include="..\ClassLib049\ClassLib049.csproj" />
+    <ProjectReference Include="..\ClassLib061\ClassLib061.csproj" />
     <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib026\ClassLib026.csproj" />
-    <ProjectReference Include="..\ClassLib014\ClassLib014.csproj" />
+    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
+    <ProjectReference Include="..\ClassLib052\ClassLib052.csproj" />
+    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
+    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
+    <ProjectReference Include="..\ClassLib015\ClassLib015.csproj" />
     <ProjectReference Include="..\ClassLib016\ClassLib016.csproj" />
   </ItemGroup>
 </Project>

@@ -4,11 +4,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib004\ClassLib004.csproj" />
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
     <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
-    <ProjectReference Include="..\ClassLib011\ClassLib011.csproj" />
-    <ProjectReference Include="..\ClassLib014\ClassLib014.csproj" />
-    <ProjectReference Include="..\ClassLib016\ClassLib016.csproj" />
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="$(MicrosoftAspNetCoreMvcPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="$(MicrosoftAspNetCoreRoutingPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsDependencyInjectionAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="$(MicrosoftExtensionsFileProvidersAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="$(MicrosoftExtensionsFileProvidersPhysicalPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsLoggingAbstractionsPackageVersion)" />
   </ItemGroup>
 </Project>

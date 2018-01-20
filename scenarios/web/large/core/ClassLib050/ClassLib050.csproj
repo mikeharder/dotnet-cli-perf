@@ -4,10 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib006\ClassLib006.csproj" />
+    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
-    <ProjectReference Include="..\ClassLib011\ClassLib011.csproj" />
-    <ProjectReference Include="..\ClassLib041\ClassLib041.csproj" />
+    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsDependencyInjectionAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsLoggingAbstractionsPackageVersion)" />
+    <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
+    <PackageReference Include="YesSql.Provider.MySql" Version="$(YesSqlProvidersVersion)" />
+    <PackageReference Include="YesSql.Provider.PostgreSql" Version="$(YesSqlProvidersVersion)" />
+    <PackageReference Include="YesSql.Provider.SqLite" Version="$(YesSqlProvidersVersion)" />
+    <PackageReference Include="YesSql.Provider.SqlServer" Version="$(YesSqlProvidersVersion)" />
   </ItemGroup>
 </Project>

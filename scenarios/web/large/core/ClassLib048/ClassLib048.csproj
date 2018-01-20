@@ -4,6 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib041\ClassLib041.csproj" />
+    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
+    <ProjectReference Include="..\ClassLib020\ClassLib020.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Xml" Version="$(MicrosoftAspNetCoreMvcFormattersXmlPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="$(MicrosoftAspNetCoreMvcViewFeaturesPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftExtensionsDependencyInjectionPackageVersion)" />
   </ItemGroup>
 </Project>

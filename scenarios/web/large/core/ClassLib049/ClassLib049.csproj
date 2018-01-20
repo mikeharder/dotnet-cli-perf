@@ -4,9 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
-    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj" />
-    <ProjectReference Include="..\ClassLib011\ClassLib011.csproj" />
+    <ProjectReference Include="..\ClassLib042\ClassLib042.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="$(MicrosoftAspNetCoreHtmlAbstractionsPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="$(MicrosoftAspNetCoreRoutingAbstractionsPackageVersion)" />
+    <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
   </ItemGroup>
 </Project>
