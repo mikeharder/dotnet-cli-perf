@@ -186,7 +186,7 @@ namespace ScenarioGenerator
         protected override void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences)
         {
             var sb = new StringBuilder();
-            sb.AppendLine("<? xml version=\"1.0\" encoding=\"utf-8\" ?>");
+            sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             sb.AppendLine("<packages>");
 
             foreach (var p in packageReferences)
