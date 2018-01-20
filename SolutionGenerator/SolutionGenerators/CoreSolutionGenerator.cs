@@ -3,7 +3,9 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ScenarioGenerator
 {
@@ -17,13 +19,14 @@ namespace ScenarioGenerator
 
             var projectFiles = new ConcurrentBag<string>();
             Parallel.ForEach(template.Projects, p => projectFiles.Add(GenerateProject(
-                path, p.Name, p.Name == mainProject, scenario, p.ProjectReferences)));
+                path, p.Name, p.Name == mainProject, scenario, p.ProjectReferences, p.PackageReferences)));
 
             Console.WriteLine("Adding projects to solution");
             AddProjectsToSolution(path, $"{mainProject}.sln", projectFiles, mainProject);
         }
 
-        private string GenerateProject(string path, string name, bool mainProject, Scenario scenario, IEnumerable<string> projectReferences)
+        private string GenerateProject(string path, string name, bool mainProject, Scenario scenario,
+            IEnumerable<string> projectReferences, IEnumerable<(string Name, string Version)> packageReferences)
         {
             var destDir = Path.Combine(path, name);
             var destProj = Path.Combine(destDir, $"{name}.csproj");
@@ -59,6 +62,9 @@ namespace ScenarioGenerator
                     // Add ProjectReference lines to csproj
                     AddProjectReferences(Path.Combine(destDir, $"{name}.csproj"), projectReferences);
 
+                    // Do not add PackageReferences, since the web app needs to use its own PackageReferences to ensure
+                    // it builds and runs correctly
+
                     // Update HomeController with dependencies
                     AddPropertyReferences(Path.Combine(controllersDir, "HomeController.cs"), "\"InitialValue\"", projectReferences);
                 }
@@ -86,7 +92,10 @@ namespace ScenarioGenerator
                 }
 
                 // Add ProjectReference lines to csproj
-                AddProjectReferences(Path.Combine(destDir, $"{name}.csproj"), projectReferences);
+                AddProjectReferences(destProj, projectReferences);
+
+                // Add PackageReference lines to csproj
+                AddPackageReferences(destProj, packageReferences);
 
                 // Update Class001.Property with dependencies
                 AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), $"\"{name}\"", projectReferences);
@@ -98,6 +107,22 @@ namespace ScenarioGenerator
         private void AddProjectsToSolution(string path, string solutionName, IEnumerable<string> projects, string mainProject)
         {
             Util.RunProcess("dotnet", $"sln {solutionName} add {String.Join(' ', projects)}", path);
+        }
+
+        private static void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences)
+        {
+            var root = XElement.Load(path);
+            var itemGroup = root.Descendants(XName.Get("ItemGroup", root.Name.NamespaceName)).First();
+
+            foreach (var p in packageReferences)
+            {
+                itemGroup.Add(new XElement(
+                    XName.Get("PackageReference", root.Name.NamespaceName),
+                    new XAttribute("Include", p.Name),
+                    new XAttribute("Version", p.Version)));
+            }
+
+            root.Save(path);
         }
     }
 }
