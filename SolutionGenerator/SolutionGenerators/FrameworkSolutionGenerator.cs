@@ -23,13 +23,14 @@ namespace ScenarioGenerator
 
             var projectFiles = new ConcurrentBag<string>();
             Parallel.ForEach(template.Projects, p => projectFiles.Add(GenerateProject(
-                path, p.Name, p.Name == mainProject, scenario, p.ProjectReferences)));
+                path, p.Name, p.Name == mainProject, scenario, p.ProjectReferences, p.PackageReferences)));
 
             Console.WriteLine("Adding projects to solution");
             AddProjectsToSolution(path, $"{mainProject}.sln", projectFiles, mainProject);
         }
 
-        private string GenerateProject(string path, string name, bool mainProject, Scenario scenario, IEnumerable<string> projectReferences)
+        private string GenerateProject(string path, string name, bool mainProject, Scenario scenario,
+            IEnumerable<string> projectReferences, IEnumerable<(string Name, string Version)> packageReferences)
         {
             var destDir = Path.Combine(path, name);
             var destProj = Path.Combine(destDir, $"{name}.csproj");
@@ -71,6 +72,9 @@ namespace ScenarioGenerator
                     // Add ProjectReference lines to csproj
                     AddProjectReferences(destProj, projectReferences);
 
+                    // Do not add PackageReferences, since the web app needs to use its own PackageReferences to ensure
+                    // it builds and runs correctly
+
                     // Update HomeController with dependencies
                     AddPropertyReferences(Path.Combine(controllersDir, "HomeController.cs"), "\"InitialValue\"", projectReferences);
                 }
@@ -102,6 +106,9 @@ namespace ScenarioGenerator
 
                 // Add ProjectReference lines to csproj
                 AddProjectReferences(destProj, projectReferences);
+
+                // Add PackageReferences to packages.config
+                AddPackageReferences(destProj, packageReferences);
 
                 // Update Class001.Property with dependencies
                 AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), $"\"{name}\"", projectReferences);
@@ -174,6 +181,22 @@ namespace ScenarioGenerator
                 Path.Combine(path, solutionName),
                 "{F9625F4A-BB92-465C-A8A4-2D13A8A99086}.Release|Any CPU.Build.0 = Release|Any CPU" + Environment.NewLine,
                 configs.ToString());
+        }
+
+        protected override void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("<? xml version=\"1.0\" encoding=\"utf-8\" ?>");
+            sb.AppendLine("<packages>");
+
+            foreach (var p in packageReferences)
+            {
+                sb.AppendLine($"  <package id=\"{p.Name}\" version=\"{p.Version}\" targetFramework=\"net471\" />");
+            }
+
+            sb.AppendLine("</packages>");
+
+            File.WriteAllText(Path.Combine(Path.GetDirectoryName(path), "packages.config"), sb.ToString());
         }
     }
 }
