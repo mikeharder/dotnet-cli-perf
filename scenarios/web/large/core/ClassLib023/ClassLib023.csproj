@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib009\ClassLib009.csproj" />
+    <ProjectReference Include="..\ClassLib008\ClassLib008.csproj" />
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.5.0" />
   </ItemGroup>
 </Project>

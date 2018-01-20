@@ -4,55 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib080\ClassLib080.csproj" />
-    <ProjectReference Include="..\ClassLib099\ClassLib099.csproj" />
-    <ProjectReference Include="..\ClassLib001\ClassLib001.csproj" />
     <ProjectReference Include="..\ClassLib101\ClassLib101.csproj" />
-    <ProjectReference Include="..\ClassLib102\ClassLib102.csproj" />
-    <ProjectReference Include="..\ClassLib082\ClassLib082.csproj" />
-    <ProjectReference Include="..\ClassLib103\ClassLib103.csproj" />
-    <ProjectReference Include="..\ClassLib083\ClassLib083.csproj" />
-    <ProjectReference Include="..\ClassLib104\ClassLib104.csproj" />
-    <ProjectReference Include="..\ClassLib105\ClassLib105.csproj" />
-    <ProjectReference Include="..\ClassLib106\ClassLib106.csproj" />
-    <ProjectReference Include="..\ClassLib107\ClassLib107.csproj" />
-    <ProjectReference Include="..\ClassLib108\ClassLib108.csproj" />
-    <ProjectReference Include="..\ClassLib061\ClassLib061.csproj" />
-    <ProjectReference Include="..\ClassLib086\ClassLib086.csproj" />
-    <ProjectReference Include="..\ClassLib087\ClassLib087.csproj" />
-    <ProjectReference Include="..\ClassLib065\ClassLib065.csproj" />
-    <ProjectReference Include="..\ClassLib109\ClassLib109.csproj" />
-    <ProjectReference Include="..\ClassLib039\ClassLib039.csproj" />
-    <ProjectReference Include="..\ClassLib110\ClassLib110.csproj" />
-    <ProjectReference Include="..\ClassLib088\ClassLib088.csproj" />
-    <ProjectReference Include="..\ClassLib111\ClassLib111.csproj" />
-    <ProjectReference Include="..\ClassLib122\ClassLib122.csproj" />
-    <ProjectReference Include="..\ClassLib112\ClassLib112.csproj" />
-    <ProjectReference Include="..\ClassLib113\ClassLib113.csproj" />
-    <ProjectReference Include="..\ClassLib114\ClassLib114.csproj" />
-    <ProjectReference Include="..\ClassLib115\ClassLib115.csproj" />
-    <ProjectReference Include="..\ClassLib090\ClassLib090.csproj" />
-    <ProjectReference Include="..\ClassLib070\ClassLib070.csproj" />
-    <ProjectReference Include="..\ClassLib072\ClassLib072.csproj" />
-    <ProjectReference Include="..\ClassLib124\ClassLib124.csproj" />
-    <ProjectReference Include="..\ClassLib118\ClassLib118.csproj" />
     <ProjectReference Include="..\ClassLib093\ClassLib093.csproj" />
-    <ProjectReference Include="..\ClassLib043\ClassLib043.csproj" />
-    <ProjectReference Include="..\ClassLib073\ClassLib073.csproj" />
-    <ProjectReference Include="..\ClassLib057\ClassLib057.csproj" />
-    <ProjectReference Include="..\ClassLib074\ClassLib074.csproj" />
-    <ProjectReference Include="..\ClassLib075\ClassLib075.csproj" />
-    <ProjectReference Include="..\ClassLib119\ClassLib119.csproj" />
-    <ProjectReference Include="..\ClassLib076\ClassLib076.csproj" />
-    <ProjectReference Include="..\ClassLib094\ClassLib094.csproj" />
-    <ProjectReference Include="..\ClassLib095\ClassLib095.csproj" />
-    <ProjectReference Include="..\ClassLib096\ClassLib096.csproj" />
-    <ProjectReference Include="..\ClassLib120\ClassLib120.csproj" />
-    <ProjectReference Include="..\ClassLib047\ClassLib047.csproj" />
-    <ProjectReference Include="..\ClassLib077\ClassLib077.csproj" />
-    <ProjectReference Include="..\ClassLib078\ClassLib078.csproj" />
-    <ProjectReference Include="..\ClassLib079\ClassLib079.csproj" />
-    <ProjectReference Include="..\ClassLib097\ClassLib097.csproj" />
-    <ProjectReference Include="..\ClassLib098\ClassLib098.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
+    <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 </Project>

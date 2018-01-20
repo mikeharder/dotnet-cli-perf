@@ -9,6 +9,8 @@ namespace ScenarioGenerator
 {
     abstract class DotNetSolutionGenerator
     {
+        protected abstract void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences);
+
         protected static void AddProjectReferences(string path, IEnumerable<string> projectReferences)
         {
             var root = XElement.Load(path);

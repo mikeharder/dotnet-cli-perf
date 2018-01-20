@@ -507,9 +507,9 @@
     <Content Include="Views\Home100\About.cshtml" />
     <Content Include="Views\Home100\Contact.cshtml" />
     <Content Include="Views\Home100\Index.cshtml" />
-    <ProjectReference Include="..\ClassLib125\ClassLib125.csproj" />
-    <ProjectReference Include="..\ClassLib054\ClassLib054.csproj" />
-    <ProjectReference Include="..\ClassLib040\ClassLib040.csproj" />
+    <ProjectReference Include="..\ClassLib127\ClassLib127.csproj" />
+    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj" />
+    <ProjectReference Include="..\ClassLib041\ClassLib041.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

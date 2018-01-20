@@ -4,10 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib006\ClassLib006.csproj" />
+    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
-    <ProjectReference Include="..\ClassLib011\ClassLib011.csproj" />
-    <ProjectReference Include="..\ClassLib041\ClassLib041.csproj" />
+    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="YesSql.Provider.MySql" Version="1.0.0-beta-1097" />
+    <PackageReference Include="YesSql.Provider.PostgreSql" Version="1.0.0-beta-1097" />
+    <PackageReference Include="YesSql.Provider.SqLite" Version="1.0.0-beta-1097" />
+    <PackageReference Include="YesSql.Provider.SqlServer" Version="1.0.0-beta-1097" />
   </ItemGroup>
 </Project>

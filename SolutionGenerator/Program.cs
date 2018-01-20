@@ -36,7 +36,6 @@ namespace ScenarioGenerator
         public static int SourceFilesPerProject => 100;
 
         private static Options _options;
-        private static readonly IEnumerable<string> _frameworks = new string[] { "core" };
 
         private static readonly ConcurrentDictionary<string, object> _solutionLocks = new ConcurrentDictionary<string, object>();
 
@@ -57,7 +56,7 @@ namespace ScenarioGenerator
             var type = Type.GetType($"ScenarioGenerator.Solutions.{_options.Solution}Solution", throwOnError: true, ignoreCase: true);
             ISolution template = (ISolution)Activator.CreateInstance(type);
 
-            var threads = _frameworks.Count() * template.Projects.Count();
+            var threads = template.Projects.Count();
             ThreadPool.SetMaxThreads(threads, threads);
             ThreadPool.SetMinThreads(threads, threads);
 

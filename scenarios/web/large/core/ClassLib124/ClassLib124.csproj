@@ -4,14 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLib048\ClassLib048.csproj" />
-    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
-    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib008\ClassLib008.csproj" />
-    <ProjectReference Include="..\ClassLib113\ClassLib113.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib013\ClassLib013.csproj" />
+    <ProjectReference Include="..\ClassLib081\ClassLib081.csproj" />
+    <ProjectReference Include="..\ClassLib023\ClassLib023.csproj" />
+    <ProjectReference Include="..\ClassLib116\ClassLib116.csproj" />
   </ItemGroup>
 </Project>

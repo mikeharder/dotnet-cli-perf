@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>6973B17E-DDB4-436A-9C0B-35BC31B926BE</ProjectGuid>
+    <ProjectGuid>38EC6A39-AF76-440A-BF04-932AB2F7029F</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib125</RootNamespace>
@@ -137,56 +137,8 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib080\ClassLib080.csproj" />
-    <ProjectReference Include="..\ClassLib099\ClassLib099.csproj" />
-    <ProjectReference Include="..\ClassLib001\ClassLib001.csproj" />
     <ProjectReference Include="..\ClassLib101\ClassLib101.csproj" />
-    <ProjectReference Include="..\ClassLib102\ClassLib102.csproj" />
-    <ProjectReference Include="..\ClassLib082\ClassLib082.csproj" />
-    <ProjectReference Include="..\ClassLib103\ClassLib103.csproj" />
-    <ProjectReference Include="..\ClassLib083\ClassLib083.csproj" />
-    <ProjectReference Include="..\ClassLib104\ClassLib104.csproj" />
-    <ProjectReference Include="..\ClassLib105\ClassLib105.csproj" />
-    <ProjectReference Include="..\ClassLib106\ClassLib106.csproj" />
-    <ProjectReference Include="..\ClassLib107\ClassLib107.csproj" />
-    <ProjectReference Include="..\ClassLib108\ClassLib108.csproj" />
-    <ProjectReference Include="..\ClassLib061\ClassLib061.csproj" />
-    <ProjectReference Include="..\ClassLib086\ClassLib086.csproj" />
-    <ProjectReference Include="..\ClassLib087\ClassLib087.csproj" />
-    <ProjectReference Include="..\ClassLib065\ClassLib065.csproj" />
-    <ProjectReference Include="..\ClassLib109\ClassLib109.csproj" />
-    <ProjectReference Include="..\ClassLib039\ClassLib039.csproj" />
-    <ProjectReference Include="..\ClassLib110\ClassLib110.csproj" />
-    <ProjectReference Include="..\ClassLib088\ClassLib088.csproj" />
-    <ProjectReference Include="..\ClassLib111\ClassLib111.csproj" />
-    <ProjectReference Include="..\ClassLib122\ClassLib122.csproj" />
-    <ProjectReference Include="..\ClassLib112\ClassLib112.csproj" />
-    <ProjectReference Include="..\ClassLib113\ClassLib113.csproj" />
-    <ProjectReference Include="..\ClassLib114\ClassLib114.csproj" />
-    <ProjectReference Include="..\ClassLib115\ClassLib115.csproj" />
-    <ProjectReference Include="..\ClassLib090\ClassLib090.csproj" />
-    <ProjectReference Include="..\ClassLib070\ClassLib070.csproj" />
-    <ProjectReference Include="..\ClassLib072\ClassLib072.csproj" />
-    <ProjectReference Include="..\ClassLib124\ClassLib124.csproj" />
-    <ProjectReference Include="..\ClassLib118\ClassLib118.csproj" />
     <ProjectReference Include="..\ClassLib093\ClassLib093.csproj" />
-    <ProjectReference Include="..\ClassLib043\ClassLib043.csproj" />
-    <ProjectReference Include="..\ClassLib073\ClassLib073.csproj" />
-    <ProjectReference Include="..\ClassLib057\ClassLib057.csproj" />
-    <ProjectReference Include="..\ClassLib074\ClassLib074.csproj" />
-    <ProjectReference Include="..\ClassLib075\ClassLib075.csproj" />
-    <ProjectReference Include="..\ClassLib119\ClassLib119.csproj" />
-    <ProjectReference Include="..\ClassLib076\ClassLib076.csproj" />
-    <ProjectReference Include="..\ClassLib094\ClassLib094.csproj" />
-    <ProjectReference Include="..\ClassLib095\ClassLib095.csproj" />
-    <ProjectReference Include="..\ClassLib096\ClassLib096.csproj" />
-    <ProjectReference Include="..\ClassLib120\ClassLib120.csproj" />
-    <ProjectReference Include="..\ClassLib047\ClassLib047.csproj" />
-    <ProjectReference Include="..\ClassLib077\ClassLib077.csproj" />
-    <ProjectReference Include="..\ClassLib078\ClassLib078.csproj" />
-    <ProjectReference Include="..\ClassLib079\ClassLib079.csproj" />
-    <ProjectReference Include="..\ClassLib097\ClassLib097.csproj" />
-    <ProjectReference Include="..\ClassLib098\ClassLib098.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

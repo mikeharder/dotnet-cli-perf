@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>663A1E3C-5303-4354-9FD3-4A560228574A</ProjectGuid>
+    <ProjectGuid>1B17F7F8-818F-46F5-BE45-DF199EBAD26A</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib021</RootNamespace>
@@ -138,7 +138,7 @@
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib017\ClassLib017.csproj" />
+    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />
