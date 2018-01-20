@@ -13,7 +13,7 @@ namespace ScenarioGenerator
                 case Framework.Core:
                     return new CoreSolutionGenerator();
                 case Framework.Framework:
-                    return new CoreSolutionGenerator();
+                    return new FrameworkSolutionGenerator();
                 case Framework.Gradle:
                     return new GradleSolutionGenerator();
                 default:
