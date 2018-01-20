@@ -2,6 +2,6 @@ namespace ClassLib063
 {
     public class Class001
     {
-        public static string Property => "ClassLib063" + " " + ClassLib050.Class001.Property + " " + ClassLib005.Class001.Property;
+        public static string Property => "ClassLib063" + " " + ClassLib051.Class001.Property + " " + ClassLib009.Class001.Property;
     }
 }

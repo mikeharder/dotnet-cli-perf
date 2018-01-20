@@ -10,7 +10,7 @@ namespace mvc.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "InitialValue" + " " + ClassLib125.Class001.Property + " " + ClassLib054.Class001.Property + " " + ClassLib040.Class001.Property;
+            ViewBag.Title = "InitialValue" + " " + ClassLib127.Class001.Property + " " + ClassLib055.Class001.Property + " " + ClassLib041.Class001.Property;
             return View();
         }
 

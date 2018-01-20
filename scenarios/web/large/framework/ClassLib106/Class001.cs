@@ -2,6 +2,6 @@ namespace ClassLib106
 {
     public class Class001
     {
-        public static string Property => "ClassLib106" + " " + ClassLib048.Class001.Property + " " + ClassLib084.Class001.Property + " " + ClassLib050.Class001.Property + " " + ClassLib063.Class001.Property + " " + ClassLib051.Class001.Property + " " + ClassLib025.Class001.Property;
+        public static string Property => "ClassLib106" + " " + ClassLib059.Class001.Property + " " + ClassLib049.Class001.Property + " " + ClassLib060.Class001.Property + " " + ClassLib085.Class001.Property + " " + ClassLib061.Class001.Property + " " + ClassLib052.Class001.Property + " " + ClassLib027.Class001.Property + " " + ClassLib029.Class001.Property;
     }
 }

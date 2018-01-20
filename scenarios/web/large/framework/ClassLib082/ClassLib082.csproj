@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>5826E4A7-95B1-495E-AC37-37C998D9373F</ProjectGuid>
+    <ProjectGuid>558234B4-3D79-42FF-8CC6-CD85A4F7BBD4</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib082</RootNamespace>
@@ -137,16 +137,8 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib032\ClassLib032.csproj" />
-    <ProjectReference Include="..\ClassLib049\ClassLib049.csproj" />
-    <ProjectReference Include="..\ClassLib033\ClassLib033.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib062\ClassLib062.csproj" />
-    <ProjectReference Include="..\ClassLib064\ClassLib064.csproj" />
-    <ProjectReference Include="..\ClassLib036\ClassLib036.csproj" />
-    <ProjectReference Include="..\ClassLib052\ClassLib052.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <ProjectReference Include="..\ClassLib001\ClassLib001.csproj" />
+    <ProjectReference Include="..\ClassLib071\ClassLib071.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />
