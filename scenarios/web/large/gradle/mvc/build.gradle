@@ -37,7 +37,7 @@ bootRun {
 }
 
 dependencies {
-    compile project(':ClassLib125')
-    compile project(':ClassLib054')
-    compile project(':ClassLib040')
+    compile project(':ClassLib127')
+    compile project(':ClassLib055')
+    compile project(':ClassLib041')
 }

@@ -6,6 +6,5 @@ repositories {
 }
 
 dependencies {
-    compile project(':ClassLib010')
-    compile project(':ClassLib013')
+    compile project(':ClassLib008')
 }

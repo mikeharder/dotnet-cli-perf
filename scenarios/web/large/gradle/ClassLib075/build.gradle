@@ -6,10 +6,12 @@ repositories {
 }
 
 dependencies {
-    compile project(':ClassLib049')
-    compile project(':ClassLib050')
-    compile project(':ClassLib025')
-    compile project(':ClassLib026')
-    compile project(':ClassLib014')
-    compile project(':ClassLib018')
+    compile project(':ClassLib003')
+    compile project(':ClassLib051')
+    compile project(':ClassLib005')
+    compile project(':ClassLib052')
+    compile project(':ClassLib009')
+    compile project(':ClassLib027')
+    compile project(':ClassLib015')
+    compile project(':ClassLib019')
 }

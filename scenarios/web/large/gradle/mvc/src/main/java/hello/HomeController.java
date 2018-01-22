@@ -10,7 +10,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("title", "InitialValue" + " " + ClassLib125.Class001.property() + " " + ClassLib054.Class001.property() + " " + ClassLib040.Class001.property());
+        model.addAttribute("title", "InitialValue" + " " + ClassLib127.Class001.property() + " " + ClassLib055.Class001.property() + " " + ClassLib041.Class001.property());
         return "index";
     }
 

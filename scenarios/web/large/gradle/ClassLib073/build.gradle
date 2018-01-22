@@ -7,9 +7,8 @@ repositories {
 
 dependencies {
     compile project(':ClassLib003')
-    compile project(':ClassLib050')
     compile project(':ClassLib051')
-    compile project(':ClassLib025')
-    compile project(':ClassLib014')
-    compile project(':ClassLib017')
+    compile project(':ClassLib052')
+    compile project(':ClassLib027')
+    compile project(':ClassLib045')
 }
