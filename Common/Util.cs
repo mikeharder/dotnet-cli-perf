@@ -93,7 +93,7 @@ namespace Common
                 {
                     Console.WriteLine($"Error deleting directory: {e.ToString()}");
 
-                    if (i < 9)
+                    if (i < 19)
                     {
                         Util.WriteLine("RETRYING");
                         Thread.Sleep(TimeSpan.FromSeconds(1));
