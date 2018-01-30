@@ -11,8 +11,6 @@ namespace DotNetCliPerf
         private static readonly Dictionary<string, string> _vsVersions = new Dictionary<string, string>
         {
             { "15.5.180.51428", "2017" },
-            { "15.6.13.61168", "PubPreview" },
-            { "15.6.54.9755", "Preview" },
             { "15.6.70.21978", "Preview" },
         };
 
@@ -23,7 +21,7 @@ namespace DotNetCliPerf
         [Params(true, false)]
         public bool NodeReuse { get; set; }
 
-        [Params("NotApplicable", "15.5.180.51428", "15.6.13.61168", "15.6.54.9755", "15.6.70.21978")]
+        [Params("NotApplicable", "15.5.180.51428", "15.6.70.21978")]
         public string MSBuildVersion { get; set; }
 
         private string GetMSBuildPath()
