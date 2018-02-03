@@ -43,8 +43,14 @@ namespace DotNetCliPerf
 
         private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) Run(bool restore, bool build = true)
         {
+            var argument = "run";
+            if (RazorCompileOnBuild)
+            {
+                argument += " /p:RazorCompileOnBuild=true /p:UseRazorBuildServer=true";
+            }
+
             return StartDotNet(
-                "run",
+                argument,
                 restore: restore,
                 build: build,
                 workingSubDirectory: WebAppDir);

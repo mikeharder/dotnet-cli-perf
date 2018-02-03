@@ -15,7 +15,6 @@ namespace DotNetCliPerf
             { "15.6.54.9755", "Preview" },
         };
 
-
         [Params(true, false)]
         public bool Parallel { get; set; }
 
