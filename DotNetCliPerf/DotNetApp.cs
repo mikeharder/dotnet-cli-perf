@@ -14,7 +14,7 @@ namespace DotNetCliPerf
         [Params(true, false)]
         public bool NodeReuse { get; set; }
 
-        [Params("NotApplicable", "15.5.180.51428", "15.6.76.11871")]
+        [Params("NotApplicable", "14.0.23107.0", "15.5.180.51428", "15.6.76.11871")]
         public string MSBuildVersion { get; set; }
 
         private string GetMSBuildPath()
@@ -24,27 +24,45 @@ namespace DotNetCliPerf
                 throw new InvalidOperationException($"Parameter 'MSBuildVersion' is set to 'NotApplicable'");
             }
 
-            var vsPath = Path.Combine(
-                System.Environment.GetEnvironmentVariable("ProgramFiles(x86)"),
-                "Microsoft Visual Studio",
-                GetVSVersion(MSBuildVersion));
+            string msBuildPath;
 
-            var buildToolsPath = Path.Combine(vsPath, "BuildTools");
-            if (!Directory.Exists(buildToolsPath))
+            if (MSBuildVersion.StartsWith("14.0", StringComparison.OrdinalIgnoreCase))
             {
-                buildToolsPath = Path.Combine(vsPath, "Enterprise");
+                msBuildPath = Path.Combine(
+                    System.Environment.GetEnvironmentVariable("ProgramFiles(x86)"),
+                    "MSBuild",
+                    "14.0",
+                    "Bin",
+                    "MSBuild.exe");
             }
-            if (!Directory.Exists(buildToolsPath))
+            else if (MSBuildVersion.StartsWith("15.0", StringComparison.OrdinalIgnoreCase))
             {
-                throw new InvalidOperationException($"Could not find MSBuild.exe under {vsPath}");
-            }
+                var vsPath = Path.Combine(
+                    System.Environment.GetEnvironmentVariable("ProgramFiles(x86)"),
+                    "Microsoft Visual Studio",
+                    GetVSVersion(MSBuildVersion));
 
-            var msBuildPath = Path.Combine(
-                buildToolsPath,
-                "MSBuild",
-                "15.0",
-                "Bin",
-                "MSBuild.exe");
+                var buildToolsPath = Path.Combine(vsPath, "BuildTools");
+                if (!Directory.Exists(buildToolsPath))
+                {
+                    buildToolsPath = Path.Combine(vsPath, "Enterprise");
+                }
+                if (!Directory.Exists(buildToolsPath))
+                {
+                    throw new InvalidOperationException($"Could not find MSBuild.exe under {vsPath}");
+                }
+
+                msBuildPath = Path.Combine(
+                    buildToolsPath,
+                    "MSBuild",
+                    "15.0",
+                    "Bin",
+                    "MSBuild.exe");
+            }
+            else
+            {
+                throw new InvalidOperationException($"Unknown MSBuild version: {MSBuildVersion}");
+            }
 
             // Verify version
             var output = Util.RunProcess(msBuildPath, "/nologo /version", RootTempDir);
