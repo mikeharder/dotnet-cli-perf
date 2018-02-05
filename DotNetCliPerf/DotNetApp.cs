@@ -8,19 +8,13 @@ namespace DotNetCliPerf
 {
     public abstract class DotNetApp : App
     {
-        private static readonly Dictionary<string, string> _vsVersions = new Dictionary<string, string>
-        {
-            { "15.5.180.51428", "2017" },
-            { "15.6.70.21978", "Preview" },
-        };
-
         [Params(true, false)]
         public bool Parallel { get; set; }
 
         [Params(true, false)]
         public bool NodeReuse { get; set; }
 
-        [Params("NotApplicable", "15.5.180.51428", "15.6.70.21978")]
+        [Params("NotApplicable", "15.5.180.51428", "15.6.76.11871")]
         public string MSBuildVersion { get; set; }
 
         private string GetMSBuildPath()
@@ -33,7 +27,7 @@ namespace DotNetCliPerf
             var vsPath = Path.Combine(
                 System.Environment.GetEnvironmentVariable("ProgramFiles(x86)"),
                 "Microsoft Visual Studio",
-                _vsVersions[MSBuildVersion]);
+                GetVSVersion(MSBuildVersion));
 
             var buildToolsPath = Path.Combine(vsPath, "BuildTools");
             if (!Directory.Exists(buildToolsPath))
@@ -60,6 +54,22 @@ namespace DotNetCliPerf
             }
 
             return msBuildPath;
+        }
+
+        private static string GetVSVersion(string msBuildVersion)
+        {
+            if (msBuildVersion.StartsWith("15.5", StringComparison.OrdinalIgnoreCase))
+            {
+                return "2017";
+            }
+            else if (msBuildVersion.StartsWith("15.6", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Preview";
+            }
+            else
+            {
+                throw new InvalidOperationException($"Could not find VS version for MSBuild version {msBuildVersion}");
+            }
         }
 
         protected string MSBuild(string arguments, bool restore = false)
