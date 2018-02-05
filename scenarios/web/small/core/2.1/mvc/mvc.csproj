@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RuntimeFrameworkVersion>2.1.0-preview1-26115-03</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0-preview2-30030" />
+    <PackageReference Include="Microsoft.NET.Sdk.Razor" Version="2.1.0-preview2-30030" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <ResolvedRazorCompileToolSet>RazorSdk</ResolvedRazorCompileToolSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.1.0-preview2-30030" />
+  </ItemGroup>
+
+</Project>

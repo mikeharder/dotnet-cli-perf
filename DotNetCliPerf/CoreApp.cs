@@ -23,6 +23,12 @@ namespace DotNetCliPerf
         [Params(MSBuildFlavor.Framework, MSBuildFlavor.Core)]
         public MSBuildFlavor MSBuildFlavor { get; set; }
 
+        [Params("2.0", "2.1")]
+        public string TargetFramework { get; set; }
+
+        [Params(false, true)]
+        public bool RazorCompileOnBuild { get; set; }
+
         public override void GlobalSetup()
         {
             if (TieredJit)
@@ -54,11 +60,22 @@ namespace DotNetCliPerf
         {
             if (MSBuildFlavor == MSBuildFlavor.Framework)
             {
-                MSBuild("/t:build", restore: first || Restore);
+                var argument = "/t:build";
+                if (RazorCompileOnBuild)
+                {
+                    argument += " /p:RazorCompileOnBuild=true /p:UseRazorBuildServer=true";
+                }
+
+                MSBuild(argument, restore: first || Restore);
             }
             else
             {
-                DotNet("build", restore: first || Restore);
+                var argument = "build";
+                if (RazorCompileOnBuild)
+                {
+                    argument += " /p:RazorCompileOnBuild=true /p:UseRazorBuildServer=true";
+                }
+                DotNet(argument, restore: first || Restore);
             }
         }
 
