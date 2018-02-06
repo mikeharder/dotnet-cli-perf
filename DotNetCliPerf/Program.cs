@@ -42,7 +42,7 @@ namespace DotNetCliPerf
                 _ => 1
             );
         }
-
+        
         private static int Run(Options options)
         {
             var job = new Job();
@@ -54,7 +54,11 @@ namespace DotNetCliPerf
             // Increase timeout from default 5 minutes to 10 minutes.  Required for OrchardCore.
             job = job.With(new InProcessToolchain(timeout: TimeSpan.FromMinutes(10), codegenMode: BenchmarkActionCodegen.ReflectionEmit, logOutput: true));
 
-            var config = ManualConfig.Create(DefaultConfig.Instance).With(job);
+            var config = (IConfig)ManualConfig.Create(DefaultConfig.Instance);
+
+            ((ManualConfig)config).Set(new NoOpOrderProvider());
+
+            config = config.With(job);
 
             if (options.Debug)
             {
@@ -222,6 +226,15 @@ namespace DotNetCliPerf
             }
 
             return dict;
+        }
+
+        private class NoOpOrderProvider : BenchmarkDotNet.Order.DefaultOrderProvider
+        {
+            // DefaultOrderProvider.GetExecutionOrder() is very slow.  Most time spent in String.Join().
+            public override IEnumerable<Benchmark> GetExecutionOrder(Benchmark[] benchmarks)
+            {
+                return benchmarks;
+            }
         }
     }
 }
