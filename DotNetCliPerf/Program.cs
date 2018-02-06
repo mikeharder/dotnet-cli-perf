@@ -202,6 +202,18 @@ namespace DotNetCliPerf
                 selectedBenchmarks = selectedBenchmarks.Where(b => ((SourceChanged)b.Parameters["SourceChanged"]) != SourceChanged.Root);
             }
 
+            // If not specified, default RazorCompileOnBuild to false
+            if (!parameters.ContainsKey("RazorCompileOnBuild"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["RazorCompileOnBuild"] != true);
+            }
+
+            // If not specified, default TargetFramework to 2.0
+            if (!parameters.ContainsKey("TargetFramework"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => (string)b.Parameters["TargetFramework"] == "2.0");
+            }
+
             selectedBenchmarks = selectedBenchmarks.
                 Where(b => !options.Types.Any() ||
                                        b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
