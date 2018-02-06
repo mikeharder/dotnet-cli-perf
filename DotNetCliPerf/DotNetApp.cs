@@ -14,7 +14,7 @@ namespace DotNetCliPerf
         [Params(true, false)]
         public bool NodeReuse { get; set; }
 
-        [Params("NotApplicable", "14.0.23107.0", "15.5.180.51428", "15.6.76.11871")]
+        [Params("NotApplicable", "14.0.25420.1", "15.5.180.51428", "15.6.76.11871")]
         public string MSBuildVersion { get; set; }
 
         private string GetMSBuildPath()
