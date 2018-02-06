@@ -26,7 +26,7 @@ namespace DotNetCliPerf
 
             string msBuildPath;
 
-            if (MSBuildVersion.StartsWith("14.0", StringComparison.OrdinalIgnoreCase))
+            if (MSBuildVersion.StartsWith("14", StringComparison.OrdinalIgnoreCase))
             {
                 msBuildPath = Path.Combine(
                     System.Environment.GetEnvironmentVariable("ProgramFiles(x86)"),
@@ -35,7 +35,7 @@ namespace DotNetCliPerf
                     "Bin",
                     "MSBuild.exe");
             }
-            else if (MSBuildVersion.StartsWith("15.0", StringComparison.OrdinalIgnoreCase))
+            else if (MSBuildVersion.StartsWith("15", StringComparison.OrdinalIgnoreCase))
             {
                 var vsPath = Path.Combine(
                     System.Environment.GetEnvironmentVariable("ProgramFiles(x86)"),
