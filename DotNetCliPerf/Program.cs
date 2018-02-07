@@ -96,37 +96,10 @@ namespace DotNetCliPerf
                 });
             }
 
-            // If not specified, default "Parallel" to "true" for both Core and Framework, to match typical customer usage.
+            // If not specified, default "Parallel" to "true" to match typical customer usage.
             if (!parameters.ContainsKey("Parallel"))
             {
-                selectedBenchmarks = selectedBenchmarks.Where(b =>
-                {
-                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        return (bool)b.Parameters["Parallel"];
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                });
-            }
-
-            // If not specified, default "SdkVersion" to "2.0.2" and "2.2.0" for Core
-            if (!parameters.ContainsKey("SdkVersion"))
-            {
-                selectedBenchmarks = selectedBenchmarks.Where(b =>
-                {
-                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        return ((string)b.Parameters["SdkVersion"]) == "2.0.2" || ((string)b.Parameters["SdkVersion"]).StartsWith("2.2.0");
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                });
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["Parallel"] ?? true);
             }
 
             // If not specified, default "MSBuildFlavor" to "Core" for Core, to match typical customer usage.
@@ -160,14 +133,13 @@ namespace DotNetCliPerf
             if (!parameters.ContainsKey("MSBuildVersion"))
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b =>
-                    b.Parameters["MSBuildVersion"] == null ||
-                    ((string)b.Parameters["MSBuildVersion"]).StartsWith("15.6", StringComparison.OrdinalIgnoreCase));
+                    ((string)b.Parameters["MSBuildVersion"])?.StartsWith("15.6", StringComparison.OrdinalIgnoreCase) ?? true);
             }
 
             // If not specified, default "NodeReuse" to "true" to match typical customer usage.
             if (!parameters.ContainsKey("NodeReuse"))
             {
-                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["NodeReuse"] != false);
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["NodeReuse"] ?? true);
             }
 
             // Large apps and "SourceChanged" methods can choose from SourceChanged.Leaf and SourceChanged.Root
@@ -196,13 +168,14 @@ namespace DotNetCliPerf
             // If not specified, default RazorCompileOnBuild to false
             if (!parameters.ContainsKey("RazorCompileOnBuild"))
             {
-                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["RazorCompileOnBuild"] != true);
+                selectedBenchmarks = selectedBenchmarks.Where(b => !(bool?)b.Parameters["RazorCompileOnBuild"] ?? true);
             }
 
             // If not specified, default TargetFramework to 2.0
             if (!parameters.ContainsKey("TargetFramework"))
             {
-                selectedBenchmarks = selectedBenchmarks.Where(b => (string)b.Parameters["TargetFramework"] == "2.0");
+                selectedBenchmarks = selectedBenchmarks.Where(b => 
+                    ((string)b.Parameters["TargetFramework"])?.Equals("2.0", StringComparison.OrdinalIgnoreCase) ?? true);
             }
 
             selectedBenchmarks = selectedBenchmarks.
