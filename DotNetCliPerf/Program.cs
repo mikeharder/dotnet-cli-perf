@@ -145,12 +145,6 @@ namespace DotNetCliPerf
                 });
             }
 
-            // Skip benchmarks with MSBuildFlavor=Core and NodeReuse=True, since Core MSBuild currently does
-            // not support NodeReuse.
-            selectedBenchmarks = selectedBenchmarks.Where(b =>
-                !(((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Core &&
-                  (bool)b.Parameters["NodeReuse"]));
-
             // If MSBuildFlavor=Core, MSBuildVersion is irrelevant, so limit it to "NotApplicable"
             selectedBenchmarks = selectedBenchmarks.Where(b =>
                 !(((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Core &&
@@ -162,21 +156,18 @@ namespace DotNetCliPerf
                    b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0) &&
                   b.Parameters["MSBuildVersion"].ToString().Equals("NotApplicable", StringComparison.OrdinalIgnoreCase)));
 
-            // If not specified, default "NodeReuse" to "true" for Framework, to match typical customer usage.
-            if (!parameters.ContainsKey("NodeReuse"))
+            // If not specified, default "MSBuildVersion" to "15.6"
+            if (!parameters.ContainsKey("MSBuildVersion"))
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b =>
-                {
-                    if (((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Framework ||
-                        b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        return (bool)b.Parameters["NodeReuse"];
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                });
+                    b.Parameters["MSBuildVersion"] == null ||
+                    ((string)b.Parameters["MSBuildVersion"]).StartsWith("15.6", StringComparison.OrdinalIgnoreCase));
+            }
+
+            // If not specified, default "NodeReuse" to "true" to match typical customer usage.
+            if (!parameters.ContainsKey("NodeReuse"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["NodeReuse"] != false);
             }
 
             // Large apps and "SourceChanged" methods can choose from SourceChanged.Leaf and SourceChanged.Root

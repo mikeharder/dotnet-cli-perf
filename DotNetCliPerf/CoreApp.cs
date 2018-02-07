@@ -98,15 +98,11 @@ namespace DotNetCliPerf
             bool restore = true,
             bool build = true)
         {
-            if (build && NodeReuse)
-            {
-                throw new InvalidOperationException("Core MSBuild currently does not support NodeReuse");
-            }
-
             var arguments = dotnetArguments +
                 (Parallel ? "" : " /m:1") +
                 (restore ? "" : " --no-restore") +
                 (build ? "" : " --no-build") +
+                $" /nr:{NodeReuse}" +
                 (appArguments == null ? "" : " -- " + appArguments);
 
             return Util.StartProcess(
