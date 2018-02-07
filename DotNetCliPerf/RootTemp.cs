@@ -13,7 +13,7 @@ namespace DotNetCliPerf
         }
 
         [GlobalCleanup]
-        public void GlobalCleanup()
+        public virtual void GlobalCleanup()
         {
             Util.DeleteDir(RootTempDir);
         }
