@@ -129,11 +129,13 @@ namespace DotNetCliPerf
                    b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0) &&
                   b.Parameters["MSBuildVersion"].ToString().Equals("NotApplicable", StringComparison.OrdinalIgnoreCase)));
 
-            // If not specified, default "MSBuildVersion" to "15.6"
+            // If not specified, limit "MSBuildVersion" to "15.6" or "NotApplicable"
             if (!parameters.ContainsKey("MSBuildVersion"))
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b =>
-                    ((string)b.Parameters["MSBuildVersion"])?.StartsWith("15.6", StringComparison.OrdinalIgnoreCase) ?? true);
+                    b.Parameters["MSBuildVersion"] == null ||
+                    ((string)b.Parameters["MSBuildVersion"]).StartsWith("15.6", StringComparison.OrdinalIgnoreCase) ||
+                    ((string)b.Parameters["MSBuildVersion"]).Equals("NotApplicable", StringComparison.OrdinalIgnoreCase));
             }
 
             // If not specified, default "NodeReuse" to "true" to match typical customer usage.
