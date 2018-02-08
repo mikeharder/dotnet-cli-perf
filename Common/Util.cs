@@ -168,7 +168,11 @@ namespace Common
         public static string WaitForExit(Process process, StringBuilder outputBuilder, StringBuilder errorBuilder,
             bool throwOnError = true)
         {
-            process.WaitForExit();
+            // Workaround issue where WaitForExit() blocks until child processes are killed, which is problematic
+            // for the dotnet.exe NodeReuse child processes.  I'm not sure why this is problematic for dotnet.exe child processes
+            // but not for MSBuild.exe child processes.  The workaround is to specify a large timeout.
+            // https://stackoverflow.com/a/37983587/102052
+            process.WaitForExit(int.MaxValue);
 
             if (throwOnError && process.ExitCode != 0)
             {
