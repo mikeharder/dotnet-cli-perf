@@ -44,7 +44,7 @@ namespace DotNetCliPerf
             // Workaround bug in MSBuild on Core with NodeReuse, where "dotnet.exe MSBuild.dll" processes need to be manually
             // killed before the temp directory is cleaned up, since the nodes keep a file handle to the last directory
             // they built.
-            Util.RunProcess("taskkill", "/f /im dotnet.exe", RootTempDir);
+            Util.RunProcess("taskkill", "/f /fi \"modules eq msbuild.dll\"", RootTempDir);
 
             base.GlobalCleanup();
         }
