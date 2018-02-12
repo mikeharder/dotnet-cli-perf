@@ -16,6 +16,16 @@ namespace DotNetCliPerf
         [Params("NotApplicable", "14.0.25420.1", "15.5.180.51428", "15.6.76.11871")]
         public string MSBuildVersion { get; set; }
 
+        public override void GlobalSetup()
+        {
+            if (!NodeReuse)
+            {
+                Environment.Add("MSBUILDDISABLENODEREUSE", "1");
+            }
+
+            base.GlobalSetup();
+        }
+
         private string GetMSBuildPath()
         {
             if (MSBuildVersion == "NotApplicable")
@@ -91,11 +101,6 @@ namespace DotNetCliPerf
 
         protected string MSBuild(string arguments, bool restore = false)
         {
-            if (!NodeReuse)
-            {
-                Environment.Add("MSBUILDDISABLENODEREUSE", "1");
-            }
-
             arguments = arguments +
                 " /v:minimal" +
                 (Parallel ? " /m" : "") +
