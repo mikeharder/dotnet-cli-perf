@@ -1,7 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Common;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace DotNetCliPerf
@@ -92,13 +91,17 @@ namespace DotNetCliPerf
 
         protected string MSBuild(string arguments, bool restore = false)
         {
+            if (!NodeReuse)
+            {
+                Environment.Add("MSBUILDDISABLENODEREUSE", "1");
+            }
+
             arguments = arguments +
                 " /v:minimal" +
                 (Parallel ? " /m" : "") +
-                $" /nr:{NodeReuse}" +
                 (restore ? " /restore" : "");
 
-            return Util.RunProcess(GetMSBuildPath(), arguments, RootTempDir);
+            return Util.RunProcess(GetMSBuildPath(), arguments, RootTempDir, environment: Environment);
         }
     }
 }

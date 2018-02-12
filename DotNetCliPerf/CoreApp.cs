@@ -108,11 +108,15 @@ namespace DotNetCliPerf
             bool restore = true,
             bool build = true)
         {
+            if (!NodeReuse)
+            {
+                Environment.Add("MSBUILDDISABLENODEREUSE", "1");
+            }
+
             var arguments = dotnetArguments +
                 (Parallel ? "" : " /m:1") +
                 (restore ? "" : " --no-restore") +
                 (build ? "" : " --no-build") +
-                $" /nr:{NodeReuse}" +
                 (appArguments == null ? "" : " -- " + appArguments);
 
             return Util.StartProcess(
