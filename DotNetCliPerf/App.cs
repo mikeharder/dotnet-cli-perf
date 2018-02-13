@@ -11,7 +11,10 @@ namespace DotNetCliPerf
     {
         protected static readonly TimeSpan SleepBetweenHttpRequests = TimeSpan.FromMilliseconds(100);
 
-        protected static readonly HttpClient HttpClient = new HttpClient();
+        protected static readonly HttpClient HttpClient = new HttpClient(new HttpClientHandler()
+        {
+            ServerCertificateCustomValidationCallback = (m, c, ch, p) => true
+        });
 
         protected readonly Dictionary<string, string> Environment = new Dictionary<string, string>();
 
