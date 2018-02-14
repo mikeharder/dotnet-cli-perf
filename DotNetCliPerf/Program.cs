@@ -51,8 +51,8 @@ namespace DotNetCliPerf
             job.Run.WarmupCount = options.WarmupCount;
             job.Run.TargetCount = options.TargetCount;
 
-            // Increase timeout from default 5 minutes to 10 minutes.  Required for OrchardCore.
-            job = job.With(new InProcessToolchain(timeout: TimeSpan.FromMinutes(10), codegenMode: BenchmarkActionCodegen.ReflectionEmit, logOutput: true));
+            // Increase timeout from default 5 minutes to 30 minutes.  Required for OrchardCore, especially when using multiple iterations
+            job = job.With(new InProcessToolchain(timeout: TimeSpan.FromMinutes(30), codegenMode: BenchmarkActionCodegen.ReflectionEmit, logOutput: true));
 
             var config = (IConfig)ManualConfig.Create(DefaultConfig.Instance);
 
