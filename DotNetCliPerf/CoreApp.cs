@@ -65,13 +65,16 @@ namespace DotNetCliPerf
 
         protected override void Build(bool first = false)
         {
-            if (MSBuildFlavor == MSBuildFlavor.Framework)
+            if (first || NoBuild != true)
             {
-                MSBuild("/t:build", restore: first || Restore);
-            }
-            else
-            {
-                DotNet("build", restore: first || Restore);
+                if (MSBuildFlavor == MSBuildFlavor.Framework)
+                {
+                    MSBuild("/t:build", restore: first || Restore);
+                }
+                else
+                {
+                    DotNet("build", restore: first || Restore);
+                }
             }
         }
 

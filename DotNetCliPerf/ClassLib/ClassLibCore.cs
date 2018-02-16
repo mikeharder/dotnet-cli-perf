@@ -19,11 +19,11 @@ namespace DotNetCliPerf
             }
             else
             {
-                return Run(restore: first || Restore);
+                return Run(restore: first || Restore, build: first || (NoBuild != true));
             }
         }
 
-        private string Run(bool restore, bool build = true)
+        private string Run(bool restore, bool build)
         {
             return DotNet("test mstest", restore: restore, build: build, throwOnError: false);
         }

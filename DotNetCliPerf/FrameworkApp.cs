@@ -10,15 +10,18 @@ namespace DotNetCliPerf
 
         protected override void Build(bool first = false)
         {
-            if (first || Restore)
+            if (first || NoBuild != true)
             {
-                // For Framework apps, restore via "nuget.exe restore" rather than "msbuild.exe /restore", for 2 reasons:
-                // 1. Framework apps often use packages.config rather than PackageReference, which is only supported by nuget.exe
-                // 2. Customers are more likely to use "nuget.exe restore" since it has existed for a lot longer
-                NuGet("restore");
-            }
+                if (first || Restore)
+                {
+                    // For Framework apps, restore via "nuget.exe restore" rather than "msbuild.exe /restore", for 2 reasons:
+                    // 1. Framework apps often use packages.config rather than PackageReference, which is only supported by nuget.exe
+                    // 2. Customers are more likely to use "nuget.exe restore" since it has existed for a lot longer
+                    NuGet("restore");
+                }
 
-            MSBuild("/t:build");
+                MSBuild("/t:build");
+            }
         }
 
         private void NuGet(string arguments)
