@@ -42,7 +42,7 @@ namespace DotNetCliPerf
                 _ => 1
             );
         }
-        
+
         private static int Run(Options options)
         {
             var job = new Job();
@@ -176,16 +176,35 @@ namespace DotNetCliPerf
             // If not specified, default TargetFramework to 2.0
             if (!parameters.ContainsKey("TargetFramework"))
             {
-                selectedBenchmarks = selectedBenchmarks.Where(b => 
+                selectedBenchmarks = selectedBenchmarks.Where(b =>
                     ((string)b.Parameters["TargetFramework"])?.Equals("2.0", StringComparison.OrdinalIgnoreCase) ?? true);
+            }
+
+            // NoBuild should be "false" or "true" for "Run" methods, else "null"
+            selectedBenchmarks = selectedBenchmarks.Where(b =>
+            {
+                if (b.Target.Method.Name.StartsWith("run", StringComparison.OrdinalIgnoreCase))
+                {
+                    return (bool?)b.Parameters["NoBuild"] == false || (bool?)b.Parameters["NoBuild"] == true;
+                }
+                else
+                {
+                    return (bool?)b.Parameters["NoBuild"] == null;
+                }
+            });
+
+            // If not specified, default NoBuild to null or false
+            if (!parameters.ContainsKey("NoBuild"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["NoBuild"] == false || (bool?)b.Parameters["NoBuild"] == null);
             }
 
             selectedBenchmarks = selectedBenchmarks.
                 Where(b => !options.Types.Any() ||
-                                       b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
-                            Where(b => !options.Methods.Any() ||
-                                       b.Target.Method.Name.ContainsAny(options.Methods, StringComparison.OrdinalIgnoreCase)).
-                            Where(b => b.Parameters.Match(parameters));
+                      b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
+                Where(b => !options.Methods.Any() ||
+                      b.Target.Method.Name.ContainsAny(options.Methods, StringComparison.OrdinalIgnoreCase)).
+                Where(b => b.Parameters.Match(parameters));
 
             BenchmarkRunner.Run(selectedBenchmarks.ToArray(), config);
 

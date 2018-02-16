@@ -50,7 +50,7 @@ namespace DotNetCliPerf
             }
             else
             {
-                _process = Run(restore: first || Restore);
+                _process = Run(restore: first || Restore, build: first || (NoBuild != true));
             }
 
             while (true)
@@ -66,7 +66,7 @@ namespace DotNetCliPerf
             }
         }
 
-        private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) Run(bool restore, bool build = true)
+        private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) Run(bool restore, bool build)
         {
             return StartDotNet(
                 "run",

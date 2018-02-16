@@ -33,6 +33,9 @@ namespace DotNetCliPerf
 
         protected virtual void RunCleanup() { }
 
+        [Params(null, false, true)]
+        public bool? NoBuild { get; set; }
+
         [Params(SourceChanged.NotApplicable, SourceChanged.Leaf, SourceChanged.Root)]
         public SourceChanged SourceChanged { get; set; }
 
