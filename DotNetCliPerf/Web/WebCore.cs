@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using BenchmarkDotNet.Attributes;
+using Common;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -8,13 +9,37 @@ namespace DotNetCliPerf
 {
     public abstract class WebCore : CoreApp
     {
+        private const string _razorCompileOnBuildPropertyGroup =
+@"  <PropertyGroup>
+    <RazorCompileOnBuild>true</RazorCompileOnBuild>
+    <UseRazorBuildServer>true</UseRazorBuildServer>
+  </PropertyGroup>
+
+";
+
         private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) _process;
+
+        [Params(false, true)]
+        public bool RazorCompileOnBuild { get; set; }
 
         protected virtual string WebAppDir => "mvc";
 
         protected override string SourcePath => Path.Combine("mvc", "Controllers", "HomeController.cs");
 
         protected override string ExpectedOutput => $"<title>{NewValue}";
+
+        protected override void CopyApp()
+        {
+            base.CopyApp();
+
+            if (RazorCompileOnBuild)
+            {
+                Util.InsertInFileBefore(
+                    Path.Combine(RootTempDir, "mvc", "mvc.csproj"),
+                    "  <PropertyGroup>",
+                    _razorCompileOnBuildPropertyGroup);
+            }
+        }
 
         protected override string Run(bool first = false)
         {
@@ -43,14 +68,8 @@ namespace DotNetCliPerf
 
         private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) Run(bool restore, bool build = true)
         {
-            var argument = "run";
-            if (RazorCompileOnBuild)
-            {
-                argument += " /p:RazorCompileOnBuild=true /p:UseRazorBuildServer=true";
-            }
-
             return StartDotNet(
-                argument,
+                "run",
                 restore: restore,
                 build: build,
                 workingSubDirectory: WebAppDir);
