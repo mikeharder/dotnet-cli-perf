@@ -201,10 +201,10 @@ namespace DotNetCliPerf
 
             selectedBenchmarks = selectedBenchmarks.
                 Where(b => !options.Types.Any() ||
-                                               b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
-                                    Where(b => !options.Methods.Any() ||
-                                               b.Target.Method.Name.ContainsAny(options.Methods, StringComparison.OrdinalIgnoreCase)).
-                                    Where(b => b.Parameters.Match(parameters));
+                      b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
+                Where(b => !options.Methods.Any() ||
+                      b.Target.Method.Name.ContainsAny(options.Methods, StringComparison.OrdinalIgnoreCase)).
+                Where(b => b.Parameters.Match(parameters));
 
             BenchmarkRunner.Run(selectedBenchmarks.ToArray(), config);
 
