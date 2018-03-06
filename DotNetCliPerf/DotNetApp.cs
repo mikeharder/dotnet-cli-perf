@@ -13,7 +13,7 @@ namespace DotNetCliPerf
         [Params(true, false)]
         public bool NodeReuse { get; set; }
 
-        [Params("NotApplicable", "14.0.25420.1", "15.5.180.51428", "15.6.81.24225")]
+        [Params("NotApplicable", "14.0.25420.1", "15.5.180.51428", "15.6.82.30579")]
         public string MSBuildVersion { get; set; }
 
         public override void GlobalSetup()
