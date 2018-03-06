@@ -85,13 +85,10 @@ namespace DotNetCliPerf
 
         private static string GetVSVersion(string msBuildVersion)
         {
-            if (msBuildVersion.StartsWith("15.5", StringComparison.OrdinalIgnoreCase))
+            if (msBuildVersion.StartsWith("15.6", StringComparison.OrdinalIgnoreCase) ||
+                msBuildVersion.StartsWith("15.6", StringComparison.OrdinalIgnoreCase))
             {
                 return "2017";
-            }
-            else if (msBuildVersion.StartsWith("15.6", StringComparison.OrdinalIgnoreCase))
-            {
-                return "Preview";
             }
             else
             {
