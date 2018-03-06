@@ -7,7 +7,7 @@ namespace DotNetCliPerf
         // ClassLib007 is transitively referenced the most times
         private const string _rootProject = "ClassLib007";
 
-        protected override string SourceDir => Path.Combine("web", "large", "framework");
+        protected override string SourceDir => Path.Combine("web", "large", "framework", PackageManagementFormat.ToString());
 
         protected override string SourcePath =>
             (SourceChanged == SourceChanged.Leaf) ?

@@ -8,6 +8,9 @@ namespace DotNetCliPerf
         [Params(true, false)]
         public bool Restore { get; set; }
 
+        [Params(PackageManagementFormat.PackagesConfig, PackageManagementFormat.PackageReference)]
+        public PackageManagementFormat PackageManagementFormat { get; set; }
+
         protected override void Build(bool first = false)
         {
             if (first || NoBuild != true)

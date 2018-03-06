@@ -96,6 +96,14 @@ namespace DotNetCliPerf
                 });
             }
 
+            // If not specified, default "PackageManagementFormat" to "PackagesConfig" to match typical ASP.NET customer usage.
+            if (!parameters.ContainsKey("PackageManagementFormat"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b =>
+                    (PackageManagementFormat?)b.Parameters["PackageManagementFormat"] == null ||
+                    (PackageManagementFormat?)b.Parameters["PackageManagementFormat"] == PackageManagementFormat.PackagesConfig);
+            }
+
             // If not specified, default "Parallel" to "true" to match typical customer usage.
             if (!parameters.ContainsKey("Parallel"))
             {

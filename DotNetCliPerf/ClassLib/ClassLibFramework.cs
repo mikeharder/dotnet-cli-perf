@@ -4,7 +4,7 @@ namespace DotNetCliPerf
 {
     public class ClassLibFramework : FrameworkApp
     {
-        protected override string SourceDir => Path.Combine("classlib", "framework");
+        protected override string SourceDir => Path.Combine("classlib", "framework", PackageManagementFormat.ToString());
 
         protected override string SourcePath => Path.Combine("classlib", "Class1.cs");
 
