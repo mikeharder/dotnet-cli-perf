@@ -182,21 +182,5 @@ namespace ScenarioGenerator
                 "{F9625F4A-BB92-465C-A8A4-2D13A8A99086}.Release|Any CPU.Build.0 = Release|Any CPU" + Environment.NewLine,
                 configs.ToString());
         }
-
-        protected override void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-            sb.AppendLine("<packages>");
-
-            foreach (var p in packageReferences)
-            {
-                sb.AppendLine($"  <package id=\"{p.Name}\" version=\"{p.Version}\" targetFramework=\"net471\" />");
-            }
-
-            sb.AppendLine("</packages>");
-
-            File.WriteAllText(Path.Combine(Path.GetDirectoryName(path), "packages.config"), sb.ToString());
-        }
     }
 }

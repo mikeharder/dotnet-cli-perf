@@ -108,21 +108,5 @@ namespace ScenarioGenerator
         {
             Util.RunProcess("dotnet", $"sln {solutionName} add {String.Join(' ', projects)}", path);
         }
-
-        protected override void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences)
-        {
-            var root = XElement.Load(path);
-            var itemGroup = root.Descendants(XName.Get("ItemGroup", root.Name.NamespaceName)).First();
-
-            foreach (var p in packageReferences)
-            {
-                itemGroup.Add(new XElement(
-                    XName.Get("PackageReference", root.Name.NamespaceName),
-                    new XAttribute("Include", p.Name),
-                    new XAttribute("Version", p.Version)));
-            }
-
-            root.Save(path);
-        }
     }
 }
