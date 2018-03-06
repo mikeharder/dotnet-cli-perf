@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>814836E0-0D89-4410-A576-1EE327D861BB</ProjectGuid>
+    <ProjectGuid>2523A989-B223-4F5A-9300-9906B20E4736</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib039</RootNamespace>
@@ -138,6 +138,7 @@
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

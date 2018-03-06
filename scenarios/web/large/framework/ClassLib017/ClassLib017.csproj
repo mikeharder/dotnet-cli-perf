@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>3882E987-D23B-424E-9FA6-3C1486AA1C9B</ProjectGuid>
+    <ProjectGuid>B4B2DD8D-1F3D-4452-B1AA-FEDDA573A0B9</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib017</RootNamespace>
@@ -137,6 +137,8 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>677A358E-058A-4E79-AFEE-712C36B147F7</ProjectGuid>
+    <ProjectGuid>E7B95D3D-2F79-460E-A07C-77B664EE1E56</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib026</RootNamespace>
@@ -139,6 +139,9 @@
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib011\ClassLib011.csproj" />
     <ProjectReference Include="..\ClassLib014\ClassLib014.csproj" />
+    <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00004" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

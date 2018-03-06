@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9A1C9810-CBC0-4674-AE1E-76C4EB2AC984</ProjectGuid>
+    <ProjectGuid>D55ECD3D-69E8-4DF9-B90E-D8B7DC65DF0E</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib049</RootNamespace>
@@ -138,6 +138,9 @@
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib042\ClassLib042.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

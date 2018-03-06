@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>CCBA93C1-0AD7-4001-8DB1-464E8E234A99</ProjectGuid>
+    <ProjectGuid>D5E3ACA1-9E54-44E6-9051-113FAFDFEE03</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib094</RootNamespace>
@@ -141,6 +141,7 @@
     <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
     <ProjectReference Include="..\ClassLib016\ClassLib016.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

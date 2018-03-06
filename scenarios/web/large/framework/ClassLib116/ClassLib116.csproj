@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>A8D16BBE-71B5-48A1-9A0F-ECE970CC0699</ProjectGuid>
+    <ProjectGuid>39A400E2-7F38-4114-9A33-28BEACCE9DCE</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib116</RootNamespace>
@@ -154,6 +154,12 @@
     <ProjectReference Include="..\ClassLib045\ClassLib045.csproj" />
     <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
     <ProjectReference Include="..\ClassLib020\ClassLib020.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="MimeMapping" Version="1.0.1.10" />
+    <PackageReference Include="OrchardCore.ImageSharp.Web" Version="1.0.0-ci0027" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

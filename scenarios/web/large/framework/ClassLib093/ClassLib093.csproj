@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>1E8A21B6-1C7C-408B-9B0E-7FF064D788FE</ProjectGuid>
+    <ProjectGuid>E2B5AA6C-57E5-4469-B04E-E2BD87B88A02</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib093</RootNamespace>
@@ -139,6 +139,7 @@
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
     <ProjectReference Include="..\ClassLib072\ClassLib072.csproj" />
+    <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>28E9D3A2-03CD-4347-BD7E-9990B4A27128</ProjectGuid>
+    <ProjectGuid>D278B342-DC60-4AB5-B29B-1F39AC50E6D1</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib081</RootNamespace>
@@ -143,6 +143,7 @@
     <ProjectReference Include="..\ClassLib052\ClassLib052.csproj" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
     <ProjectReference Include="..\ClassLib075\ClassLib075.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

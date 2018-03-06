@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>4BBCF36A-891D-41A3-A2BA-A95244DCA66E</ProjectGuid>
+    <ProjectGuid>3BF0CD61-7D12-4B35-904F-5415D3250413</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib003</RootNamespace>
@@ -137,6 +137,8 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="YesSql.Core" Version="2.0.0-beta-1097" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>68942902-FB99-4422-A824-320379DC3651</ProjectGuid>
+    <ProjectGuid>5FE2A2E8-3BF1-4E50-9FDD-3E8B1201A579</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib115</RootNamespace>
@@ -146,6 +146,8 @@
     <ProjectReference Include="..\ClassLib009\ClassLib009.csproj" />
     <ProjectReference Include="..\ClassLib070\ClassLib070.csproj" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <PackageReference Include="Markdig" Version="0.13.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

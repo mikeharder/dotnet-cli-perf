@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>3B586FCA-7163-45A6-9D59-8D87A3BABCBB</ProjectGuid>
+    <ProjectGuid>58BA9E2E-6B9A-4791-9619-B980B67D339E</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib126</RootNamespace>
@@ -146,6 +146,8 @@
     <ProjectReference Include="..\ClassLib114\ClassLib114.csproj" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
     <ProjectReference Include="..\ClassLib014\ClassLib014.csproj" />
+    <PackageReference Include="Irony.Core" Version="1.0.7" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

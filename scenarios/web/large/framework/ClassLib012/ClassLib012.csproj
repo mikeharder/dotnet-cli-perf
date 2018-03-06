@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9AD2C1F9-446D-401C-B740-24B8343514EB</ProjectGuid>
+    <ProjectGuid>50649A9E-2612-49B3-B426-F45A28F6733D</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib012</RootNamespace>
@@ -137,6 +137,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

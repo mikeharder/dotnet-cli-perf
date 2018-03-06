@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9106A004-72BF-495A-9D83-ECF2702A0BB3</ProjectGuid>
+    <ProjectGuid>7DDC3BF9-9D17-45A0-BC31-3217C34B3D5D</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib118</RootNamespace>
@@ -147,6 +147,9 @@
     <ProjectReference Include="..\ClassLib074\ClassLib074.csproj" />
     <ProjectReference Include="..\ClassLib075\ClassLib075.csproj" />
     <ProjectReference Include="..\ClassLib097\ClassLib097.csproj" />
+    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="2.0.0-rc1-0286" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
+    <PackageReference Include="OpenIddict" Version="2.0.0-preview1-0657" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

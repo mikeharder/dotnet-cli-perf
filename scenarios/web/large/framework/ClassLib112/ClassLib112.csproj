@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>C691ED46-A478-43A3-AE1E-9820A712E0FC</ProjectGuid>
+    <ProjectGuid>57CD396A-58C9-4317-86E2-77F08E259967</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib112</RootNamespace>
@@ -145,6 +145,8 @@
     <ProjectReference Include="..\ClassLib063\ClassLib063.csproj" />
     <ProjectReference Include="..\ClassLib067\ClassLib067.csproj" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <PackageReference Include="Fluid.Core" Version="1.0.0-beta-9399" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

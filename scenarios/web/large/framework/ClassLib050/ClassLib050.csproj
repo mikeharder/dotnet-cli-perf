@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>F11FF392-C75C-4CFA-84F5-08A2D636DC2B</ProjectGuid>
+    <ProjectGuid>0ADEFC5B-4FAC-4C0A-829A-B2EB0143C457</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib050</RootNamespace>
@@ -141,6 +141,13 @@
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
     <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
     <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="YesSql.Provider.MySql" Version="1.0.0-beta-1097" />
+    <PackageReference Include="YesSql.Provider.PostgreSql" Version="1.0.0-beta-1097" />
+    <PackageReference Include="YesSql.Provider.SqLite" Version="1.0.0-beta-1097" />
+    <PackageReference Include="YesSql.Provider.SqlServer" Version="1.0.0-beta-1097" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

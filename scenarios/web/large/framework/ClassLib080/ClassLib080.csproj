@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>25C1E42A-862D-4C5D-9389-F0A41441DAC8</ProjectGuid>
+    <ProjectGuid>EE32CB20-A2A0-47BF-918A-CF1EECB68F6C</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib080</RootNamespace>
@@ -139,6 +139,8 @@
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
     <ProjectReference Include="..\ClassLib046\ClassLib046.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

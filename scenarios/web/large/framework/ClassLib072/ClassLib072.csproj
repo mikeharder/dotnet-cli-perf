@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>D355BE31-9AF9-4D95-A102-D7AED658E892</ProjectGuid>
+    <ProjectGuid>3B869085-D9BC-481D-A09C-AF19F86277D9</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib072</RootNamespace>
@@ -138,6 +138,9 @@
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib056\ClassLib056.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

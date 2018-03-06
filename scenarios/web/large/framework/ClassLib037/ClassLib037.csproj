@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>A3D2EAD1-A5C6-48E8-A2C7-9A3D6C3F9416</ProjectGuid>
+    <ProjectGuid>37DA09E5-E71F-4508-BD3B-C2BACF9DB863</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib037</RootNamespace>
@@ -142,6 +142,10 @@
     <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
     <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
     <ProjectReference Include="..\ClassLib013\ClassLib013.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
+    <PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

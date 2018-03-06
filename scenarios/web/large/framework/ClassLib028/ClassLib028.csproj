@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>1FBA7663-369D-4A17-B360-6378968F84B4</ProjectGuid>
+    <ProjectGuid>51FC1CE8-60B3-40FD-9285-0BC98EB971C9</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib028</RootNamespace>
@@ -139,6 +139,9 @@
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib005\ClassLib005.csproj" />
     <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

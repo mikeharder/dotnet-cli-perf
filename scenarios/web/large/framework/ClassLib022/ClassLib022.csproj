@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>BF8E1FA7-4C0D-4043-9EB6-FE6597EC3AB9</ProjectGuid>
+    <ProjectGuid>E8E94D6C-D4CD-4B9C-845B-BA44D599ED26</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib022</RootNamespace>
@@ -138,6 +138,10 @@
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

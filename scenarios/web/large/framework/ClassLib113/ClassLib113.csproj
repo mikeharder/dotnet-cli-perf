@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>842C9CF6-8728-403C-BAED-74C7E13DC027</ProjectGuid>
+    <ProjectGuid>2F9EBBB1-01F6-4C29-A8A7-0CA5DC37B295</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib113</RootNamespace>
@@ -141,6 +141,7 @@
     <ProjectReference Include="..\ClassLib088\ClassLib088.csproj" />
     <ProjectReference Include="..\ClassLib010\ClassLib010.csproj" />
     <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

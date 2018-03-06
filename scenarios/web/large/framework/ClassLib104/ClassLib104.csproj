@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>D5E14CF7-981D-44D0-95D8-DAA2A423199A</ProjectGuid>
+    <ProjectGuid>2839ACC1-0F8E-400C-BB17-607DA365BB14</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib104</RootNamespace>
@@ -143,6 +143,8 @@
     <ProjectReference Include="..\ClassLib067\ClassLib067.csproj" />
     <ProjectReference Include="..\ClassLib009\ClassLib009.csproj" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

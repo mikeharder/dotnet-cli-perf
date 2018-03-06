@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>F0C78134-0DBD-4B46-BCDC-ED865802A985</ProjectGuid>
+    <ProjectGuid>66822A41-ED3C-43E9-B3B7-BCCA213894DE</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib024</RootNamespace>
@@ -138,6 +138,7 @@
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib008\ClassLib008.csproj" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>DAF6C0F2-EF68-469C-ABBA-9BDFFA199B8D</ProjectGuid>
+    <ProjectGuid>0516BDD6-C008-422A-8089-61C7F6FDB176</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib100</RootNamespace>
@@ -145,6 +145,7 @@
     <ProjectReference Include="..\ClassLib067\ClassLib067.csproj" />
     <ProjectReference Include="..\ClassLib009\ClassLib009.csproj" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

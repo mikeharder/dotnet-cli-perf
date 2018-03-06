@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9327F4E5-B9EE-4C2F-A0B7-1984EB5FE55D</ProjectGuid>
+    <ProjectGuid>47FD01D2-7EEE-4AC0-8F5D-E79A0526E751</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib056</RootNamespace>
@@ -140,6 +140,13 @@
     <ProjectReference Include="..\ClassLib037\ClassLib037.csproj" />
     <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
     <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Composite" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>47F99224-09EC-4A04-A84F-C4C76EC7A45E</ProjectGuid>
+    <ProjectGuid>062A43B3-F6DD-47CF-82A1-A20979974D2B</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib041</RootNamespace>
@@ -138,6 +138,8 @@
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.1" />
+    <PackageReference Include="System.Security.AccessControl" Version="4.4.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

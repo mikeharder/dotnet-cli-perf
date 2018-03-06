@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>CF1A90AB-8BAE-4B26-AE83-2910E78B5AB1</ProjectGuid>
+    <ProjectGuid>A0D16F35-496B-49FA-BD6F-3CE3B6666E3B</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib011</RootNamespace>
@@ -137,6 +137,7 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
+    <PackageReference Include="Lucene.Net" Version="4.8.0-beta00004" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

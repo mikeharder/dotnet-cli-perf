@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>A5308D5D-5AEE-4D1B-8C99-AE27697E04ED</ProjectGuid>
+    <ProjectGuid>13EC9A02-D05E-470D-B5DD-B04C5456EB5C</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib023</RootNamespace>
@@ -139,6 +139,7 @@
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib008\ClassLib008.csproj" />
     <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.5.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

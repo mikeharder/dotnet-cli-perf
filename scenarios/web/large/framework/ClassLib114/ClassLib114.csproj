@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>BE66F1FB-BC7B-468B-BE80-706D69A98C39</ProjectGuid>
+    <ProjectGuid>49E1A0BF-3283-4C14-AA8F-8A091C47D198</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib114</RootNamespace>
@@ -152,6 +152,9 @@
     <ProjectReference Include="..\ClassLib026\ClassLib026.csproj" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
     <ProjectReference Include="..\ClassLib045\ClassLib045.csproj" />
+    <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00004" />
+    <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00004" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

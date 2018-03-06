@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>62C4074F-D16B-493E-8B79-2B477E2D5F8B</ProjectGuid>
+    <ProjectGuid>9916F7DB-D3ED-4D35-91C9-52C8DCC442FE</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib065</RootNamespace>
@@ -140,6 +140,9 @@
     <ProjectReference Include="..\ClassLib006\ClassLib006.csproj" />
     <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
     <ProjectReference Include="..\ClassLib056\ClassLib056.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

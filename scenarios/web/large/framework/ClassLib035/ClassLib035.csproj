@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>10EC126C-0514-40A9-9922-9A2EA1068859</ProjectGuid>
+    <ProjectGuid>68EF782E-43A4-4523-8078-C4EC3F2F6234</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib035</RootNamespace>
@@ -138,6 +138,7 @@
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
     <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Elm" Version="0.2.2" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

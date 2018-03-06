@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>1AB86E61-1ECF-4B19-8F64-E93A32A8104A</ProjectGuid>
+    <ProjectGuid>18E21C57-88D1-4A2C-AD9B-8EACA8CDBCE6</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib051</RootNamespace>
@@ -142,6 +142,12 @@
     <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
     <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
     <ProjectReference Include="..\ClassLib042\ClassLib042.csproj" />
+    <PackageReference Include="Castle.Core" Version="4.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+    <PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

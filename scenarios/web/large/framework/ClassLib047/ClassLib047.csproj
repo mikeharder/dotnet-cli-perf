@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>0C827084-693F-4A1A-A810-96E037115E59</ProjectGuid>
+    <ProjectGuid>6E6B58FC-5204-4F20-B1C9-35D510CBBD9E</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib047</RootNamespace>
@@ -140,6 +140,10 @@
     <ProjectReference Include="..\ClassLib005\ClassLib005.csproj" />
     <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
     <ProjectReference Include="..\ClassLib032\ClassLib032.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />
+    <PackageReference Include="YesSql.Core" Version="2.0.0-beta-1097" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />
