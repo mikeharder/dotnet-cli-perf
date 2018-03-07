@@ -32,11 +32,13 @@ namespace SolutionGenerator
 
             if (PackageManagementFormat == PackageManagementFormat.PackagesConfig)
             {
-                GenerateInstallPackagesScript(path, template.Projects);
+                // Do not add PackageReferences to Web MainProject, since the web app needs to use its own PackageReferences to ensure
+                // it builds and runs correctly
+                GenerateInstallPackagesScript(path, template.Projects.Where(p => p.Name != mainProject));
             }
         }
 
-        private void GenerateInstallPackagesScript(string path, IList<(string Name, IEnumerable<string> ProjectReferences, IEnumerable<(string Name, string Version)> PackageReferences)> projects)
+        private void GenerateInstallPackagesScript(string path, IEnumerable<(string Name, IEnumerable<string> ProjectReferences, IEnumerable<(string Name, string Version)> PackageReferences)> projects)
         {
             var sb = new StringBuilder();
             foreach (var p in projects)
