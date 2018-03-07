@@ -10,8 +10,10 @@ using System.Xml.Linq;
 
 namespace SolutionGenerator
 {
-    class FrameworkSolutionGenerator : DotNetSolutionGenerator, ISolutionGenerator, IPacka
+    class FrameworkSolutionGenerator : DotNetSolutionGenerator, ISolutionGenerator, IPackageManagementFormat
     {
+        public PackageManagementFormat PackageManagementFormat { get; set; }
+
         public void GenerateSolution(string path, ISolution template, Scenario scenario)
         {
             var mainProject = template.MainProject;
@@ -27,6 +29,24 @@ namespace SolutionGenerator
 
             Console.WriteLine("Adding projects to solution");
             AddProjectsToSolution(path, $"{mainProject}.sln", projectFiles, mainProject);
+
+            if (PackageManagementFormat == PackageManagementFormat.PackagesConfig)
+            {
+                GenerateInstallPackagesScript(path, template.Projects);
+            }
+        }
+
+        private void GenerateInstallPackagesScript(string path, IList<(string Name, IEnumerable<string> ProjectReferences, IEnumerable<(string Name, string Version)> PackageReferences)> projects)
+        {
+            var sb = new StringBuilder();
+            foreach (var p in projects)
+            {
+                foreach (var r in p.PackageReferences)
+                {
+                    sb.AppendLine($"Install-Package {r.Name} -Version {r.Version} -ProjectName {p.Name}");
+                }
+            }
+            File.WriteAllText(Path.Combine(path, "Install-Packages.ps1"), sb.ToString());
         }
 
         private string GenerateProject(string path, string name, bool mainProject, Scenario scenario,
@@ -107,8 +127,11 @@ namespace SolutionGenerator
                 // Add ProjectReference lines to csproj
                 AddProjectReferences(destProj, projectReferences);
 
-                // Add PackageReferences to packages.config
-                AddPackageReferences(destProj, packageReferences);
+                if (PackageManagementFormat == PackageManagementFormat.PackageReference)
+                {
+                    // Add PackageReferences to packages.config
+                    AddPackageReferences(destProj, packageReferences);
+                }
 
                 // Update Class001.Property with dependencies
                 AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), $"\"{name}\"", projectReferences);

@@ -27,7 +27,7 @@ namespace SolutionGenerator
         public Scenario Scenario { get; set; }
 
         [Option('p', "packageManagementFormat")]
-        public PackageManagementFormat PackageManagementFormat { get; set; } = PackageManagementFormat.PackageReference;
+        public PackageManagementFormat PackageManagementFormat { get; set; }
     }
 
     class Program
@@ -54,6 +54,11 @@ namespace SolutionGenerator
 
             var type = Type.GetType($"SolutionGenerator.Solutions.{_options.Solution}Solution", throwOnError: true, ignoreCase: true);
             ISolution template = (ISolution)Activator.CreateInstance(type);
+
+            if (template is IPackageManagementFormat packageManagementTemplate)
+            {
+                packageManagementTemplate.PackageManagementFormat = _options.PackageManagementFormat;
+            }
 
             var threads = template.Projects.Count();
             ThreadPool.SetMaxThreads(threads, threads);

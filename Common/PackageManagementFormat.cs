@@ -1,4 +1,4 @@
-﻿namespace DotNetCliPerf
+﻿namespace Common
 {
     public enum PackageManagementFormat
     {

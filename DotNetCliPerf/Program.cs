@@ -5,6 +5,7 @@ using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.InProcess;
 using BenchmarkDotNet.Validators;
 using CommandLine;
+using Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
