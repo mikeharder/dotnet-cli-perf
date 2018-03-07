@@ -32,7 +32,7 @@ namespace SolutionGenerator
 
             if (PackageManagementFormat == PackageManagementFormat.PackagesConfig)
             {
-                // Do not add PackageReferences to Web MainProject, since the web app needs to use its own PackageReferences to ensure
+                // Exclude Web MainProject, since the web app needs to use its own PackageReferences to ensure
                 // it builds and runs correctly
                 GenerateInstallPackagesScript(path, template.Projects.Where(p => p.Name != mainProject));
             }
