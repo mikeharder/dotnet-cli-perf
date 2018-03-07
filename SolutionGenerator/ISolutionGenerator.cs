@@ -1,4 +1,4 @@
-﻿namespace ScenarioGenerator
+﻿namespace SolutionGenerator
 {
     interface ISolutionGenerator
     {

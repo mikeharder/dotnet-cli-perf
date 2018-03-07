@@ -8,10 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ScenarioGenerator
+namespace SolutionGenerator
 {
-    class FrameworkSolutionGenerator : DotNetSolutionGenerator, ISolutionGenerator
+    class FrameworkSolutionGenerator : DotNetSolutionGenerator, ISolutionGenerator, IPackageManagementFormat
     {
+        public PackageManagementFormat PackageManagementFormat { get; set; }
+
         public void GenerateSolution(string path, ISolution template, Scenario scenario)
         {
             var mainProject = template.MainProject;
@@ -27,6 +29,26 @@ namespace ScenarioGenerator
 
             Console.WriteLine("Adding projects to solution");
             AddProjectsToSolution(path, $"{mainProject}.sln", projectFiles, mainProject);
+
+            if (PackageManagementFormat == PackageManagementFormat.PackagesConfig)
+            {
+                // Exclude Web MainProject, since the web app needs to use its own PackageReferences to ensure
+                // it builds and runs correctly
+                GenerateInstallPackagesScript(path, template.Projects.Where(p => p.Name != mainProject));
+            }
+        }
+
+        private void GenerateInstallPackagesScript(string path, IEnumerable<(string Name, IEnumerable<string> ProjectReferences, IEnumerable<(string Name, string Version)> PackageReferences)> projects)
+        {
+            var sb = new StringBuilder();
+            foreach (var p in projects)
+            {
+                foreach (var r in p.PackageReferences)
+                {
+                    sb.AppendLine($"Install-Package {r.Name} -Version {r.Version} -ProjectName {p.Name}");
+                }
+            }
+            File.WriteAllText(Path.Combine(path, "Install-Packages.ps1"), sb.ToString());
         }
 
         private string GenerateProject(string path, string name, bool mainProject, Scenario scenario,
@@ -107,8 +129,11 @@ namespace ScenarioGenerator
                 // Add ProjectReference lines to csproj
                 AddProjectReferences(destProj, projectReferences);
 
-                // Add PackageReferences to packages.config
-                AddPackageReferences(destProj, packageReferences);
+                if (PackageManagementFormat == PackageManagementFormat.PackageReference)
+                {
+                    // Add PackageReferences to packages.config
+                    AddPackageReferences(destProj, packageReferences);
+                }
 
                 // Update Class001.Property with dependencies
                 AddPropertyReferences(Path.Combine(destDir, $"Class001.cs"), $"\"{name}\"", projectReferences);
@@ -181,22 +206,6 @@ namespace ScenarioGenerator
                 Path.Combine(path, solutionName),
                 "{F9625F4A-BB92-465C-A8A4-2D13A8A99086}.Release|Any CPU.Build.0 = Release|Any CPU" + Environment.NewLine,
                 configs.ToString());
-        }
-
-        protected override void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-            sb.AppendLine("<packages>");
-
-            foreach (var p in packageReferences)
-            {
-                sb.AppendLine($"  <package id=\"{p.Name}\" version=\"{p.Version}\" targetFramework=\"net471\" />");
-            }
-
-            sb.AppendLine("</packages>");
-
-            File.WriteAllText(Path.Combine(Path.GetDirectoryName(path), "packages.config"), sb.ToString());
         }
     }
 }

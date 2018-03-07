@@ -4,6 +4,6 @@ namespace DotNetCliPerf
 {
     public class WebSmallFramework : WebFramework
     {
-        protected override string SourceDir => Path.Combine("web", "small", "framework");
+        protected override string SourceDir => Path.Combine("web", "small", "framework", PackageManagementFormat.ToString());
     }
 }

@@ -3,11 +3,9 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace ScenarioGenerator
+namespace SolutionGenerator
 {
     class CoreSolutionGenerator : DotNetSolutionGenerator, ISolutionGenerator
     {
@@ -107,22 +105,6 @@ namespace ScenarioGenerator
         private void AddProjectsToSolution(string path, string solutionName, IEnumerable<string> projects, string mainProject)
         {
             Util.RunProcess("dotnet", $"sln {solutionName} add {String.Join(' ', projects)}", path);
-        }
-
-        protected override void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences)
-        {
-            var root = XElement.Load(path);
-            var itemGroup = root.Descendants(XName.Get("ItemGroup", root.Name.NamespaceName)).First();
-
-            foreach (var p in packageReferences)
-            {
-                itemGroup.Add(new XElement(
-                    XName.Get("PackageReference", root.Name.NamespaceName),
-                    new XAttribute("Include", p.Name),
-                    new XAttribute("Version", p.Version)));
-            }
-
-            root.Save(path);
         }
     }
 }

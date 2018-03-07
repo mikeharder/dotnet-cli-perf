@@ -5,11 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace ScenarioGenerator
+namespace SolutionGenerator
 {
     abstract class DotNetSolutionGenerator
     {
-        protected abstract void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences);
+        protected static void AddPackageReferences(string path, IEnumerable<(string Name, string Version)> packageReferences)
+        {
+            var root = XElement.Load(path);
+            var itemGroup = root.Descendants(XName.Get("ItemGroup", root.Name.NamespaceName)).First();
+
+            foreach (var p in packageReferences)
+            {
+                itemGroup.Add(new XElement(
+                    XName.Get("PackageReference", root.Name.NamespaceName),
+                    new XAttribute("Include", p.Name),
+                    new XAttribute("Version", p.Version)));
+            }
+
+            root.Save(path);
+        }
 
         protected static void AddProjectReferences(string path, IEnumerable<string> projectReferences)
         {
