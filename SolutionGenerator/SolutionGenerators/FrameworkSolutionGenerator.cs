@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ScenarioGenerator
+namespace SolutionGenerator
 {
-    class FrameworkSolutionGenerator : DotNetSolutionGenerator, ISolutionGenerator
+    class FrameworkSolutionGenerator : DotNetSolutionGenerator, ISolutionGenerator, IPacka
     {
         public void GenerateSolution(string path, ISolution template, Scenario scenario)
         {

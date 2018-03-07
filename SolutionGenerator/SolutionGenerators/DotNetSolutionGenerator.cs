@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace ScenarioGenerator
+namespace SolutionGenerator
 {
     abstract class DotNetSolutionGenerator
     {

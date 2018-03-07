@@ -1,17 +1,13 @@
 ﻿using CommandLine;
 using Common;
-using ScenarioGenerator.Solutions;
+using SolutionGenerator.Solutions;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace ScenarioGenerator
+namespace SolutionGenerator
 {
     class Options
     {
@@ -29,6 +25,9 @@ namespace ScenarioGenerator
 
         [Option('c', "scenario", Required = true)]
         public Scenario Scenario { get; set; }
+
+        [Option('p', "packageManagementFormat")]
+        public PackageManagementFormat PackageManagementFormat { get; set; } = PackageManagementFormat.PackageReference;
     }
 
     class Program
@@ -53,7 +52,7 @@ namespace ScenarioGenerator
 
             var tempDir = _options.OutputDir == null ? Util.GetTempDir() : Util.GetTempDir(_options.OutputDir);
 
-            var type = Type.GetType($"ScenarioGenerator.Solutions.{_options.Solution}Solution", throwOnError: true, ignoreCase: true);
+            var type = Type.GetType($"SolutionGenerator.Solutions.{_options.Solution}Solution", throwOnError: true, ignoreCase: true);
             ISolution template = (ISolution)Activator.CreateInstance(type);
 
             var threads = template.Projects.Count();

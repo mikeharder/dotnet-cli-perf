@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ScenarioGenerator.Solutions
+namespace SolutionGenerator.Solutions
 {
     class ManualSolution : ISolution
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ScenarioGenerator.Solutions
+namespace SolutionGenerator.Solutions
 {
     // https://github.com/gradle/performance-comparisons/tree/master/large-multiproject
     class GradleLargeMultiProjectSolution : ISolution

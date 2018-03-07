@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ScenarioGenerator
+namespace SolutionGenerator
 {
     public interface ISolution
     {
