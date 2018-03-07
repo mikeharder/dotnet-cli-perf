@@ -235,5 +235,3 @@ Install-Package Moq -Version 4.7.99 -ProjectName ClassLib128
 Install-Package xunit -Version 2.3.0-beta2-build3683 -ProjectName ClassLib128
 Install-Package xunit.analyzers -Version 0.3.0 -ProjectName ClassLib128
 Install-Package xunit.runner.visualstudio -Version 2.3.0-beta2-build1317 -ProjectName ClassLib128
-Install-Package Microsoft.AspNetCore -Version 2.0.1 -ProjectName mvc
-Install-Package Microsoft.AspNetCore.Mvc.Razor.ViewCompilation -Version 2.0.1 -ProjectName mvc
