@@ -17,7 +17,7 @@ namespace DotNetCliPerf
         [Params(true, false)]
         public bool Restore { get; set; }
 
-        // [Params(false, true)]
+        [Params(false, true)]
         public bool TieredJit { get; set; }
 
         [Params(MSBuildFlavor.Framework, MSBuildFlavor.Core)]

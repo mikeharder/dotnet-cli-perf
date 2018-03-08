@@ -208,6 +208,12 @@ namespace DotNetCliPerf
                 selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["NoBuild"] == false || (bool?)b.Parameters["NoBuild"] == null);
             }
 
+            // If not specified, default TieredJit to null or false
+            if (!parameters.ContainsKey("TieredJit"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["TieredJit"] == false || (bool?)b.Parameters["TieredJit"] == null);
+            }
+
             selectedBenchmarks = selectedBenchmarks.
                 Where(b => !options.Types.Any() ||
                       b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
