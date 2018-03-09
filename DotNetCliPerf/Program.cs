@@ -82,11 +82,11 @@ namespace DotNetCliPerf
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b =>
                 {
-                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (typeof(CoreApp).IsAssignableFrom(b.Target.Type))
                     {
                         return (bool)b.Parameters["Restore"];
                     }
-                    else if (b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0)
+                    else if (typeof(FrameworkApp).IsAssignableFrom(b.Target.Type))
                     {
                         return !(bool)b.Parameters["Restore"];
                     }
@@ -116,7 +116,7 @@ namespace DotNetCliPerf
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b =>
                 {
-                    if (b.Target.Type.Name.IndexOf("Core", StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (typeof(CoreApp).IsAssignableFrom(b.Target.Type))
                     {
                         return ((MSBuildFlavor)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Core;
                     }

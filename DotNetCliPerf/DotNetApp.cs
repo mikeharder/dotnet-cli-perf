@@ -7,6 +7,8 @@ namespace DotNetCliPerf
 {
     public abstract class DotNetApp : App
     {
+        public virtual string Solution { get; }
+
         [Params(true, false)]
         public bool Parallel { get; set; }
 

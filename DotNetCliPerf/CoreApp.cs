@@ -78,11 +78,11 @@ namespace DotNetCliPerf
             {
                 if (MSBuildFlavor == MSBuildFlavor.Framework)
                 {
-                    MSBuild("/t:build", restore: first || Restore);
+                    MSBuild($"/t:build {Solution}", restore: first || Restore);
                 }
                 else
                 {
-                    DotNet("build", restore: first || Restore);
+                    DotNet($"build {Solution}", restore: first || Restore);
                 }
             }
         }
