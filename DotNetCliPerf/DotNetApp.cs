@@ -18,12 +18,12 @@ namespace DotNetCliPerf
 
         public override void GlobalSetup()
         {
+            base.GlobalSetup();
+
             if (!NodeReuse)
             {
                 Environment.Add("MSBUILDDISABLENODEREUSE", "1");
             }
-
-            base.GlobalSetup();
         }
 
         private string GetMSBuildPath()
