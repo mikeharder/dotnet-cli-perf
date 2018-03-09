@@ -38,10 +38,9 @@ namespace DotNetCliPerf
 
         public override void GlobalCleanup()
         {
-            // Workaround bug in MSBuild on Core with NodeReuse, where "dotnet.exe MSBuild.dll" processes need to be manually
-            // killed before the temp directory is cleaned up, since the nodes keep a file handle to the last directory
-            // they built.
-            Util.RunProcess("taskkill", "/f /fi \"modules eq msbuild.dll\"", RootTempDir);
+            // Kill all persistent dotnet.exe processes (e.g. MSBuild Nodes, VBCSCompiler Server) to ensure
+            // a clean state at the start of each run
+            Util.RunProcess("taskkill", "/f /im dotnet.exe", RootTempDir);
 
             base.GlobalCleanup();
         }
