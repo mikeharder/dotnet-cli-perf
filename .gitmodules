@@ -4,3 +4,9 @@
 [submodule "AspNetCommon"]
 	path = AspNetCommon
 	url = https://github.com/aspnet/Common
+[submodule "scenarios/Mvc"]
+	path = scenarios/Mvc
+	url = https://github.com/aspnet/Mvc
+[submodule "scenarios/KestrelHttpServer"]
+	path = scenarios/KestrelHttpServer
+	url = https://github.com/aspnet/KestrelHttpServer
