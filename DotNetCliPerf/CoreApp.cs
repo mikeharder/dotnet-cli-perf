@@ -28,6 +28,10 @@ namespace DotNetCliPerf
 
         public override void GlobalSetup()
         {
+            // The environment of persistent build processes may be modified, so they should be killed in both
+            // setup and cleanup to ensure consistent results both inside and outside the benchmarking app.
+            KillPersistentBuildProcesses();
+
             if (TieredJit)
             {
                 Environment.Add("COMPLUS_EXPERIMENTAL_TieredCompilation", "1");
@@ -38,12 +42,17 @@ namespace DotNetCliPerf
 
         public override void GlobalCleanup()
         {
-            // Kill persistent MSBuild Nodes (msbuild.dll) and VBCSCompiler Server ()
-            // to ensure a clean state at the start of each run.
-            Util.RunProcess("taskkill", "/f /fi \"modules eq msbuild.dll\"", RootTempDir);
-            Util.RunProcess("taskkill", "/f /fi \"modules eq vbcscompiler.dll\"", RootTempDir);
+            // The environment of persistent build processes may be modified, so they should be killed in both
+            // setup and cleanup to ensure consistent results both inside and outside the benchmarking app.
+            KillPersistentBuildProcesses();
 
             base.GlobalCleanup();
+        }
+
+        private void KillPersistentBuildProcesses()
+        {
+            Util.RunProcess("taskkill", "/f /fi \"modules eq msbuild.dll\"", RootTempDir);
+            Util.RunProcess("taskkill", "/f /fi \"modules eq vbcscompiler.dll\"", RootTempDir);
         }
 
         protected override void CopyApp()
