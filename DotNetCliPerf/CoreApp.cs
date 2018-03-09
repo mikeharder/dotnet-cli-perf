@@ -38,9 +38,10 @@ namespace DotNetCliPerf
 
         public override void GlobalCleanup()
         {
-            // Kill all persistent dotnet.exe processes (e.g. MSBuild Nodes, VBCSCompiler Server) to ensure
-            // a clean state at the start of each run
-            Util.RunProcess("taskkill", "/f /im dotnet.exe", RootTempDir);
+            // Kill persistent MSBuild Nodes (msbuild.dll) and VBCSCompiler Server ()
+            // to ensure a clean state at the start of each run.
+            Util.RunProcess("taskkill", "/f /fi \"modules eq msbuild.dll\"", RootTempDir);
+            Util.RunProcess("taskkill", "/f /fi \"modules eq vbcscompiler.dll\"", RootTempDir);
 
             base.GlobalCleanup();
         }
