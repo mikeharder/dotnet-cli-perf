@@ -107,8 +107,13 @@ namespace Common
         }
 
         public static (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) StartProcess(
-            string filename, string arguments, string workingDirectory, IDictionary<string, string> environment = null)
+            string filename, string arguments, string workingDirectory = null, IDictionary<string, string> environment = null)
         {
+            if (String.IsNullOrEmpty(workingDirectory))
+            {
+                workingDirectory = Directory.GetCurrentDirectory();
+            }
+
             Util.WriteLine($"{filename} {arguments}");
 
             var process = new Process()
@@ -183,7 +188,7 @@ namespace Common
             return outputBuilder.ToString();
         }
 
-        public static string RunProcess(string filename, string arguments, string workingDirectory,
+        public static string RunProcess(string filename, string arguments, string workingDirectory = null,
             bool throwOnError = true, IDictionary<string, string> environment = null)
         {
             var p = StartProcess(filename, arguments, workingDirectory, environment: environment);
