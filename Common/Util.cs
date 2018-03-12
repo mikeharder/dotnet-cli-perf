@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -198,6 +199,11 @@ namespace Common
         public static void ReplaceInFile(string path, string oldValue, string newValue)
         {
             File.WriteAllText(path, File.ReadAllText(path).Replace(oldValue, newValue));
+        }
+
+        public static void RegexReplaceInFile(string path, string pattern, string replacement)
+        {
+            File.WriteAllText(path, Regex.Replace(File.ReadAllText(path), pattern, replacement));
         }
 
         public static void InsertInFileBefore(string path, string insertBefore, string value)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -12,7 +13,13 @@ namespace CsprojFixer
             foreach (var project in projects)
             {
                 Console.WriteLine(project);
+                EnsureProjectGuidContainsBraces(project);
             }
+        }
+
+        private static void EnsureProjectGuidContainsBraces(string path)
+        {
+            Util.RegexReplaceInFile(path, "<ProjectGuid>([^{]*)</ProjectGuid>", "<ProjectGuid>{$1}</ProjectGuid>");
         }
 
         private static IEnumerable<string> GetProjects(string path)
