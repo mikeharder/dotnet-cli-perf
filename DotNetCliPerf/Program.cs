@@ -214,6 +214,12 @@ namespace DotNetCliPerf
                 selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["TieredJit"] == false || (bool?)b.Parameters["TieredJit"] == null);
             }
 
+            // If not specified, default ProduceReferenceAssembly to null or false
+            if (!parameters.ContainsKey("ProduceReferenceAssembly"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["ProduceReferenceAssembly"] == false || (bool?)b.Parameters["ProduceReferenceAssembly"] == null);
+            }
+
             selectedBenchmarks = selectedBenchmarks.
                 Where(b => !options.Types.Any() ||
                       b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).

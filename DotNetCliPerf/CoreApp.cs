@@ -108,6 +108,7 @@ namespace DotNetCliPerf
         {
             var arguments = dotnetArguments +
                 (Parallel ? "" : " /m:1") +
+                (ProduceReferenceAssembly ? " /p:ProduceReferenceAssembly=true" : "") +
                 (restore ? "" : " --no-restore") +
                 (build ? "" : " --no-build") +
                 (appArguments == null ? "" : " -- " + appArguments);
