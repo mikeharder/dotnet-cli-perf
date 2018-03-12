@@ -158,21 +158,66 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib021\ClassLib021.csproj" />
-    <ProjectReference Include="..\ClassLib002\ClassLib002.csproj" />
-    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
-    <ProjectReference Include="..\ClassLib060\ClassLib060.csproj" />
-    <ProjectReference Include="..\ClassLib085\ClassLib085.csproj" />
-    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib064\ClassLib064.csproj" />
-    <ProjectReference Include="..\ClassLib052\ClassLib052.csproj" />
-    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
-    <ProjectReference Include="..\ClassLib067\ClassLib067.csproj" />
-    <ProjectReference Include="..\ClassLib009\ClassLib009.csproj" />
-    <ProjectReference Include="..\ClassLib026\ClassLib026.csproj" />
-    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <ProjectReference Include="..\ClassLib045\ClassLib045.csproj" />
+    <ProjectReference Include="..\ClassLib021\ClassLib021.csproj">
+      <Project>{FB4A568A-0793-4FB7-BB86-80CA1475636E}</Project>
+      <Name>ClassLib021</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib002\ClassLib002.csproj">
+      <Project>{7F54627F-73FE-454C-A86F-245CB8D9FC78}</Project>
+      <Name>ClassLib002</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj">
+      <Project>{70392744-2FFD-4992-9115-589696E48DB3}</Project>
+      <Name>ClassLib059</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib060\ClassLib060.csproj">
+      <Project>{FAB58170-F87B-4CC6-AD24-7D9C587628FA}</Project>
+      <Name>ClassLib060</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib085\ClassLib085.csproj">
+      <Project>{CAE13909-B990-49E7-85A0-E7D88219FF6C}</Project>
+      <Name>ClassLib085</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj">
+      <Project>{6389FD6C-95BC-47A1-80A2-F9814D1A9F28}</Project>
+      <Name>ClassLib003</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj">
+      <Project>{CD114E70-B55C-4FD6-9420-5261C8F555C9}</Project>
+      <Name>ClassLib051</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib064\ClassLib064.csproj">
+      <Project>{393DB448-E05A-4535-83AE-E319711E136F}</Project>
+      <Name>ClassLib064</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib052\ClassLib052.csproj">
+      <Project>{CCB2C857-18B7-4994-98E1-9C711FF5949D}</Project>
+      <Name>ClassLib052</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj">
+      <Project>{8821D976-8338-42C9-88D4-4931AC90B8CD}</Project>
+      <Name>ClassLib038</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib067\ClassLib067.csproj">
+      <Project>{9AE4A5C7-2633-4815-9AF8-3F44B757DC6A}</Project>
+      <Name>ClassLib067</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib009\ClassLib009.csproj">
+      <Project>{C1AD1FE3-89B4-46E6-A64B-5416B6037781}</Project>
+      <Name>ClassLib009</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib026\ClassLib026.csproj">
+      <Project>{8080CCEB-6266-4672-905C-46EE691E9B91}</Project>
+      <Name>ClassLib026</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj">
+      <Project>{ACC9DAAF-49AE-4727-9FE9-7B37819094AC}</Project>
+      <Name>ClassLib027</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib045\ClassLib045.csproj">
+      <Project>{9F80A815-0CC4-4B39-9704-163883CEBBF9}</Project>
+      <Name>ClassLib045</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

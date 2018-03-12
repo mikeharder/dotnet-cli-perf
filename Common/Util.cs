@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -195,9 +196,30 @@ namespace Common
             return WaitForExit(p.Process, p.OutputBuilder, p.ErrorBuilder, throwOnError: throwOnError);
         }
 
+        // Replace contents in a file without changing encoding
+        private static void ReplaceInFile(string path, Func<string, string> replacer)
+        {
+            string contents;
+            Encoding encoding;
+            using (var reader = new StreamReader(File.OpenRead(path)))
+            {
+                contents = reader.ReadToEnd();
+                encoding = reader.CurrentEncoding;
+            }
+
+            contents = replacer(contents);
+
+            File.WriteAllText(path, contents, encoding);
+        }
+
         public static void ReplaceInFile(string path, string oldValue, string newValue)
         {
-            File.WriteAllText(path, File.ReadAllText(path).Replace(oldValue, newValue));
+            ReplaceInFile(path, s => s.Replace(oldValue, newValue));
+        }
+
+        public static void RegexReplaceInFile(string path, string pattern, string replacement)
+        {
+            ReplaceInFile(path, s => Regex.Replace(s, pattern, replacement));
         }
 
         public static void InsertInFileBefore(string path, string insertBefore, string value)

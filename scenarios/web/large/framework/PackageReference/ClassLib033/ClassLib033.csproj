@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>5F0F7E09-35C2-4A4C-B7F0-30F68A98BAB9</ProjectGuid>
+    <ProjectGuid>{5F0F7E09-35C2-4A4C-B7F0-30F68A98BAB9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib033</RootNamespace>
@@ -137,9 +137,18 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib002\ClassLib002.csproj" />
-    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
-    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <ProjectReference Include="..\ClassLib002\ClassLib002.csproj">
+      <Project>{F128304A-D0DB-4F6A-850F-CEBE544C1573}</Project>
+      <Name>ClassLib002</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj">
+      <Project>{E8E94D6C-D4CD-4B9C-845B-BA44D599ED26}</Project>
+      <Name>ClassLib022</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj">
+      <Project>{50649A9E-2612-49B3-B426-F45A28F6733D}</Project>
+      <Name>ClassLib012</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
   </ItemGroup>

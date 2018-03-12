@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>B0DC2F88-BFBB-4AC9-888E-95B4C4A35DFA</ProjectGuid>
+    <ProjectGuid>{B0DC2F88-BFBB-4AC9-888E-95B4C4A35DFA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib061</RootNamespace>
@@ -137,8 +137,14 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib015\ClassLib015.csproj" />
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj">
+      <Project>{18E21C57-88D1-4A2C-AD9B-8EACA8CDBCE6}</Project>
+      <Name>ClassLib051</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib015\ClassLib015.csproj">
+      <Project>{8A2E8E40-B7E3-48B5-AD13-77892FD27A1B}</Project>
+      <Name>ClassLib015</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>

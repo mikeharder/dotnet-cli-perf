@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>90481870-4ABA-4F79-BA7F-40E3D21E17BF</ProjectGuid>
+    <ProjectGuid>{90481870-4ABA-4F79-BA7F-40E3D21E17BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib057</RootNamespace>
@@ -137,8 +137,14 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <ProjectReference Include="..\ClassLib042\ClassLib042.csproj" />
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj">
+      <Project>{C8B9D41B-4146-4740-ACA4-AF8971280949}</Project>
+      <Name>ClassLib027</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib042\ClassLib042.csproj">
+      <Project>{A8A2DA39-B2DA-4CA5-A6B0-1271592E078A}</Project>
+      <Name>ClassLib042</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

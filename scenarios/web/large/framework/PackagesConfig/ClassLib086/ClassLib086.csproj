@@ -140,7 +140,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib061\ClassLib061.csproj" />
+    <ProjectReference Include="..\ClassLib061\ClassLib061.csproj">
+      <Project>{6637EC91-9168-48FB-BDE9-264C9E2AC0EC}</Project>
+      <Name>ClassLib061</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

@@ -167,14 +167,38 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib021\ClassLib021.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib052\ClassLib052.csproj" />
-    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
-    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <ProjectReference Include="..\ClassLib015\ClassLib015.csproj" />
-    <ProjectReference Include="..\ClassLib075\ClassLib075.csproj" />
+    <ProjectReference Include="..\ClassLib021\ClassLib021.csproj">
+      <Project>{FB4A568A-0793-4FB7-BB86-80CA1475636E}</Project>
+      <Name>ClassLib021</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj">
+      <Project>{CD114E70-B55C-4FD6-9420-5261C8F555C9}</Project>
+      <Name>ClassLib051</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj">
+      <Project>{B8DB51A8-6A98-4C29-89CB-E298C715BC46}</Project>
+      <Name>ClassLib007</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib052\ClassLib052.csproj">
+      <Project>{CCB2C857-18B7-4994-98E1-9C711FF5949D}</Project>
+      <Name>ClassLib052</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj">
+      <Project>{3A3A7A14-7E87-40D6-BD46-6AFF8EBFE791}</Project>
+      <Name>ClassLib022</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj">
+      <Project>{ACC9DAAF-49AE-4727-9FE9-7B37819094AC}</Project>
+      <Name>ClassLib027</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib015\ClassLib015.csproj">
+      <Project>{AEA0A30C-EEE3-4349-B366-769161E1A4BF}</Project>
+      <Name>ClassLib015</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib075\ClassLib075.csproj">
+      <Project>{BCC9CB03-D36F-4111-97E8-15545F32B2E1}</Project>
+      <Name>ClassLib075</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

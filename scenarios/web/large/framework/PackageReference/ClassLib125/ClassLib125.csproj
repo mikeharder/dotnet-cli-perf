@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>BC9B46ED-3188-46AA-96F2-A663827B5082</ProjectGuid>
+    <ProjectGuid>{BC9B46ED-3188-46AA-96F2-A663827B5082}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib125</RootNamespace>
@@ -137,8 +137,14 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib101\ClassLib101.csproj" />
-    <ProjectReference Include="..\ClassLib093\ClassLib093.csproj" />
+    <ProjectReference Include="..\ClassLib101\ClassLib101.csproj">
+      <Project>{A2ABF96A-20A7-40E8-B8B1-471EE55FEA21}</Project>
+      <Name>ClassLib101</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib093\ClassLib093.csproj">
+      <Project>{E2B5AA6C-57E5-4469-B04E-E2BD87B88A02}</Project>
+      <Name>ClassLib093</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.0.1" />

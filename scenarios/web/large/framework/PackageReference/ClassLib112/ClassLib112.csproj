@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>57CD396A-58C9-4317-86E2-77F08E259967</ProjectGuid>
+    <ProjectGuid>{57CD396A-58C9-4317-86E2-77F08E259967}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib112</RootNamespace>
@@ -137,14 +137,38 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
-    <ProjectReference Include="..\ClassLib049\ClassLib049.csproj" />
-    <ProjectReference Include="..\ClassLib085\ClassLib085.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib063\ClassLib063.csproj" />
-    <ProjectReference Include="..\ClassLib067\ClassLib067.csproj" />
-    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
+    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj">
+      <Project>{F69A2FBA-6AB5-4DE3-940F-F27C66BBA648}</Project>
+      <Name>ClassLib059</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib049\ClassLib049.csproj">
+      <Project>{D55ECD3D-69E8-4DF9-B90E-D8B7DC65DF0E}</Project>
+      <Name>ClassLib049</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib085\ClassLib085.csproj">
+      <Project>{8A85B126-DF69-4977-91FB-3BAF79B138F2}</Project>
+      <Name>ClassLib085</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj">
+      <Project>{0ADEFC5B-4FAC-4C0A-829A-B2EB0143C457}</Project>
+      <Name>ClassLib050</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj">
+      <Project>{18E21C57-88D1-4A2C-AD9B-8EACA8CDBCE6}</Project>
+      <Name>ClassLib051</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib063\ClassLib063.csproj">
+      <Project>{2F2BA347-30E5-4B0C-92FA-A204A01AA72D}</Project>
+      <Name>ClassLib063</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib067\ClassLib067.csproj">
+      <Project>{193F7D63-DB92-4B27-8767-51724595C617}</Project>
+      <Name>ClassLib067</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj">
+      <Project>{C8B9D41B-4146-4740-ACA4-AF8971280949}</Project>
+      <Name>ClassLib027</Name>
+    </ProjectReference>
     <PackageReference Include="Fluid.Core" Version="1.0.0-beta-9399" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
   </ItemGroup>

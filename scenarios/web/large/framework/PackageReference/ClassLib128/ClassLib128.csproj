@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>6792E8E9-0180-408C-916B-6A8CF59E2256</ProjectGuid>
+    <ProjectGuid>{6792E8E9-0180-408C-916B-6A8CF59E2256}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib128</RootNamespace>
@@ -137,19 +137,58 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj" />
-    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
-    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj" />
-    <ProjectReference Include="..\ClassLib112\ClassLib112.csproj" />
-    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib013\ClassLib013.csproj" />
-    <ProjectReference Include="..\ClassLib126\ClassLib126.csproj" />
-    <ProjectReference Include="..\ClassLib043\ClassLib043.csproj" />
+    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj">
+      <Project>{F69A2FBA-6AB5-4DE3-940F-F27C66BBA648}</Project>
+      <Name>ClassLib059</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj">
+      <Project>{0ADEFC5B-4FAC-4C0A-829A-B2EB0143C457}</Project>
+      <Name>ClassLib050</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj">
+      <Project>{18E21C57-88D1-4A2C-AD9B-8EACA8CDBCE6}</Project>
+      <Name>ClassLib051</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj">
+      <Project>{37DA09E5-E71F-4508-BD3B-C2BACF9DB863}</Project>
+      <Name>ClassLib037</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj">
+      <Project>{B2A5EC2A-E7A8-4373-BC5F-6357FDCED7B2}</Project>
+      <Name>ClassLib007</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj">
+      <Project>{CBE05058-7C8C-42BF-8DE0-9CC233CD2FA8}</Project>
+      <Name>ClassLib038</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj">
+      <Project>{7AB3AA6B-DFBA-422D-A71B-CE7394FD90A6}</Project>
+      <Name>ClassLib055</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib112\ClassLib112.csproj">
+      <Project>{57CD396A-58C9-4317-86E2-77F08E259967}</Project>
+      <Name>ClassLib112</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj">
+      <Project>{A0F8E67E-DE63-4AB9-9891-7E8146E800C7}</Project>
+      <Name>ClassLib010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj">
+      <Project>{2936AB23-3628-4288-A966-33C98E8EC1E7}</Project>
+      <Name>ClassLib025</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib013\ClassLib013.csproj">
+      <Project>{8616A452-9DDD-4A78-B0F8-CEAD434F1C53}</Project>
+      <Name>ClassLib013</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib126\ClassLib126.csproj">
+      <Project>{58BA9E2E-6B9A-4791-9619-B980B67D339E}</Project>
+      <Name>ClassLib126</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib043\ClassLib043.csproj">
+      <Project>{11F99620-4CE4-4F21-B42C-AAA2F919CD8C}</Project>
+      <Name>ClassLib043</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="Moq" Version="4.7.99" />

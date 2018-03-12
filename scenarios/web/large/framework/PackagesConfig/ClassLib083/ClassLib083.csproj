@@ -140,16 +140,46 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib033\ClassLib033.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib034\ClassLib034.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib063\ClassLib063.csproj" />
-    <ProjectReference Include="..\ClassLib065\ClassLib065.csproj" />
-    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj" />
-    <ProjectReference Include="..\ClassLib053\ClassLib053.csproj" />
-    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <ProjectReference Include="..\ClassLib029\ClassLib029.csproj" />
+    <ProjectReference Include="..\ClassLib033\ClassLib033.csproj">
+      <Project>{8BB80AFA-2E8F-4E3B-9B0D-14B500A3CA3D}</Project>
+      <Name>ClassLib033</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj">
+      <Project>{E06B8BD5-E157-40A4-9F59-0B1C1FB0DB7B}</Project>
+      <Name>ClassLib050</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib034\ClassLib034.csproj">
+      <Project>{946BEC75-3E91-4929-82F4-D6433E628367}</Project>
+      <Name>ClassLib034</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj">
+      <Project>{CD114E70-B55C-4FD6-9420-5261C8F555C9}</Project>
+      <Name>ClassLib051</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib063\ClassLib063.csproj">
+      <Project>{59FF5931-E9B9-4B59-8578-C2A27C0A92E1}</Project>
+      <Name>ClassLib063</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib065\ClassLib065.csproj">
+      <Project>{7D958016-4918-4FC4-9CCB-B5FEBA029EE6}</Project>
+      <Name>ClassLib065</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj">
+      <Project>{FDA4B594-A3C6-431B-8E40-764CDAF681A0}</Project>
+      <Name>ClassLib037</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib053\ClassLib053.csproj">
+      <Project>{9BFA8B0E-1E25-4572-9787-63F39B9C2404}</Project>
+      <Name>ClassLib053</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj">
+      <Project>{ACC9DAAF-49AE-4727-9FE9-7B37819094AC}</Project>
+      <Name>ClassLib027</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib029\ClassLib029.csproj">
+      <Project>{28D43714-1690-4F9E-AADE-DD8316CA55FE}</Project>
+      <Name>ClassLib029</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

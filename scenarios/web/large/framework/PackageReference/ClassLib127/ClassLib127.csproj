@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>31AA4A57-ECE5-4F40-91C3-326470D8D4DD</ProjectGuid>
+    <ProjectGuid>{31AA4A57-ECE5-4F40-91C3-326470D8D4DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLib127</RootNamespace>
@@ -137,57 +137,210 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib081\ClassLib081.csproj" />
-    <ProjectReference Include="..\ClassLib100\ClassLib100.csproj" />
-    <ProjectReference Include="..\ClassLib001\ClassLib001.csproj" />
-    <ProjectReference Include="..\ClassLib102\ClassLib102.csproj" />
-    <ProjectReference Include="..\ClassLib103\ClassLib103.csproj" />
-    <ProjectReference Include="..\ClassLib083\ClassLib083.csproj" />
-    <ProjectReference Include="..\ClassLib104\ClassLib104.csproj" />
-    <ProjectReference Include="..\ClassLib084\ClassLib084.csproj" />
-    <ProjectReference Include="..\ClassLib105\ClassLib105.csproj" />
-    <ProjectReference Include="..\ClassLib106\ClassLib106.csproj" />
-    <ProjectReference Include="..\ClassLib107\ClassLib107.csproj" />
-    <ProjectReference Include="..\ClassLib108\ClassLib108.csproj" />
-    <ProjectReference Include="..\ClassLib109\ClassLib109.csproj" />
-    <ProjectReference Include="..\ClassLib062\ClassLib062.csproj" />
-    <ProjectReference Include="..\ClassLib087\ClassLib087.csproj" />
-    <ProjectReference Include="..\ClassLib088\ClassLib088.csproj" />
-    <ProjectReference Include="..\ClassLib066\ClassLib066.csproj" />
-    <ProjectReference Include="..\ClassLib110\ClassLib110.csproj" />
-    <ProjectReference Include="..\ClassLib040\ClassLib040.csproj" />
-    <ProjectReference Include="..\ClassLib111\ClassLib111.csproj" />
-    <ProjectReference Include="..\ClassLib089\ClassLib089.csproj" />
-    <ProjectReference Include="..\ClassLib112\ClassLib112.csproj" />
-    <ProjectReference Include="..\ClassLib123\ClassLib123.csproj" />
-    <ProjectReference Include="..\ClassLib113\ClassLib113.csproj" />
-    <ProjectReference Include="..\ClassLib114\ClassLib114.csproj" />
-    <ProjectReference Include="..\ClassLib115\ClassLib115.csproj" />
-    <ProjectReference Include="..\ClassLib116\ClassLib116.csproj" />
-    <ProjectReference Include="..\ClassLib124\ClassLib124.csproj" />
-    <ProjectReference Include="..\ClassLib091\ClassLib091.csproj" />
-    <ProjectReference Include="..\ClassLib071\ClassLib071.csproj" />
-    <ProjectReference Include="..\ClassLib073\ClassLib073.csproj" />
-    <ProjectReference Include="..\ClassLib126\ClassLib126.csproj" />
-    <ProjectReference Include="..\ClassLib119\ClassLib119.csproj" />
-    <ProjectReference Include="..\ClassLib094\ClassLib094.csproj" />
-    <ProjectReference Include="..\ClassLib044\ClassLib044.csproj" />
-    <ProjectReference Include="..\ClassLib074\ClassLib074.csproj" />
-    <ProjectReference Include="..\ClassLib058\ClassLib058.csproj" />
-    <ProjectReference Include="..\ClassLib075\ClassLib075.csproj" />
-    <ProjectReference Include="..\ClassLib076\ClassLib076.csproj" />
-    <ProjectReference Include="..\ClassLib120\ClassLib120.csproj" />
-    <ProjectReference Include="..\ClassLib077\ClassLib077.csproj" />
-    <ProjectReference Include="..\ClassLib095\ClassLib095.csproj" />
-    <ProjectReference Include="..\ClassLib096\ClassLib096.csproj" />
-    <ProjectReference Include="..\ClassLib097\ClassLib097.csproj" />
-    <ProjectReference Include="..\ClassLib121\ClassLib121.csproj" />
-    <ProjectReference Include="..\ClassLib048\ClassLib048.csproj" />
-    <ProjectReference Include="..\ClassLib078\ClassLib078.csproj" />
-    <ProjectReference Include="..\ClassLib079\ClassLib079.csproj" />
-    <ProjectReference Include="..\ClassLib080\ClassLib080.csproj" />
-    <ProjectReference Include="..\ClassLib098\ClassLib098.csproj" />
-    <ProjectReference Include="..\ClassLib099\ClassLib099.csproj" />
+    <ProjectReference Include="..\ClassLib081\ClassLib081.csproj">
+      <Project>{D278B342-DC60-4AB5-B29B-1F39AC50E6D1}</Project>
+      <Name>ClassLib081</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib100\ClassLib100.csproj">
+      <Project>{0516BDD6-C008-422A-8089-61C7F6FDB176}</Project>
+      <Name>ClassLib100</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib001\ClassLib001.csproj">
+      <Project>{BD8A532D-1388-4121-8845-9C70B1755B3A}</Project>
+      <Name>ClassLib001</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib102\ClassLib102.csproj">
+      <Project>{D495CA5A-B0E5-4561-A066-9B9D31AC9E46}</Project>
+      <Name>ClassLib102</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib103\ClassLib103.csproj">
+      <Project>{36E255CB-D902-4E5A-A249-60C482115333}</Project>
+      <Name>ClassLib103</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib083\ClassLib083.csproj">
+      <Project>{079EDAC0-023D-46E2-8A83-4A0847AD92CA}</Project>
+      <Name>ClassLib083</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib104\ClassLib104.csproj">
+      <Project>{2839ACC1-0F8E-400C-BB17-607DA365BB14}</Project>
+      <Name>ClassLib104</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib084\ClassLib084.csproj">
+      <Project>{849A7ED7-7A02-494B-85E7-AEB1736DA935}</Project>
+      <Name>ClassLib084</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib105\ClassLib105.csproj">
+      <Project>{D6A4BC74-7DCF-4642-9DD7-49E99F1F345D}</Project>
+      <Name>ClassLib105</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib106\ClassLib106.csproj">
+      <Project>{D3318BED-778F-4DC0-9B5C-A8419DA5A62D}</Project>
+      <Name>ClassLib106</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib107\ClassLib107.csproj">
+      <Project>{6B03A4F1-32BC-4FE6-BD71-2CCB0528644D}</Project>
+      <Name>ClassLib107</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib108\ClassLib108.csproj">
+      <Project>{B7540580-CAC5-4C94-8790-03BFD160B11C}</Project>
+      <Name>ClassLib108</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib109\ClassLib109.csproj">
+      <Project>{322DEE9C-C454-4A87-94F7-5AA5B3E02D15}</Project>
+      <Name>ClassLib109</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib062\ClassLib062.csproj">
+      <Project>{35C33597-105E-4002-9958-4B8EA13D5A90}</Project>
+      <Name>ClassLib062</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib087\ClassLib087.csproj">
+      <Project>{F54CB8E3-7616-435C-9622-8DC8CC5A77BE}</Project>
+      <Name>ClassLib087</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib088\ClassLib088.csproj">
+      <Project>{821DF46C-00C3-466A-821F-C69D51E53FA9}</Project>
+      <Name>ClassLib088</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib066\ClassLib066.csproj">
+      <Project>{86FCBF67-F3EA-40FF-BB32-7284B5E0C81C}</Project>
+      <Name>ClassLib066</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib110\ClassLib110.csproj">
+      <Project>{4B0EFA67-A204-44A1-B16D-F677E9FDAD22}</Project>
+      <Name>ClassLib110</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib040\ClassLib040.csproj">
+      <Project>{C3F0AA9D-911D-4288-880E-5DC491BB572E}</Project>
+      <Name>ClassLib040</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib111\ClassLib111.csproj">
+      <Project>{7659A721-538F-40A7-AFB3-C4AF07EF95B2}</Project>
+      <Name>ClassLib111</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib089\ClassLib089.csproj">
+      <Project>{87B94E16-E6E5-4ED0-8D0A-C242D5A3A35E}</Project>
+      <Name>ClassLib089</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib112\ClassLib112.csproj">
+      <Project>{57CD396A-58C9-4317-86E2-77F08E259967}</Project>
+      <Name>ClassLib112</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib123\ClassLib123.csproj">
+      <Project>{F7350538-65D7-4AFC-A8AC-0B57F26CC177}</Project>
+      <Name>ClassLib123</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib113\ClassLib113.csproj">
+      <Project>{2F9EBBB1-01F6-4C29-A8A7-0CA5DC37B295}</Project>
+      <Name>ClassLib113</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib114\ClassLib114.csproj">
+      <Project>{49E1A0BF-3283-4C14-AA8F-8A091C47D198}</Project>
+      <Name>ClassLib114</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib115\ClassLib115.csproj">
+      <Project>{5FE2A2E8-3BF1-4E50-9FDD-3E8B1201A579}</Project>
+      <Name>ClassLib115</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib116\ClassLib116.csproj">
+      <Project>{39A400E2-7F38-4114-9A33-28BEACCE9DCE}</Project>
+      <Name>ClassLib116</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib124\ClassLib124.csproj">
+      <Project>{A8F0BFBF-4B6F-4B7E-9F4A-2EA819D9DBDA}</Project>
+      <Name>ClassLib124</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib091\ClassLib091.csproj">
+      <Project>{EBBA5F7A-9090-473C-9BC9-A39D342F858E}</Project>
+      <Name>ClassLib091</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib071\ClassLib071.csproj">
+      <Project>{C9528FFC-30B8-4108-B8D7-E4BA4434F811}</Project>
+      <Name>ClassLib071</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib073\ClassLib073.csproj">
+      <Project>{6C3E8827-9A4F-422D-A0F5-0EE08841D29A}</Project>
+      <Name>ClassLib073</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib126\ClassLib126.csproj">
+      <Project>{58BA9E2E-6B9A-4791-9619-B980B67D339E}</Project>
+      <Name>ClassLib126</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib119\ClassLib119.csproj">
+      <Project>{350D144D-E58C-4D84-A3C3-F085AD961856}</Project>
+      <Name>ClassLib119</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib094\ClassLib094.csproj">
+      <Project>{D5E3ACA1-9E54-44E6-9051-113FAFDFEE03}</Project>
+      <Name>ClassLib094</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib044\ClassLib044.csproj">
+      <Project>{E8023C36-5FBF-40C6-BF33-10F2079A16FD}</Project>
+      <Name>ClassLib044</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib074\ClassLib074.csproj">
+      <Project>{2EA7E635-125C-46B5-A7DC-90B1D0A3E8FA}</Project>
+      <Name>ClassLib074</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib058\ClassLib058.csproj">
+      <Project>{3ADFB73B-79B5-4FC9-963B-453C1B11DB72}</Project>
+      <Name>ClassLib058</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib075\ClassLib075.csproj">
+      <Project>{B4D6C5BE-21F2-40E1-8870-E8F1FB419C22}</Project>
+      <Name>ClassLib075</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib076\ClassLib076.csproj">
+      <Project>{D0AB09E4-F989-46C1-8474-879609013E12}</Project>
+      <Name>ClassLib076</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib120\ClassLib120.csproj">
+      <Project>{874BB580-EB47-4D0F-8463-7E3EB0E75864}</Project>
+      <Name>ClassLib120</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib077\ClassLib077.csproj">
+      <Project>{B2BC6CBE-DD5B-4D2A-B217-B13E1A1FC4B2}</Project>
+      <Name>ClassLib077</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib095\ClassLib095.csproj">
+      <Project>{59B5A8B7-2B6B-41AD-90F6-463869A49B46}</Project>
+      <Name>ClassLib095</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib096\ClassLib096.csproj">
+      <Project>{34D4E1D5-7DD0-49E0-A7DD-4739130BA280}</Project>
+      <Name>ClassLib096</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib097\ClassLib097.csproj">
+      <Project>{91BD8C90-0A46-4159-B786-F444CD8BB19F}</Project>
+      <Name>ClassLib097</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib121\ClassLib121.csproj">
+      <Project>{B8FB29EE-1325-41A8-A109-F5A8E6B60713}</Project>
+      <Name>ClassLib121</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib048\ClassLib048.csproj">
+      <Project>{A084A344-C60A-4618-8E04-6A23BA519F1A}</Project>
+      <Name>ClassLib048</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib078\ClassLib078.csproj">
+      <Project>{478E3B56-CB8A-481D-9C19-DBA291CDF174}</Project>
+      <Name>ClassLib078</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib079\ClassLib079.csproj">
+      <Project>{5605DD82-60B7-461F-BCCE-100E823DA1F5}</Project>
+      <Name>ClassLib079</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib080\ClassLib080.csproj">
+      <Project>{EE32CB20-A2A0-47BF-918A-CF1EECB68F6C}</Project>
+      <Name>ClassLib080</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib098\ClassLib098.csproj">
+      <Project>{83FC4811-80E4-4D67-8B3D-B46B521661E2}</Project>
+      <Name>ClassLib098</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib099\ClassLib099.csproj">
+      <Project>{774BDF51-568D-4C03-B34B-6C890DFA979D}</Project>
+      <Name>ClassLib099</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

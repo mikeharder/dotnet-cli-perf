@@ -506,9 +506,18 @@
     <Content Include="Views\Home100\About.cshtml" />
     <Content Include="Views\Home100\Contact.cshtml" />
     <Content Include="Views\Home100\Index.cshtml" />
-    <ProjectReference Include="..\ClassLib127\ClassLib127.csproj" />
-    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj" />
-    <ProjectReference Include="..\ClassLib041\ClassLib041.csproj" />
+    <ProjectReference Include="..\ClassLib127\ClassLib127.csproj">
+      <Project>{31AA4A57-ECE5-4F40-91C3-326470D8D4DD}</Project>
+      <Name>ClassLib127</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj">
+      <Project>{7AB3AA6B-DFBA-422D-A71B-CE7394FD90A6}</Project>
+      <Name>ClassLib055</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib041\ClassLib041.csproj">
+      <Project>{062A43B3-F6DD-47CF-82A1-A20979974D2B}</Project>
+      <Name>ClassLib041</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
