@@ -137,7 +137,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib008\ClassLib008.csproj" />
+    <ProjectReference Include="..\ClassLib008\ClassLib008.csproj">
+      <Project>{7D26A0A1-A025-490B-B21D-2ABB710ECAB2}</Project>
+      <Name>ClassLib008</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>

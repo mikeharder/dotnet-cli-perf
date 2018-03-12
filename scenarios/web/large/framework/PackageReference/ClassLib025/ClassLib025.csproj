@@ -137,7 +137,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj" />
+    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj">
+      <Project>{A0F8E67E-DE63-4AB9-9891-7E8146E800C7}</Project>
+      <Name>ClassLib010</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="2.0.1" />

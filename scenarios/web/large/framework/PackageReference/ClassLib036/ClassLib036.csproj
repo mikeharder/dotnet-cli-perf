@@ -137,8 +137,14 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
-    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj">
+      <Project>{E8E94D6C-D4CD-4B9C-845B-BA44D599ED26}</Project>
+      <Name>ClassLib022</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj">
+      <Project>{50649A9E-2612-49B3-B426-F45A28F6733D}</Project>
+      <Name>ClassLib012</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />
   </ItemGroup>

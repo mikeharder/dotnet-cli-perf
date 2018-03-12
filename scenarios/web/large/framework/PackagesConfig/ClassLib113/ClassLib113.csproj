@@ -428,10 +428,22 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
-    <ProjectReference Include="..\ClassLib088\ClassLib088.csproj" />
-    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
+    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj">
+      <Project>{8821D976-8338-42C9-88D4-4931AC90B8CD}</Project>
+      <Name>ClassLib038</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib088\ClassLib088.csproj">
+      <Project>{07D1E3DE-7B5E-4E6F-A2B7-2EBF231B74E6}</Project>
+      <Name>ClassLib088</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj">
+      <Project>{027579B7-CD2F-473D-A526-45C86E36C184}</Project>
+      <Name>ClassLib010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj">
+      <Project>{A4CDC1B1-F115-41EB-83B8-E8BAF9A5C4FB}</Project>
+      <Name>ClassLib025</Name>
+    </ProjectReference>
     <Reference Include="System.Xml.ReaderWriter">
       <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
       <Private>True</Private>

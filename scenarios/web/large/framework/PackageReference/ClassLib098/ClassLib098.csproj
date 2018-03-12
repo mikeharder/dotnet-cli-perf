@@ -137,10 +137,22 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib029\ClassLib029.csproj" />
-    <ProjectReference Include="..\ClassLib046\ClassLib046.csproj" />
+    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj">
+      <Project>{F69A2FBA-6AB5-4DE3-940F-F27C66BBA648}</Project>
+      <Name>ClassLib059</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj">
+      <Project>{18E21C57-88D1-4A2C-AD9B-8EACA8CDBCE6}</Project>
+      <Name>ClassLib051</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib029\ClassLib029.csproj">
+      <Project>{05AD3DC9-841F-4D54-8958-4C3B5B2CD1BE}</Project>
+      <Name>ClassLib029</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib046\ClassLib046.csproj">
+      <Project>{65544CB9-3A0D-45D7-8A51-EBA822B17DFF}</Project>
+      <Name>ClassLib046</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
   </ItemGroup>

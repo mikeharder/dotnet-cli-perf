@@ -316,8 +316,14 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib101\ClassLib101.csproj" />
-    <ProjectReference Include="..\ClassLib093\ClassLib093.csproj" />
+    <ProjectReference Include="..\ClassLib101\ClassLib101.csproj">
+      <Project>{CECBF926-4754-4330-A4EF-13E99304A12F}</Project>
+      <Name>ClassLib101</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib093\ClassLib093.csproj">
+      <Project>{DF82422D-5B7F-4115-ACA2-1067BC37236A}</Project>
+      <Name>ClassLib093</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

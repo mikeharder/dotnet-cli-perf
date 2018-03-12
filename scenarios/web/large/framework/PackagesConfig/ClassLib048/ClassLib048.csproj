@@ -298,10 +298,22 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
-    <ProjectReference Include="..\ClassLib020\ClassLib020.csproj" />
+    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj">
+      <Project>{B8DB51A8-6A98-4C29-89CB-E298C715BC46}</Project>
+      <Name>ClassLib007</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj">
+      <Project>{ACC9DAAF-49AE-4727-9FE9-7B37819094AC}</Project>
+      <Name>ClassLib027</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj">
+      <Project>{AD60154B-60F5-4395-8AD1-CB09DD820DFA}</Project>
+      <Name>ClassLib028</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib020\ClassLib020.csproj">
+      <Project>{D6EF500C-C251-467C-8E5A-467F2F05F5CC}</Project>
+      <Name>ClassLib020</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />

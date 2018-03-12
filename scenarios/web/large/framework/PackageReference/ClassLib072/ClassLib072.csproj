@@ -137,7 +137,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib056\ClassLib056.csproj" />
+    <ProjectReference Include="..\ClassLib056\ClassLib056.csproj">
+      <Project>{47FD01D2-7EEE-4AC0-8F5D-E79A0526E751}</Project>
+      <Name>ClassLib056</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />

@@ -137,9 +137,18 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib005\ClassLib005.csproj" />
-    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
-    <ProjectReference Include="..\ClassLib032\ClassLib032.csproj" />
+    <ProjectReference Include="..\ClassLib005\ClassLib005.csproj">
+      <Project>{5B233FDD-AA5F-4296-91F5-1822C7F1F506}</Project>
+      <Name>ClassLib005</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj">
+      <Project>{CAAA2470-AD53-44EB-B822-365456E626A5}</Project>
+      <Name>ClassLib018</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib032\ClassLib032.csproj">
+      <Project>{0175A564-683F-4D87-A905-8797620FC100}</Project>
+      <Name>ClassLib032</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />

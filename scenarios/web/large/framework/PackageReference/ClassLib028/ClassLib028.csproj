@@ -137,8 +137,14 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib005\ClassLib005.csproj" />
-    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
+    <ProjectReference Include="..\ClassLib005\ClassLib005.csproj">
+      <Project>{5B233FDD-AA5F-4296-91F5-1822C7F1F506}</Project>
+      <Name>ClassLib005</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj">
+      <Project>{50649A9E-2612-49B3-B426-F45A28F6733D}</Project>
+      <Name>ClassLib012</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="2.0.1" />

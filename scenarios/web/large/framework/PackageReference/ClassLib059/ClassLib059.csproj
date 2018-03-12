@@ -137,11 +137,26 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib049\ClassLib049.csproj" />
-    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj" />
-    <ProjectReference Include="..\ClassLib006\ClassLib006.csproj" />
-    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
-    <ProjectReference Include="..\ClassLib015\ClassLib015.csproj" />
+    <ProjectReference Include="..\ClassLib049\ClassLib049.csproj">
+      <Project>{D55ECD3D-69E8-4DF9-B90E-D8B7DC65DF0E}</Project>
+      <Name>ClassLib049</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib003\ClassLib003.csproj">
+      <Project>{3BF0CD61-7D12-4B35-904F-5415D3250413}</Project>
+      <Name>ClassLib003</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib006\ClassLib006.csproj">
+      <Project>{54830D42-52A7-4880-A018-7A176DFE9200}</Project>
+      <Name>ClassLib006</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj">
+      <Project>{51FC1CE8-60B3-40FD-9285-0BC98EB971C9}</Project>
+      <Name>ClassLib028</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib015\ClassLib015.csproj">
+      <Project>{8A2E8E40-B7E3-48B5-AD13-77892FD27A1B}</Project>
+      <Name>ClassLib015</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.0.1" />

@@ -137,11 +137,26 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib004\ClassLib004.csproj" />
-    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
-    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj" />
-    <ProjectReference Include="..\ClassLib013\ClassLib013.csproj" />
+    <ProjectReference Include="..\ClassLib004\ClassLib004.csproj">
+      <Project>{AC3FC520-E744-4D53-8B67-FB794893AC1B}</Project>
+      <Name>ClassLib004</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj">
+      <Project>{B2A5EC2A-E7A8-4373-BC5F-6357FDCED7B2}</Project>
+      <Name>ClassLib007</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj">
+      <Project>{E8E94D6C-D4CD-4B9C-845B-BA44D599ED26}</Project>
+      <Name>ClassLib022</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib012\ClassLib012.csproj">
+      <Project>{50649A9E-2612-49B3-B426-F45A28F6733D}</Project>
+      <Name>ClassLib012</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib013\ClassLib013.csproj">
+      <Project>{8616A452-9DDD-4A78-B0F8-CEAD434F1C53}</Project>
+      <Name>ClassLib013</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.0.0" />

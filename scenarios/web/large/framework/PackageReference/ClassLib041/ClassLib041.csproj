@@ -137,7 +137,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj" />
+    <ProjectReference Include="..\ClassLib022\ClassLib022.csproj">
+      <Project>{E8E94D6C-D4CD-4B9C-845B-BA44D599ED26}</Project>
+      <Name>ClassLib022</Name>
+    </ProjectReference>
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.1" />
     <PackageReference Include="System.Security.AccessControl" Version="4.4.0" />
   </ItemGroup>

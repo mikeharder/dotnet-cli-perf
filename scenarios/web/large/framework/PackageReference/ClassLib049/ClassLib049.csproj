@@ -137,7 +137,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib042\ClassLib042.csproj" />
+    <ProjectReference Include="..\ClassLib042\ClassLib042.csproj">
+      <Project>{A8A2DA39-B2DA-4CA5-A6B0-1271592E078A}</Project>
+      <Name>ClassLib042</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="2.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />

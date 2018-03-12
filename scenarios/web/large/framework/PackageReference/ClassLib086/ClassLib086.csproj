@@ -137,7 +137,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib061\ClassLib061.csproj" />
+    <ProjectReference Include="..\ClassLib061\ClassLib061.csproj">
+      <Project>{B0DC2F88-BFBB-4AC9-888E-95B4C4A35DFA}</Project>
+      <Name>ClassLib061</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>

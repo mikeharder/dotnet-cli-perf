@@ -137,10 +137,22 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib082\ClassLib082.csproj" />
-    <ProjectReference Include="..\ClassLib035\ClassLib035.csproj" />
-    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj" />
-    <ProjectReference Include="..\ClassLib057\ClassLib057.csproj" />
+    <ProjectReference Include="..\ClassLib082\ClassLib082.csproj">
+      <Project>{2A41B2F8-B6FC-4EEE-8E74-FEEC7CD14B70}</Project>
+      <Name>ClassLib082</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib035\ClassLib035.csproj">
+      <Project>{68EF782E-43A4-4523-8078-C4EC3F2F6234}</Project>
+      <Name>ClassLib035</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj">
+      <Project>{7AB3AA6B-DFBA-422D-A71B-CE7394FD90A6}</Project>
+      <Name>ClassLib055</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib057\ClassLib057.csproj">
+      <Project>{90481870-4ABA-4F79-BA7F-40E3D21E17BF}</Project>
+      <Name>ClassLib057</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.0.1" />

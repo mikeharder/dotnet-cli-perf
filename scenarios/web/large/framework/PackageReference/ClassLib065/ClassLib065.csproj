@@ -137,9 +137,18 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib006\ClassLib006.csproj" />
-    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib056\ClassLib056.csproj" />
+    <ProjectReference Include="..\ClassLib006\ClassLib006.csproj">
+      <Project>{54830D42-52A7-4880-A018-7A176DFE9200}</Project>
+      <Name>ClassLib006</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj">
+      <Project>{B2A5EC2A-E7A8-4373-BC5F-6357FDCED7B2}</Project>
+      <Name>ClassLib007</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib056\ClassLib056.csproj">
+      <Project>{47FD01D2-7EEE-4AC0-8F5D-E79A0526E751}</Project>
+      <Name>ClassLib056</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.0" />

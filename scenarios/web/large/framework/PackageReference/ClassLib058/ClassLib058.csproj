@@ -137,10 +137,22 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <ProjectReference Include="..\ClassLib042\ClassLib042.csproj" />
-    <ProjectReference Include="..\ClassLib030\ClassLib030.csproj" />
-    <ProjectReference Include="..\ClassLib031\ClassLib031.csproj" />
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj">
+      <Project>{C8B9D41B-4146-4740-ACA4-AF8971280949}</Project>
+      <Name>ClassLib027</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib042\ClassLib042.csproj">
+      <Project>{A8A2DA39-B2DA-4CA5-A6B0-1271592E078A}</Project>
+      <Name>ClassLib042</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib030\ClassLib030.csproj">
+      <Project>{A20BDB19-9816-483A-8A6A-209540B4C755}</Project>
+      <Name>ClassLib030</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib031\ClassLib031.csproj">
+      <Project>{6515924D-3D40-4A37-89C2-804931818F9E}</Project>
+      <Name>ClassLib031</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>

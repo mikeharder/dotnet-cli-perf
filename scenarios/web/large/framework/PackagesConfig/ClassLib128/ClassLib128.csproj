@@ -154,19 +154,58 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj" />
-    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj" />
-    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj" />
-    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj" />
-    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj" />
-    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj" />
-    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj" />
-    <ProjectReference Include="..\ClassLib112\ClassLib112.csproj" />
-    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj" />
-    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj" />
-    <ProjectReference Include="..\ClassLib013\ClassLib013.csproj" />
-    <ProjectReference Include="..\ClassLib126\ClassLib126.csproj" />
-    <ProjectReference Include="..\ClassLib043\ClassLib043.csproj" />
+    <ProjectReference Include="..\ClassLib059\ClassLib059.csproj">
+      <Project>{70392744-2FFD-4992-9115-589696E48DB3}</Project>
+      <Name>ClassLib059</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib050\ClassLib050.csproj">
+      <Project>{E06B8BD5-E157-40A4-9F59-0B1C1FB0DB7B}</Project>
+      <Name>ClassLib050</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib051\ClassLib051.csproj">
+      <Project>{CD114E70-B55C-4FD6-9420-5261C8F555C9}</Project>
+      <Name>ClassLib051</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib037\ClassLib037.csproj">
+      <Project>{FDA4B594-A3C6-431B-8E40-764CDAF681A0}</Project>
+      <Name>ClassLib037</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib007\ClassLib007.csproj">
+      <Project>{B8DB51A8-6A98-4C29-89CB-E298C715BC46}</Project>
+      <Name>ClassLib007</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib038\ClassLib038.csproj">
+      <Project>{8821D976-8338-42C9-88D4-4931AC90B8CD}</Project>
+      <Name>ClassLib038</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib055\ClassLib055.csproj">
+      <Project>{08A30C92-8514-4EC3-985A-7ECACE7EBE7A}</Project>
+      <Name>ClassLib055</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib112\ClassLib112.csproj">
+      <Project>{DB6C42EE-A6CA-48AF-BAF3-7BF14EA88B6D}</Project>
+      <Name>ClassLib112</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib010\ClassLib010.csproj">
+      <Project>{027579B7-CD2F-473D-A526-45C86E36C184}</Project>
+      <Name>ClassLib010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib025\ClassLib025.csproj">
+      <Project>{A4CDC1B1-F115-41EB-83B8-E8BAF9A5C4FB}</Project>
+      <Name>ClassLib025</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib013\ClassLib013.csproj">
+      <Project>{9FE861B1-8776-4425-8BC3-3ABFA56CAE63}</Project>
+      <Name>ClassLib013</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib126\ClassLib126.csproj">
+      <Project>{A80A4DD2-BE6E-48E3-AFFD-A3FDAC0CA6DC}</Project>
+      <Name>ClassLib126</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib043\ClassLib043.csproj">
+      <Project>{5E456688-8802-4BB8-BCB0-EE021D073788}</Project>
+      <Name>ClassLib043</Name>
+    </ProjectReference>
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
     </Reference>

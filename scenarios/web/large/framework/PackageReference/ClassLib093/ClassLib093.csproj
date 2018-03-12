@@ -137,8 +137,14 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj" />
-    <ProjectReference Include="..\ClassLib072\ClassLib072.csproj" />
+    <ProjectReference Include="..\ClassLib027\ClassLib027.csproj">
+      <Project>{C8B9D41B-4146-4740-ACA4-AF8971280949}</Project>
+      <Name>ClassLib027</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib072\ClassLib072.csproj">
+      <Project>{3B869085-D9BC-481D-A09C-AF19F86277D9}</Project>
+      <Name>ClassLib072</Name>
+    </ProjectReference>
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
   </ItemGroup>
   <ItemGroup>

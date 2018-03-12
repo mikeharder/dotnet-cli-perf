@@ -259,9 +259,18 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib005\ClassLib005.csproj" />
-    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
-    <ProjectReference Include="..\ClassLib032\ClassLib032.csproj" />
+    <ProjectReference Include="..\ClassLib005\ClassLib005.csproj">
+      <Project>{094FDA1A-5820-4F83-8AA2-732BB82C957D}</Project>
+      <Name>ClassLib005</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj">
+      <Project>{D315491D-CF41-453F-AEB2-A7CDB87F7EFD}</Project>
+      <Name>ClassLib018</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib032\ClassLib032.csproj">
+      <Project>{8CEB5E94-761F-49D9-9D89-E5F150C3E4FD}</Project>
+      <Name>ClassLib032</Name>
+    </ProjectReference>
     <Reference Include="YesSql.Abstractions, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YesSql.Abstractions.2.0.0-beta-1097\lib\net451\YesSql.Abstractions.dll</HintPath>
     </Reference>

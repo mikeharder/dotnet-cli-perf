@@ -137,8 +137,14 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj" />
-    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj" />
+    <ProjectReference Include="..\ClassLib028\ClassLib028.csproj">
+      <Project>{51FC1CE8-60B3-40FD-9285-0BC98EB971C9}</Project>
+      <Name>ClassLib028</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLib018\ClassLib018.csproj">
+      <Project>{CAAA2470-AD53-44EB-B822-365456E626A5}</Project>
+      <Name>ClassLib018</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>

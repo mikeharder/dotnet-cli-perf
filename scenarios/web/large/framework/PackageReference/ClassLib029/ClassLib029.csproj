@@ -137,7 +137,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib016\ClassLib016.csproj" />
+    <ProjectReference Include="..\ClassLib016\ClassLib016.csproj">
+      <Project>{3B2D99C0-0A7B-46C2-8427-ED5172A18ADA}</Project>
+      <Name>ClassLib016</Name>
+    </ProjectReference>
     <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>

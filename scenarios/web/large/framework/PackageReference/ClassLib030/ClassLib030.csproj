@@ -137,7 +137,10 @@
     <Compile Include="Class098.cs" />
     <Compile Include="Class099.cs" />
     <Compile Include="Class100.cs" />
-    <ProjectReference Include="..\ClassLib017\ClassLib017.csproj" />
+    <ProjectReference Include="..\ClassLib017\ClassLib017.csproj">
+      <Project>{B4B2DD8D-1F3D-4452-B1AA-FEDDA573A0B9}</Project>
+      <Name>ClassLib017</Name>
+    </ProjectReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
