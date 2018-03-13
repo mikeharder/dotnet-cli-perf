@@ -8,6 +8,7 @@ using CommandLine;
 using Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace DotNetCliPerf
@@ -29,9 +30,6 @@ namespace DotNetCliPerf
 
         [Option('w', "warmupCount", Default = 0)]
         public int WarmupCount { get; set; }
-
-        [Option('d', "debug")]
-        public bool Debug { get; set; }
     }
 
     class Program
@@ -61,7 +59,8 @@ namespace DotNetCliPerf
 
             config = config.With(job);
 
-            if (options.Debug)
+            // Allow running debug build when debugger is attached
+            if (Debugger.IsAttached)
             {
                 ((List<IValidator>)config.GetValidators()).Remove(JitOptimizationsValidator.FailOnError);
                 config = config.With(JitOptimizationsValidator.DontFailOnError);
