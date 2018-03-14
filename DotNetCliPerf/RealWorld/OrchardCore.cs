@@ -22,12 +22,7 @@ namespace DotNetCliPerf
 
         public override void GlobalSetup()
         {
-            if (SourceChanged == SourceChanged.Leaf)
-            {
-                // Add dummy class with a string that can be changed to trigger a rebuild
-                File.AppendAllText(Path.Combine(RootTempDir, SourcePath), "public class Class001 { public static string Property => \"IntitialValue\"; }");
-            }
-            else if (SourceChanged == SourceChanged.Root)
+            if (SourceChanged == SourceChanged.Root)
             {
                 // DependencyOrderingUtility.cs, Line 80
                 // throw new ArgumentException("lowerIndex");
@@ -35,6 +30,17 @@ namespace DotNetCliPerf
             }
 
             base.GlobalSetup();
+        }
+
+        protected override void CopyApp()
+        {
+            base.CopyApp();
+
+            if (SourceChanged == SourceChanged.Leaf)
+            {
+                // Add dummy class with a string that can be changed to trigger a rebuild
+                File.AppendAllText(Path.Combine(RootTempDir, SourcePath), "public class Class001 { public static string Property => \"InitialValue\"; }");
+            }
         }
     }
 }
