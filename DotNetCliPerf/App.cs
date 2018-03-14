@@ -39,6 +39,9 @@ namespace DotNetCliPerf
         [Params(SourceChanged.NotApplicable, SourceChanged.Leaf, SourceChanged.Root)]
         public SourceChanged SourceChanged { get; set; }
 
+        [Params(SourceChangeType.NotApplicable, SourceChangeType.Implementation, SourceChangeType.Api)]
+        public SourceChangeType SourceChangeType { get; set; }
+
         [GlobalSetup(Target = nameof(BuildIncrementalNoChange) + "," + nameof(BuildIncrementalSourceChanged))]
         public void GlobalSetupBuildIncremental()
         {
@@ -79,8 +82,27 @@ namespace DotNetCliPerf
 
         protected void ChangeSource()
         {
-            NewValue = Guid.NewGuid().ToString();
-            Util.ReplaceInFile(Path.Combine(RootTempDir, SourcePath), $"\"{OldValue}\"", $"\"{NewValue}\"");
+            var sourcePath = Path.Combine(RootTempDir, SourcePath);
+
+            // Ensure NewValue is a valid class name in both C# and Java by prefixing with "A",
+            // since class names must start with a letter.
+            NewValue = "A" + Guid.NewGuid().ToString("N");
+
+            if (SourceChangeType == SourceChangeType.Api)
+            {
+                var source = File.ReadAllText(sourcePath);
+
+                // Add new class with OldValue on first update
+                if (!source.Contains($"class {OldValue}"))
+                {
+                    File.AppendAllText(sourcePath, $"public class {OldValue} {{ }}");
+                }
+
+                // Rename unused class to trigger API breaking change
+                Util.ReplaceInFile(sourcePath, $"class {OldValue}", $"class {NewValue}");
+            }
+
+            Util.ReplaceInFile(sourcePath, $"\"{OldValue}\"", $"\"{NewValue}\"");
             OldValue = NewValue;
         }
 

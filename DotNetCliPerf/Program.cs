@@ -8,6 +8,7 @@ using CommandLine;
 using Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace DotNetCliPerf
@@ -29,9 +30,6 @@ namespace DotNetCliPerf
 
         [Option('w', "warmupCount", Default = 0)]
         public int WarmupCount { get; set; }
-
-        [Option('d', "debug")]
-        public bool Debug { get; set; }
     }
 
     class Program
@@ -57,11 +55,13 @@ namespace DotNetCliPerf
 
             var config = (IConfig)ManualConfig.Create(DefaultConfig.Instance);
 
+            // Replace DefaultOrderProvider with NoOpOrderProvider to improve startup time (we don't care about order benchmarks are run)
             ((ManualConfig)config).Set(new NoOpOrderProvider());
 
             config = config.With(job);
 
-            if (options.Debug)
+            // Allow running debug build when debugger is attached
+            if (Debugger.IsAttached)
             {
                 ((List<IValidator>)config.GetValidators()).Remove(JitOptimizationsValidator.FailOnError);
                 config = config.With(JitOptimizationsValidator.DontFailOnError);
@@ -153,20 +153,22 @@ namespace DotNetCliPerf
                 selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["NodeReuse"] ?? true);
             }
 
-            // Large apps and "SourceChanged" methods can choose from SourceChanged.Leaf and SourceChanged.Root
-            // All other apps and methods must use SourceChanged.NotApplicable
+            // Large apps and "SourceChanged" methods can choose from SourceChanged=Leaf/Root SourceChangeType=Implementation/Api.
+            // All other apps and methods must use SourceChanged=NotApplicable and SourceChangeType=NotApplicable.
             selectedBenchmarks = selectedBenchmarks.Where(b =>
             {
                 var sourceChanged = ((SourceChanged)b.Parameters["SourceChanged"]);
+                var sourceChangeType = ((SourceChangeType)b.Parameters["SourceChangeType"]);
 
                 if (b.Target.Type.Name.IndexOf("Large", StringComparison.OrdinalIgnoreCase) >= 0 &&
                     b.Target.Method.Name.IndexOf("SourceChanged", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    return (sourceChanged == SourceChanged.Leaf) || (sourceChanged == SourceChanged.Root);
+                    return ((sourceChanged == SourceChanged.Leaf) || (sourceChanged == SourceChanged.Root)) &&
+                           ((sourceChangeType == SourceChangeType.Implementation) || (sourceChangeType == SourceChangeType.Api));
                 }
                 else
                 {
-                    return sourceChanged == SourceChanged.NotApplicable;
+                    return sourceChanged == SourceChanged.NotApplicable && sourceChangeType == SourceChangeType.NotApplicable;
                 }
             });
 
@@ -174,6 +176,12 @@ namespace DotNetCliPerf
             if (!parameters.ContainsKey("SourceChanged"))
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b => ((SourceChanged)b.Parameters["SourceChanged"]) != SourceChanged.Root);
+            }
+
+            // If not specified, remove SourceChangeType=Api, since SourceChangeType=Implementation is tested more often
+            if (!parameters.ContainsKey("SourceChangeType"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => ((SourceChangeType)b.Parameters["SourceChangeType"]) != SourceChangeType.Api);
             }
 
             // If not specified, default RazorCompileOnBuild to false
@@ -212,6 +220,12 @@ namespace DotNetCliPerf
             if (!parameters.ContainsKey("TieredJit"))
             {
                 selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["TieredJit"] == false || (bool?)b.Parameters["TieredJit"] == null);
+            }
+
+            // If not specified, default ProduceReferenceAssembly to null or false
+            if (!parameters.ContainsKey("ProduceReferenceAssembly"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["ProduceReferenceAssembly"] == false || (bool?)b.Parameters["ProduceReferenceAssembly"] == null);
             }
 
             selectedBenchmarks = selectedBenchmarks.

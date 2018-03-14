@@ -18,6 +18,9 @@ namespace DotNetCliPerf
         [Params("NotApplicable", "14.0.25420.1", "15.5.180.51428", "15.6.82.30579")]
         public string MSBuildVersion { get; set; }
 
+        [Params(true, false)]
+        public bool ProduceReferenceAssembly { get; set; }
+
         public override void GlobalSetup()
         {
             if (!NodeReuse)
@@ -103,6 +106,8 @@ namespace DotNetCliPerf
             arguments = arguments +
                 " /v:minimal" +
                 (Parallel ? " /m" : "") +
+                // Always set ProduceReferenceAssembly, so our results are valid if the default changes
+                $" /p:ProduceReferenceAssembly={ProduceReferenceAssembly.ToString().ToLower()}" +
                 (restore ? " /restore" : "");
 
             return Util.RunProcess(GetMSBuildPath(), arguments, RootTempDir, environment: Environment);

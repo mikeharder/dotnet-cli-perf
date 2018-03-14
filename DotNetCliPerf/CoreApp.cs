@@ -108,6 +108,8 @@ namespace DotNetCliPerf
         {
             var arguments = dotnetArguments +
                 (Parallel ? "" : " /m:1") +
+                // Always set ProduceReferenceAssembly, so our results are valid if the default changes
+                $" /p:ProduceReferenceAssembly={ProduceReferenceAssembly.ToString().ToLower()}" +
                 (restore ? "" : " --no-restore") +
                 (build ? "" : " --no-build") +
                 (appArguments == null ? "" : " -- " + appArguments);
