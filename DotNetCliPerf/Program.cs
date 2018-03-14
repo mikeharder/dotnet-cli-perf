@@ -55,6 +55,7 @@ namespace DotNetCliPerf
 
             var config = (IConfig)ManualConfig.Create(DefaultConfig.Instance);
 
+            // Replace DefaultOrderProvider with NoOpOrderProvider to improve startup time (we don't care about order benchmarks are run)
             ((ManualConfig)config).Set(new NoOpOrderProvider());
 
             config = config.With(job);
