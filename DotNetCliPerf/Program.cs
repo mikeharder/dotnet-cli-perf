@@ -135,7 +135,7 @@ namespace DotNetCliPerf
             // If MSBuildFlavor=Framework or type is Framework, MSBuildVersion is required, so skip "NotApplicable"
             selectedBenchmarks = selectedBenchmarks.Where(b =>
                 !((((MSBuildFlavor?)b.Parameters["MSBuildFlavor"]) == MSBuildFlavor.Framework ||
-                   b.Target.Type.Name.IndexOf("Framework", StringComparison.OrdinalIgnoreCase) >= 0) &&
+                   typeof(FrameworkApp).IsAssignableFrom(b.Target.Type)) &&
                   b.Parameters["MSBuildVersion"].ToString().Equals("NotApplicable", StringComparison.OrdinalIgnoreCase)));
 
             // If not specified, limit "MSBuildVersion" to "15.6" or "NotApplicable"
@@ -153,14 +153,14 @@ namespace DotNetCliPerf
                 selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["NodeReuse"] ?? true);
             }
 
-            // Large apps and "SourceChanged" methods can choose from SourceChanged=Leaf/Root SourceChangeType=Implementation/Api.
+            // "SourceChanged" methods on types implementing ISourceChanged can choose from SourceChanged=Leaf/Root SourceChangeType=Implementation/Api.
             // All other apps and methods must use SourceChanged=NotApplicable and SourceChangeType=NotApplicable.
             selectedBenchmarks = selectedBenchmarks.Where(b =>
             {
                 var sourceChanged = ((SourceChanged)b.Parameters["SourceChanged"]);
                 var sourceChangeType = ((SourceChangeType)b.Parameters["SourceChangeType"]);
 
-                if (b.Target.Type.Name.IndexOf("Large", StringComparison.OrdinalIgnoreCase) >= 0 &&
+                if (typeof(ISourceChanged).IsAssignableFrom(b.Target.Type) &&
                     b.Target.Method.Name.IndexOf("SourceChanged", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     return ((sourceChanged == SourceChanged.Leaf) || (sourceChanged == SourceChanged.Root)) &&
