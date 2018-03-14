@@ -106,7 +106,8 @@ namespace DotNetCliPerf
             arguments = arguments +
                 " /v:minimal" +
                 (Parallel ? " /m" : "") +
-                (ProduceReferenceAssembly ? " /p:ProduceReferenceAssembly=true" : "") +
+                // Always set ProduceReferenceAssembly, so our results are valid if the default changes
+                $" /p:ProduceReferenceAssembly={ProduceReferenceAssembly.ToString().ToLower()}" +
                 (restore ? " /restore" : "");
 
             return Util.RunProcess(GetMSBuildPath(), arguments, RootTempDir, environment: Environment);
