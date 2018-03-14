@@ -2,7 +2,7 @@
 
 namespace DotNetCliPerf
 {
-    public class WebLargeCore : WebCore
+    public class WebLargeCore : WebCore, ISourceChanged
     {
         // ClassLib007 is transitively referenced the most times
         private const string _rootProject = "ClassLib007";
