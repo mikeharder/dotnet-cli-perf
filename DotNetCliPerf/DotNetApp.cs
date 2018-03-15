@@ -21,6 +21,9 @@ namespace DotNetCliPerf
         [Params(true, false)]
         public bool ProduceReferenceAssembly { get; set; }
 
+        [Params(true, false)]
+        public bool RestoreUseSkipNonexistentTargets { get; set; }
+
         public override void GlobalSetup()
         {
             if (!NodeReuse)
@@ -108,6 +111,8 @@ namespace DotNetCliPerf
                 (Parallel ? " /m" : "") +
                 // Always set ProduceReferenceAssembly, so our results are valid if the default changes
                 $" /p:ProduceReferenceAssembly={ProduceReferenceAssembly.ToString().ToLower()}" +
+                // Always set RestoreUseSkipNonexistentTargets, so our results are valid if the default changes
+                $" /p:RestoreUseSkipNonexistentTargets={RestoreUseSkipNonexistentTargets.ToString().ToLower()}" +
                 (restore ? " /restore" : "");
 
             return Util.RunProcess(GetMSBuildPath(), arguments, RootTempDir, environment: Environment);

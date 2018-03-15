@@ -228,6 +228,12 @@ namespace DotNetCliPerf
                 selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["ProduceReferenceAssembly"] == false || (bool?)b.Parameters["ProduceReferenceAssembly"] == null);
             }
 
+            // If not specified, default RestoreUseSkipNonexistentTargets to null or true
+            if (!parameters.ContainsKey("RestoreUseSkipNonexistentTargets"))
+            {
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["RestoreUseSkipNonexistentTargets"] == true || (bool?)b.Parameters["RestoreUseSkipNonexistentTargets"] == null);
+            }
+
             selectedBenchmarks = selectedBenchmarks.
                 Where(b => !options.Types.Any() ||
                       b.Target.Type.Name.ContainsAny(options.Types, StringComparison.OrdinalIgnoreCase)).
