@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DotNetCliPerf
 {
@@ -65,7 +66,7 @@ namespace DotNetCliPerf
             {
                 // Verify version
                 var output = DotNet("--info");
-                if (!output.Contains($"Version:            {SdkVersion}"))
+                if (!Regex.IsMatch(output, $@"Version:\W*{SdkVersion}"))
                 {
                     throw new InvalidOperationException($"Incorrect SDK version");
                 }
