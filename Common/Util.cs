@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -12,6 +13,8 @@ namespace Common
 {
     public static class Util
     {
+        private static readonly bool _isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
         public static readonly Lazy<string> _repoRoot = new Lazy<string>(() =>
         {
             var currentDir = string.Empty;
@@ -194,6 +197,19 @@ namespace Common
         {
             var p = StartProcess(filename, arguments, workingDirectory, environment: environment);
             return WaitForExit(p.Process, p.OutputBuilder, p.ErrorBuilder, throwOnError: throwOnError);
+        }
+
+        // Kill all dotnet processes running a specified module.  Module name is case-sensitive on non-Windows.
+        public static void KillAllDotnet(string module)
+        {
+            if (_isWindows)
+            {
+                Util.RunProcess("taskkill", $"/f /fi \"modules eq {module}\" /im dotnet.exe");
+            }
+            else
+            {
+                Util.RunProcess("pkill", $"-f dotnet.*{module}");
+            }
         }
 
         // Replace contents in a file without changing encoding

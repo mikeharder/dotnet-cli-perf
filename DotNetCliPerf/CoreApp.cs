@@ -52,8 +52,8 @@ namespace DotNetCliPerf
 
         private void KillPersistentBuildProcesses()
         {
-            Util.RunProcess("taskkill", "/f /fi \"modules eq msbuild.dll\"");
-            Util.RunProcess("taskkill", "/f /fi \"modules eq vbcscompiler.dll\"");
+            Util.KillAllDotnet("MSBuild.dll");
+            Util.KillAllDotnet("VBCSCompiler.dll");
         }
 
         protected override void CopyApp()
