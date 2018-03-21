@@ -208,7 +208,7 @@ namespace Common
             }
             else
             {
-                Util.RunProcess("pkill", $"-f dotnet.*{module}");
+                Util.RunProcess("pkill", $"-f dotnet.*{module}", throwOnError: false);
             }
         }
 
