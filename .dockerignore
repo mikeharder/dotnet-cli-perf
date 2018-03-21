@@ -1,6 +1,26 @@
-.git
-
-README.md
-
+# Docker
 .dockerignore
 docker
+
+# Git
+.git
+.gitignore
+.gitmodules
+
+# Visual Studio
+.vs
+.vscode
+
+# Build Artifacts
+**/bin
+**/obj
+
+# Large folder, will volume map instead of copying
+scenarios
+
+# Unused files/folders
+CsprojFixer
+node
+SolutionGenerator
+templates
+README.md
