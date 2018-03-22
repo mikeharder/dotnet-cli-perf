@@ -47,7 +47,9 @@ COPY DotNetCliPerf/*.csproj ./DotNetCliPerf/
 
 # Restore
 WORKDIR /app/DotNetCliPerf
-RUN dotnet restore
+
+# Option "--disable-parallel" is required to prevent restore failures on slow machines like Raspberry Pi.
+RUN dotnet restore --disable-parallel
 
 # Copy everything else
 WORKDIR /app
