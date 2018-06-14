@@ -11,16 +11,15 @@ namespace DotNetCliPerf
     {
         private const string _razorCompileOnBuildPropertyGroup =
 @"  <PropertyGroup>
-    <RazorCompileOnBuild>true</RazorCompileOnBuild>
-    <UseRazorBuildServer>true</UseRazorBuildServer>
+    <RazorCompileOnBuild>{0}</RazorCompileOnBuild>
   </PropertyGroup>
 
 ";
 
         private (Process Process, StringBuilder OutputBuilder, StringBuilder ErrorBuilder) _process;
 
-        [Params(false, true)]
-        public bool RazorCompileOnBuild { get; set; }
+        [Params(null, false, true)]
+        public bool? RazorCompileOnBuild { get; set; }
 
         protected virtual string WebAppDir => "mvc";
 
@@ -32,12 +31,12 @@ namespace DotNetCliPerf
         {
             base.CopyApp();
 
-            if (RazorCompileOnBuild)
+            if (RazorCompileOnBuild.HasValue)
             {
                 Util.InsertInFileBefore(
                     Path.Combine(RootTempDir, "mvc", "mvc.csproj"),
                     "  <PropertyGroup>",
-                    _razorCompileOnBuildPropertyGroup);
+                    string.Format(_razorCompileOnBuildPropertyGroup, RazorCompileOnBuild.Value.ToString().ToLower()));
             }
         }
 
