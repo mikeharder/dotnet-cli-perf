@@ -109,10 +109,10 @@ namespace DotNetCliPerf
         {
             var arguments = dotnetArguments +
                 (Parallel ? "" : " /m:1") +
-                // Always set ProduceReferenceAssembly, so our results are valid if the default changes
-                $" /p:ProduceReferenceAssembly={ProduceReferenceAssembly.ToString().ToLower()}" +
-                // Always set RestoreUseSkipNonexistentTargets, so our results are valid if the default changes
-                $" /p:RestoreUseSkipNonexistentTargets={RestoreUseSkipNonexistentTargets.ToString().ToLower()}" +
+                (ProduceReferenceAssembly.HasValue ? 
+                    $" /p:ProduceReferenceAssembly={ProduceReferenceAssembly.ToString().ToLower()}" : "") +
+                (RestoreUseSkipNonexistentTargets.HasValue ?
+                    $" /p:RestoreUseSkipNonexistentTargets={RestoreUseSkipNonexistentTargets.ToString().ToLower()}" : "") +
                 (restore ? "" : " --no-restore") +
                 (build ? "" : " --no-build") +
                 (appArguments == null ? "" : " -- " + appArguments);

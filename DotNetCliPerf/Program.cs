@@ -222,16 +222,16 @@ namespace DotNetCliPerf
                 selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["TieredJit"] == false || (bool?)b.Parameters["TieredJit"] == null);
             }
 
-            // If not specified, default ProduceReferenceAssembly to null or false
+            // If not specified, default ProduceReferenceAssembly to null
             if (!parameters.ContainsKey("ProduceReferenceAssembly"))
             {
-                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["ProduceReferenceAssembly"] == false || (bool?)b.Parameters["ProduceReferenceAssembly"] == null);
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["ProduceReferenceAssembly"] == null);
             }
 
-            // If not specified, default RestoreUseSkipNonexistentTargets to null or true
+            // If not specified, default RestoreUseSkipNonexistentTargets to null
             if (!parameters.ContainsKey("RestoreUseSkipNonexistentTargets"))
             {
-                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["RestoreUseSkipNonexistentTargets"] == true || (bool?)b.Parameters["RestoreUseSkipNonexistentTargets"] == null);
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["RestoreUseSkipNonexistentTargets"] == null);
             }
 
             selectedBenchmarks = selectedBenchmarks.
