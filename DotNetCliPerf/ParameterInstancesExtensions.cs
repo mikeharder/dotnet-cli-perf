@@ -13,7 +13,7 @@ namespace DotNetCliPerf
                 foreach (var parameter in parameters.Items)
                 {
                     if (parameter.Name.Equals(pattern.Key, StringComparison.OrdinalIgnoreCase) &&
-                        !Match(parameter.Value.ToString(), pattern.Value))
+                        !Match(parameter.Value?.ToString() ?? "null", pattern.Value))
                     {
                         return false;
                     }
