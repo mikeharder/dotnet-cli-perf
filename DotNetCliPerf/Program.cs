@@ -184,10 +184,10 @@ namespace DotNetCliPerf
                 selectedBenchmarks = selectedBenchmarks.Where(b => ((SourceChangeType)b.Parameters["SourceChangeType"]) != SourceChangeType.Api);
             }
 
-            // If not specified, default RazorCompileOnBuild to false
+            // If not specified, default RazorCompileOnBuild to null
             if (!parameters.ContainsKey("RazorCompileOnBuild"))
             {
-                selectedBenchmarks = selectedBenchmarks.Where(b => !(bool?)b.Parameters["RazorCompileOnBuild"] ?? true);
+                selectedBenchmarks = selectedBenchmarks.Where(b => (bool?)b.Parameters["RazorCompileOnBuild"] == null);
             }
 
             // If not specified, default TargetFramework to 2.0
