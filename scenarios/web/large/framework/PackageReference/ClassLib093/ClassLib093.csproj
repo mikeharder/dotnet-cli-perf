@@ -145,7 +145,7 @@
       <Project>{3B869085-D9BC-481D-A09C-AF19F86277D9}</Project>
       <Name>ClassLib072</Name>
     </ProjectReference>
-    <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class001.cs" />
