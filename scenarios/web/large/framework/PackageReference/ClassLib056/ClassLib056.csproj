@@ -150,7 +150,7 @@
       <Name>ClassLib012</Name>
     </ProjectReference>
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.22" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Composite" Version="2.0.0" />
